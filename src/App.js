@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import { Headings } from './components';
 
 function App() {
   return (
     <div className="App">
-     <h1>Hello Word</h1>
+     <Headings as='h1'>Hello Team</Headings>
     </div>
   );
 }

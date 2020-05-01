@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from 'react-jss';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { colors, fonts, breakpoints, theme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={{theme, colors, fonts, breakpoints}}><App /></ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
