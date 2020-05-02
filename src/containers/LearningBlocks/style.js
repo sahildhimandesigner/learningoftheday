@@ -1,9 +1,9 @@
 const LearningBlocksStyle = ({colors, fonts}) => {
     return {
         div : {
-            width: '100%',
-            display: 'inline-block',
-            clear: 'both'
+            display: 'flex',
+            'flex-wrap': 'wrap',
+            'justify-content': 'center'
         }
     };
 }
