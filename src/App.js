@@ -1,6 +1,6 @@
 import React from 'react';
 import { Headings } from './components';
-import Header from './components/Header/header'
+import Header from './components/Header'
 import LearningBlocks from './containers/LearningBlocks/LearningBlocks';
 
 function App() {

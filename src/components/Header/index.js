@@ -2,7 +2,7 @@ import React from 'react'
 import Headings from '../Headings';
 import withStyle from 'react-jss'
 import HeaderStyle from './style';
-import Button from '../Button/button'
+import Button from '../Button'
 import Wrapper from '../Wrapper'
 
 const Header = ({ classes }) => {
