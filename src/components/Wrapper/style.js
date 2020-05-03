@@ -1,4 +1,4 @@
-const ContainerStyle = ({ colors, fonts }) => {
+const WrapperStyle = ({ colors, fonts }) => {
     return {
         containe : {            
             width: ({ width = '100%'}) => width,                                    
@@ -11,4 +11,4 @@ const ContainerStyle = ({ colors, fonts }) => {
     }
 }
 
-export default ContainerStyle;
+export default WrapperStyle;

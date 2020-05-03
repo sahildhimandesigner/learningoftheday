@@ -1,9 +1,9 @@
 import React from 'react'
 import withStyle from 'react-jss'
-import ContainerStyle from './style'
+import WrapperStyle from './style'
 import PropTypes from 'prop-types';
 
-const Container = ({ classes, children }) => {
+const Wrapper = ({ classes, children }) => {
     return (
         <div className={classes.containe}>
             { children }
@@ -11,10 +11,10 @@ const Container = ({ classes, children }) => {
     )
 }
 
-Container.propTypes = {
+Wrapper.propTypes = {
     classes: PropTypes.object,
     children: PropTypes.node
 }
 
-export default withStyle(ContainerStyle)(Container);
+export default withStyle(WrapperStyle)(Wrapper);
 
