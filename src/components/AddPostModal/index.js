@@ -19,7 +19,7 @@ const AddPostModal = ({ classes, cancelModal }) => {
         <textarea id="addPost" rows="6" cols="50" />
       </div>
       <div className={classes.modalFooter}>
-        <Button spacing='20px 0 0 0' backgroundColor='#fff' backgroundColor={`${colors.primaryColor}`}>Submit</Button>
+        <Button spacing='20px 0 0 0' backgroundColor={`${colors.primaryColor}`}>Submit</Button>
       </div>
     </Modal>
   )
