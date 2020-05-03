@@ -1,9 +1,11 @@
 import React from 'react';
 import withStyles from 'react-jss';
+import ScrollAnimation from 'react-animate-on-scroll';
 import { postData } from '../../config/constant';
 import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
+import './animation.css';
 
 const learningBlocks = ({classes}) => {
   return (
@@ -11,12 +13,13 @@ const learningBlocks = ({classes}) => {
       <Wrapper justifyContent='space-between'>
         {postData.map((item, index) => {
           return(
-            <LearningBlock
-              key={index}
-              title={item.heading}
-              children={item.content}
-              date={item.date}
-            />
+            <ScrollAnimation className={classes.postBlock} animateIn="bounceInRight" key={index}>
+              <LearningBlock
+                title={item.heading}
+                children={item.content}
+                date={item.date}
+              />
+            </ScrollAnimation>
           )
         })}
       </Wrapper>

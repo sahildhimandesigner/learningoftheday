@@ -10,6 +10,15 @@ const AddPostStyle = ({ fonts }) => {
     closeIcon: {
       cursor: 'pointer',
     },
+    formGroup: {
+      '& input': {
+        width: '100%',
+        padding: 10,
+        boxSizing: 'border-box',
+        marginBottom: 20,
+        outline: 'none',
+      }
+    },
     modalBody: {
       margin: '30px 0 0',
       '& textarea': {
@@ -24,7 +33,7 @@ const AddPostStyle = ({ fonts }) => {
     modalFooter: {
       display: 'flex',
       justifyContent: 'flex-end',
-    }
+    },
   };
 };
 
