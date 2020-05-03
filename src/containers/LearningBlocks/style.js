@@ -1,4 +1,4 @@
-const LearningBlocksStyle = ({ colors }) => {
+const LearningBlocksStyle = ({ breakpoints }) => {
   return {
     postBox : {
       display: 'flex',
@@ -15,6 +15,9 @@ const LearningBlocksStyle = ({ colors }) => {
       marginBottom: 25,
       '&:hover': {
           boxShadow: '1px 5px 10px #ccc',
+      },
+      [breakpoints.MOBILE_DEVICE]: {
+        width: '100% !important'
       }
     },
   };
