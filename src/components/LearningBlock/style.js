@@ -6,9 +6,9 @@ const LearningBlockStyle = ({colors, fonts}) => {
             borderRadius: '5px',
             cursor: 'pointer',
             padding: '19px',
-            width: '33%',
             float: 'left',
-            margin: '30px'
+            width: ({ width = '44%'}) => width,
+            margin: ({ spacing = '10px' }) => spacing,
         },
         user_name: {
             color: colors.black,

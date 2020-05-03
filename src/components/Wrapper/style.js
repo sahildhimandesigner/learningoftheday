@@ -7,6 +7,9 @@ const WrapperStyle = ({ colors, fonts }) => {
             margin: ({ margin = '0 auto' }) => margin,
             display: ({ display = 'flex' }) => display,
             flexFlow: ({ flexFlow = 'row' }) => flexFlow,
+            boxSizing: ({ boxSizing = 'border-box;' }) => boxSizing,
+            flexWrap: ({ flexWrap = 'wrap'}) => flexWrap,
+            flexGrow: ({ flexGrow = '3'}) => flexGrow,
         }
     }
 }
