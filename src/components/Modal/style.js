@@ -5,7 +5,7 @@ const modalStyle = ({ colors }) => {
         flexDirection: 'column',
         position: 'fixed',
         zIndex: 1,
-        padding: ({ padding = '100px 0 0' }) => padding,
+        padding: ({ padding = '10px 0 0' }) => padding,
         left: 0,
         top: 0,
         width: '100%',

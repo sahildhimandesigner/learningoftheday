@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
-import { Modal, Headings } from '../index';
-import AddPostStyle from './style';
+import { Modal, Headings, Button } from '../index';
 import closeIcon from '../../images/close-icon.svg';
+import { colors } from '../../theme';
+import AddPostStyle from './style';
 
 const AddPostModal = ({ classes, cancelModal }) => {
   return(
@@ -15,7 +16,10 @@ const AddPostModal = ({ classes, cancelModal }) => {
         </span>
       </div>
       <div className={classes.modalBody}>
-        <textarea id="addPost" rows="6" cols="50"></textarea>
+        <textarea id="addPost" rows="6" cols="50" />
+      </div>
+      <div className={classes.modalFooter}>
+        <Button spacing='20px 0 0 0' backgroundColor='#fff' backgroundColor={`${colors.primaryColor}`}>Submit</Button>
       </div>
     </Modal>
   )
