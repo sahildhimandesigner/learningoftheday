@@ -1,7 +1,7 @@
 const HeaderStyle = ({ colors }) => {
     return {
         bg : {
-            backgroundColor: ({ backgroundColor = colors.lightYellow}) => backgroundColor,
+            backgroundColor: ({ backgroundColor = colors.primaryColor}) => backgroundColor,
             minHeight: ({ minHeight = '80px'}) => minHeight,
             textAlign: ({ textAlign = 'center'}) => textAlign,
             display: ({ display = 'flex' }) => display,

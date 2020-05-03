@@ -1,9 +1,10 @@
-const LearningBlocksStyle = ({colors, fonts}) => {
-    return {
-        div : {
-            display: 'flex',            
-        }
-    };
+const LearningBlocksStyle = ({ colors }) => {
+  return {
+    postBox : {
+      display: 'flex',
+      marginTop: 32,
+    }
+  };
 }
 
 export default LearningBlocksStyle;

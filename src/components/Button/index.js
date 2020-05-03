@@ -1,18 +1,19 @@
-import React from 'react'
-import withStyle from 'react-jss'
-import buttonStyle from './style'
+import React from 'react';
 import PropTypes from 'prop-types';
+import withStyle from 'react-jss';
+import buttonStyle from './style';
 
-const Button = ({ classes, children='Submit' }) => {
+const Button = ({ classes, children='Submit', onClick }) => {
     return (        
         <div>
-            <button className={classes.btnStyle}>{children}</button>
+            <button onClick={onClick} className={classes.btnStyle}>{children}</button>
         </div>
     )
 }
 
 Button.propTypes = {
     classes: PropTypes.object,
+    onClick: PropTypes.func,
     children: PropTypes.node,    
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './components/Header'
-import LearningBlocks from './containers/LearningBlocks/LearningBlocks';
+import LearningBlocks from './containers/LearningBlocks';
 
 function App() {
   return (
     <div className="App">
-     <Header />
-     <LearningBlocks/>
+      <Header />
+      <LearningBlocks />
     </div>
   );
 }

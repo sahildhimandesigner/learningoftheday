@@ -10,6 +10,7 @@ const WrapperStyle = ({ colors, fonts }) => {
             boxSizing: ({ boxSizing = 'border-box;' }) => boxSizing,
             flexWrap: ({ flexWrap = 'wrap'}) => flexWrap,
             flexGrow: ({ flexGrow = '3'}) => flexGrow,
+            justifyContent: ({ justifyContent = 'normal'}) => justifyContent,
         }
     }
 }

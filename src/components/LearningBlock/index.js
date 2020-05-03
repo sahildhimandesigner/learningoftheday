@@ -1,11 +1,12 @@
 import React from 'react';
 import withStyles from 'react-jss';
+import { Headings } from '../index';
 import LearningBlockStyle from './style';
 
 const learningBlock = ({classes, children, ...props}) => (
     <div className={classes.div}>
-        <h2 className={classes.user_name}>{props.title}</h2>
-        <p className={classes.post}>{children}</p>
+        <Headings as='h3'>{props.title}</Headings>
+        <Headings className={classes.post} margin='16px 0 20px'>{children}</Headings>
         <span className={classes.date}>{props.date}</span>
     </div>
 );

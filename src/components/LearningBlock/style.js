@@ -1,14 +1,17 @@
 const LearningBlockStyle = ({colors, fonts}) => {
     return {
         div : {
-            border: '1px solid',
-            borderColor: colors.gray,
+            border: '1px solid #e2e2e2',
             borderRadius: '5px',
             cursor: 'pointer',
             padding: '19px',
-            float: 'left',
-            width: ({ width = '44%'}) => width,
-            margin: ({ spacing = '10px' }) => spacing,
+            width: ({ width = '49%'}) => width,
+            transition: 'all 0.3s ease-in-out 0s',
+            boxSizing: 'border-box',
+            marginBottom: 25,
+            '&:hover': {
+                boxShadow: '1px 5px 10px #ccc',
+            }
         },
         user_name: {
             color: colors.black,
@@ -20,7 +23,7 @@ const LearningBlockStyle = ({colors, fonts}) => {
         },
         date: {
             color: colors.gray,
-            fontSize: fonts.fontSizeMedium,
+            fontSize: 12,
         }
     };
 }

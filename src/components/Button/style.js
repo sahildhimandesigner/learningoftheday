@@ -8,8 +8,12 @@ const buttonStyle = ({ colors, fonts }) => {
             textAlign: ({ textAlign = 'center'}) => textAlign,            
             minWidth: ({ minWidth = '120px'}) => minWidth,
             border: ({ border = '0' }) => border,
-            padding: ({ padding = '10px 20px'}) => padding,
+            padding: ({ padding = '14px 35px'}) => padding,
             margin: ({ spacing = '10px 15px' }) => spacing,
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+            borderRadius: 4,
         }
     }
 }

@@ -3,8 +3,21 @@ const HeadingStyle = ({ colors }) => {
     h1: {
       fontSize: ({ fontSize = '32px' }) => fontSize,
       color: ({ textColor = colors.black }) => textColor,
-      width: ({ width = '100%'}) => width,
     },
+    h3: {
+      fontSize: ({ fontSize = '22px' }) => fontSize,
+      margin: ({ margin = '0' }) => margin,
+      fontWeight: '500',
+      lineHeight: '26px',
+      color: colors.lightBlack,
+    },
+    p: {
+      color: colors.darkgray,
+      fontSize: ({ fontSize = '14px' }) => fontSize,
+      fontWeight: 'normal',
+      lineHeight: ({ lineHeight = '20px' }) => lineHeight,
+      margin: ({ margin = '0' }) => margin,
+    }
   }
 }
 
