@@ -9,10 +9,25 @@ import LearningBlocksStyle from './style';
 import './animation.css';
 
 const LearningBlocks = ({classes}) => {
+  const [postData, setPostData] = useState([]);
   useEffect(() => {
-    console.log(axios.get('learningPosts.json'));
-  });
-  return (
+      axios.get('/learningPosts.json')
+          .then(response => {
+            const getData = [];
+            for (const key in response.data) {
+              getData.push({
+                id: key,
+                heading: response.data[key].title,
+                content: response.data[key].post,
+                date: new Date(response.data[key].date).toString()
+              });
+            }
+            setPostData(getData);
+          })
+          .catch(error => console.log(error));          
+  }, []);
+
+  return (    
     <div className={classes.postBox}>
       <Wrapper justifyContent='space-between'>
         {postData.map((item, index) => {
@@ -20,7 +35,7 @@ const LearningBlocks = ({classes}) => {
             <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
               <LearningBlock
                 title={item.heading}
-                children={item.content}
+                content={item.content}
                 date={item.date}
               />
             </ScrollAnimation>
