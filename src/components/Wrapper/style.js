@@ -1,6 +1,6 @@
 const WrapperStyle = ({ colors, fonts }) => {
     return {
-        containe : {            
+        container : {            
             width: ({ width = '100%'}) => width,                                    
             padding: ({ padding = '10px 20px'}) => padding,
             maxWidth: ({ maxWidth = '1200px' }) => maxWidth,

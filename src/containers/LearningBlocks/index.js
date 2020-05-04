@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from '../../axios-instance';
 import withStyles from 'react-jss';
 import ScrollAnimation from 'react-animate-on-scroll';
 import { postData } from '../../config/constant';
@@ -7,7 +8,10 @@ import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
 import './animation.css';
 
-const learningBlocks = ({classes}) => {
+const LearningBlocks = ({classes}) => {
+  useEffect(() => {
+    console.log(axios.get('learningPosts.json'));
+  });
   return (
     <div className={classes.postBox}>
       <Wrapper justifyContent='space-between'>
@@ -27,4 +31,4 @@ const learningBlocks = ({classes}) => {
   );
 }
 
-export default withStyles(LearningBlocksStyle)(learningBlocks);
+export default withStyles(LearningBlocksStyle)(LearningBlocks);

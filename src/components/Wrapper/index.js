@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const Wrapper = ({ classes, children }) => {
     return (
-        <div className={classes.containe}>
+        <div className={classes.container}>
             { children }
         </div>
     )
