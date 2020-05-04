@@ -17,7 +17,7 @@ const LearningBlocks = ({classes}) => {
       <Wrapper justifyContent='space-between'>
         {postData.map((item, index) => {
           return(
-            <ScrollAnimation className={classes.postBlock} animateIn="bounceInRight" key={index}>
+            <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
               <LearningBlock
                 title={item.heading}
                 children={item.content}
