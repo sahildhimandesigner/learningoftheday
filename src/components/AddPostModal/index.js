@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from '../../axios-instance';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 import { Modal, Headings, Button } from '../index';
@@ -7,7 +8,19 @@ import { colors } from '../../theme';
 import AddPostStyle from './style';
 
 const AddPostModal = ({ classes, cancelModal }) => {
-  const [error, setError] = useState('');
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredPost, setEnteredPost] = useState('');
+
+  const submitHandler = () => {
+    axios.post('/learningPosts.json', {
+      title: enteredTitle,
+      post: enteredPost,
+      date: new Date()
+    })
+    .then(response => console.log('success'))
+    .catch(error => console.log(error));
+  }
+
   return(
     <Modal>
       <div className={classes.ModalHeader}>
@@ -18,14 +31,30 @@ const AddPostModal = ({ classes, cancelModal }) => {
       </div>
       <div className={classes.modalBody}>
         <div className={classes.formGroup}>
-          <input id="addTitle" placeholder='Add titile here...' />
+          <input
+            id="addTitle"
+            placeholder='Add titile here...'
+            value={enteredTitle}
+            onChange={event => {
+              setEnteredTitle(event.target.value)
+            }}/>
         </div>
         <div className={classes.formGroup}>
-          <textarea id="addPost" rows="6" cols="50" placeholder='Add post here...' />
+          <textarea
+            id="addPost"
+            rows="6"
+            cols="50"
+            placeholder='Add post here...'
+            value={enteredPost}
+            onChange={event => {
+              setEnteredPost(event.target.value)
+            }} />
         </div>
       </div>
       <div className={classes.modalFooter}>
-        <Button spacing='20px 0 0 0' backgroundColor={`${colors.primaryColor}`}>Submit</Button>
+        <Button spacing='20px 0 0 0'
+          backgroundColor={`${colors.primaryColor}`}
+          onClick={submitHandler}>Submit</Button>
       </div>
     </Modal>
   )

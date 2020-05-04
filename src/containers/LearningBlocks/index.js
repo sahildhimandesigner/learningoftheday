@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios-instance';
 import withStyles from 'react-jss';
 import ScrollAnimation from 'react-animate-on-scroll';
-import { postData } from '../../config/constant';
 import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
