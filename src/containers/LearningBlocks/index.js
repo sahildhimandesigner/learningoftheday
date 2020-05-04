@@ -23,7 +23,7 @@ const LearningBlocks = ({classes}) => {
             }
             setPostData(getData);
           })
-          .catch(error => console.log(error));          
+          .catch(error => console.log(error));  
   }, []);
 
   return (    
