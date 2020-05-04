@@ -1,4 +1,4 @@
-const modalStyle = ({ colors }) => {
+const modalStyle = ({ colors, breakpoints }) => {
     return {
       modal: {
         display: 'flex',
@@ -21,8 +21,12 @@ const modalStyle = ({ colors }) => {
         width: '100%',
         padding: 20,
         borderRadius: 4,
-        flexDirection: 'column'
-      }
+        flexDirection: 'column',
+        [breakpoints.MOBILE_DEVICE]: {
+          maxWidth: '95% !important',
+          boxSizing: 'border-box',
+        },
+      },
     };
   };
       
