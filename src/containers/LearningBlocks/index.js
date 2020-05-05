@@ -5,7 +5,6 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
-import { Link } from "react-router-dom";
 import './animation.css';
 
 const LearningBlocks = ({classes}) => {
@@ -37,8 +36,7 @@ const LearningBlocks = ({classes}) => {
                 title={item.heading}
                 content={item.content}
                 date={item.date}
-              />
-              
+              />              
             </ScrollAnimation>
           )
         })}
