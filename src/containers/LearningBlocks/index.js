@@ -5,6 +5,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
+import { Link } from "react-router-dom";
 import './animation.css';
 
 const LearningBlocks = ({classes}) => {
@@ -29,14 +30,15 @@ const LearningBlocks = ({classes}) => {
   return (    
     <div className={classes.postBox}>
       <Wrapper justifyContent='space-between'>
-        {postData.map((item, index) => {
+        {postData.map((item, index) => {          
           return(
             <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
               <LearningBlock
                 title={item.heading}
                 content={item.content}
                 date={item.date}
-              />              
+              />
+              <Link className={classes.linkColor} to='/UserComment'>Add Comment</Link>
             </ScrollAnimation>
           )
         })}

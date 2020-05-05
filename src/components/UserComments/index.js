@@ -3,11 +3,13 @@ import { Headings, Wrapper } from '../index';
 import LandingPageStyle from './style'
 import withStyles from 'react-jss';
 
-const UserComment = (props) => {        
+const UserComment = (...props) => {    
+    
     return (
         <div>
             <Wrapper>
-                <Headings as='h1'>Add Comment</Headings>
+                {props.item.heading}
+                <Headings as='h1'>Add Comment</Headings>                
             </Wrapper>
         </div>
     )
