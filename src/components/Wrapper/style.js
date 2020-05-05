@@ -1,4 +1,4 @@
-const WrapperStyle = ({ colors, fonts }) => {
+const WrapperStyle = () => {
     return {
         container : {            
             width: ({ width = '100%'}) => width,                                    

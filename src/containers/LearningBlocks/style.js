@@ -1,3 +1,5 @@
+import { colors } from "../../theme";
+
 const LearningBlocksStyle = ({ breakpoints }) => {
   return {
     postBox : {
@@ -16,9 +18,13 @@ const LearningBlocksStyle = ({ breakpoints }) => {
       '&:hover': {
           boxShadow: '1px 5px 10px #ccc',
       },
+      linkColor : {
+        color: ({ color = colors.primaryColor}) => color,
+        fontSize: ({ fontSize = '12px'}) => fontSize
+      },
       [breakpoints.MOBILE_DEVICE]: {
         width: '100% !important'
-      }
+      },      
     },
   };
 }
