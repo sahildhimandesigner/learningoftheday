@@ -8,16 +8,20 @@ import { colors } from '../../theme';
 import AddPostStyle from './style';
 
 const AddPostModal = ({ classes, cancelModal }) => {
+  console.log(cancelModal, 'cancelModal');
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredPost, setEnteredPost] = useState('');
 
   const submitHandler = () => {
+    console.log('Working this');
     axios.post('/learningPosts.json', {
       title: enteredTitle,
       post: enteredPost,
       date: new Date()
     })
-    .then(response => console.log('success'))
+    .then(() => {
+      cancelModal();
+    })
     .catch(error => console.log(error));
   }
 
