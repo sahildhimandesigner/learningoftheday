@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios-instance';
-import { Header } from '../../components';
+import { Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 
 const LandingPage = () => {
 	const [postData, setPostData] = useState([]);
+	const [newPostTitle, setNewPostTitle] = useState('');
+	const [newPostContent, setNewPostContent] = useState('');
+	const [openModal, setModalOpen] = useState(false);
 	useEffect(() => {
 	  axios.get('/learningPosts.json')
 	      .then(response => {
@@ -21,9 +24,49 @@ const LandingPage = () => {
 	      })
 	      .catch(error => console.log(error));  
 	}, []);
+
+	const clickHandler = () => {
+		setModalOpen(true);
+	}
+
+	const submitHandler = () => {
+		if (newPostTitle !== null
+			&& newPostContent !== null) {			
+			const title = newPostTitle;
+			const post = newPostContent;
+			const date = new Date();
+			axios.post('/learningPosts.json', {
+			  title: newPostTitle,
+			  post: newPostContent,
+			  date: new Date()
+			})
+			.then(response => {
+				setPostData(prevData => [
+					...prevData,
+						{id: response.data.name,
+						heading: title,
+			            content: post,
+			            date: date.toString()}
+				])
+			  setModalOpen(false);
+			})
+			.catch(error => console.log(error));
+		}		
+	}
+
     return (
         <div>
-            <Header />
+            <Header clicked={clickHandler}/>
+            {openModal && (
+            	<AddPostModal
+        			cancelModal={() => setModalOpen(false)}
+        			addedTitle={(value) => setNewPostTitle(value)}
+        			addedPost={(value) => setNewPostContent(value)}
+        			titleValue={newPostTitle}
+        			contentValue={newPostContent}
+        			submitHandler={submitHandler}
+        			/>
+        	)}
             <LearningBlocks postData={postData}/>
         </div>       
     )

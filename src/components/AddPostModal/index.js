@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import axios from '../../axios-instance';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 import { Modal, Headings, Button } from '../index';
@@ -7,23 +6,7 @@ import closeIcon from '../../images/close-icon.svg';
 import { colors } from '../../theme';
 import AddPostStyle from './style';
 
-const AddPostModal = ({ classes, cancelModal }) => {
-  console.log(cancelModal, 'cancelModal');
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredPost, setEnteredPost] = useState('');
-
-  const submitHandler = () => {
-    axios.post('/learningPosts.json', {
-      title: enteredTitle,
-      post: enteredPost,
-      date: new Date()
-    })
-    .then(() => {
-      cancelModal();
-    })
-    .catch(error => console.log(error));
-  }
-
+const AddPostModal = ({ classes, cancelModal, ...props }) => {
   return(
     <Modal>
       <div className={classes.ModalHeader}>
@@ -36,11 +19,9 @@ const AddPostModal = ({ classes, cancelModal }) => {
         <div className={classes.formGroup}>
           <input
             id="addTitle"
-            placeholder='Add titile here...'
-            value={enteredTitle}
-            onChange={event => {
-              setEnteredTitle(event.target.value)
-            }}/>
+            placeholder='Add title here...'
+            value={props.titleValue}
+            onChange={(event) => props.addedTitle(event.target.value)}/>
         </div>
         <div className={classes.formGroup}>
           <textarea
@@ -48,16 +29,15 @@ const AddPostModal = ({ classes, cancelModal }) => {
             rows="6"
             cols="50"
             placeholder='Add post here...'
-            value={enteredPost}
-            onChange={event => {
-              setEnteredPost(event.target.value)
-            }} />
+            value={props.contentValue}
+            onChange={(event) => props.addedPost(event.target.value)}/>
         </div>
       </div>
       <div className={classes.modalFooter}>
         <Button spacing='20px 0 0 0'
           backgroundColor={`${colors.primaryColor}`}
-          onClick={submitHandler}>Submit</Button>
+          onClick={props.submitHandler}
+          >Submit</Button>
       </div>
     </Modal>
   )
