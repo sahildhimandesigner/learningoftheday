@@ -13,7 +13,6 @@ const AddPostModal = ({ classes, cancelModal }) => {
   const [enteredPost, setEnteredPost] = useState('');
 
   const submitHandler = () => {
-    console.log('Working this');
     axios.post('/learningPosts.json', {
       title: enteredTitle,
       post: enteredPost,
