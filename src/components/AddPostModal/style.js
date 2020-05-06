@@ -11,11 +11,12 @@ const AddPostStyle = ({ fonts }) => {
       cursor: 'pointer',
     },
     formGroup: {
+      position: 'relative',
+      marginBottom: 20,
       '& input': {
         width: '100%',
         padding: 10,
         boxSizing: 'border-box',
-        marginBottom: 20,
         outline: 'none',
       }
     },
