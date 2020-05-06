@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios-instance';
 import { Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
+import { colors } from '../../theme/colors';
 
 const LandingPage = () => {
 	const [postData, setPostData] = useState([]);
@@ -56,7 +57,14 @@ const LandingPage = () => {
 
     return (
         <div>
-            <Header clicked={clickHandler}/>
+            <Header>
+            		<Button
+            		onClick={() => clickHandler()}
+            		spacing='20px 0 0 0'
+            		backgroundColor='#fff'
+            		color={`${colors.primaryColor}`}
+            		>Add Post</Button>
+            </Header>
             {openModal && (
             	<AddPostModal
         			cancelModal={() => setModalOpen(false)}
