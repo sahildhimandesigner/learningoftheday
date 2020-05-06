@@ -5,6 +5,7 @@ const LearningBlocksStyle = ({ breakpoints }) => {
     postBox : {
       display: 'flex',
       marginTop: 32,
+      marginBottom: 100,
     },
     postBlock : {
       border: '1px solid #e2e2e2',
