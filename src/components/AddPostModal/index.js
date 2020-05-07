@@ -30,7 +30,13 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
             addPost: ''
           }}
           validationSchema={validationSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values, {setSubmitting, resetForm}) => {
+            setSubmitting(true);
+            props.submitHandler(values);
+            resetForm();
+            setSubmitting(false);
+          }
+        }
         >
           {({
             values,
@@ -85,8 +91,8 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
               </div>
               <div className={classes.modalFooter}>
                 <Button spacing='20px 0 0 0'
+                  type="submit"
                   backgroundColor={`${colors.primaryColor}`}
-                  onClick={props.submitHandler}
                   disabled={isSubmitting}
                   >Submit</Button>
               </div>

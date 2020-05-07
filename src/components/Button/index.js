@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import withStyle from 'react-jss';
 import buttonStyle from './style';
 
-const Button = ({ classes, children='Submit', onClick }) => {
+const Button = ({ classes, children='Submit', ...props}) => {
     return (        
         <div>
-            <button onClick={onClick} className={classes.btnStyle}>{children}</button>
+            <button
+            	type={props.type ?? 'button'}
+            	onClick={props.onClick}
+            	className={classes.btnStyle}
+            	disabled={props.disabled}>{children}</button>
         </div>
     )
 }

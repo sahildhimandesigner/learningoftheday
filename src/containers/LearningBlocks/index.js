@@ -15,6 +15,7 @@ const LearningBlocks = ({classes, ...props}) => {
           return(
             <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
               <LearningBlock
+                name={item.name}
                 title={item.heading}
                 content={item.content}
                 date={item.date}

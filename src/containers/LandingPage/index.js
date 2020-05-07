@@ -6,8 +6,6 @@ import { colors } from '../../theme/colors';
 
 const LandingPage = () => {
 	const [postData, setPostData] = useState([]);
-	const [newPostTitle, setNewPostTitle] = useState('');
-	const [newPostContent, setNewPostContent] = useState('');
 	const [openModal, setModalOpen] = useState(false);
 	useEffect(() => {
 	  axios.get('/learningPosts.json')
@@ -16,6 +14,7 @@ const LandingPage = () => {
 	        for (const key in response.data) {
 	          getData.push({
 	            id: key,
+	            name: response.data[key].name,
 	            heading: response.data[key].title,
 	            content: response.data[key].post,
 	            date: new Date(response.data[key].date).toString()
@@ -30,29 +29,32 @@ const LandingPage = () => {
 		setModalOpen(true);
 	}
 
-	const submitHandler = () => {
-		if (newPostTitle !== null
-			&& newPostContent !== null) {			
-			const title = newPostTitle;
-			const post = newPostContent;
-			const date = new Date();
-			axios.post('/learningPosts.json', {
-			  title: newPostTitle,
-			  post: newPostContent,
-			  date: new Date()
-			})
-			.then(response => {
-				setPostData(prevData => [
-					...prevData,
-						{id: response.data.name,
-						heading: title,
-			            content: post,
-			            date: date.toString()}
-				])
-			  setModalOpen(false);
-			})
-			.catch(error => console.log(error));
-		}		
+	const submitHandler = (submittedData) => {
+		const userName = submittedData.addName;
+		const title = submittedData.addTitle;
+		const post = submittedData.addPost;
+		const date = new Date();
+		axios.post('/learningPosts.json', {
+		  name: userName,
+		  title: title,
+		  post: post,
+		  date: new Date()
+		})
+		.then(response => {
+			console.log(response);
+			setPostData(prevData => [
+				...prevData,
+				{
+					id: response.data.name,
+					name: userName,
+					heading: title,
+		            content: post,
+		            date: date.toString()
+		        }
+			])
+		  setModalOpen(false);
+		})
+		.catch(error => console.log(error));
 	}
 
     return (
@@ -68,10 +70,6 @@ const LandingPage = () => {
             {openModal && (
             	<AddPostModal
         			cancelModal={() => setModalOpen(false)}
-        			addedTitle={(value) => setNewPostTitle(value)}
-        			addedPost={(value) => setNewPostContent(value)}
-        			titleValue={newPostTitle}
-        			contentValue={newPostContent}
         			submitHandler={submitHandler}
         			/>
         	)}

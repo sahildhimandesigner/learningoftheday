@@ -5,6 +5,7 @@ import LearningBlockStyle from './style';
 
 const LearningBlock = ({classes, ...props}) => (
     <div className={classes.div}>
+        <Headings as='h4'>{props.name}</Headings>
         <Headings as='h3'>{props.title}</Headings>
         <Headings className={classes.post} margin='16px 0 20px'>{props.content}</Headings>
         <span className={classes.date}>{props.date}</span>
