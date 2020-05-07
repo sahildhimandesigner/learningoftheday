@@ -1,6 +1,6 @@
 import React from 'react';
 import withStyle from 'react-jss';
-import { Wrapper, Button, Headings } from '../index';
+import { Wrapper, Headings } from '../index';
 import HeaderStyle from './style';
 
 const Header = ({ classes, ...props }) => {

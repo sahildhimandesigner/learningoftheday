@@ -7,6 +7,7 @@ const allColors = {
   lightYellow: '#e5d200',
   primaryColor: '#ef5b74',
   lightWhite: '#fefefe',
+  footerColor: '#212121',
 };
   
 export const colors = {

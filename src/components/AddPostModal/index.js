@@ -9,11 +9,6 @@ import { colors } from '../../theme';
 import AddPostStyle from './style';
 
 const AddPostModal = ({ classes, cancelModal, ...props }) => {
-  console.log(props, 'PROPS');
-  const handleSubmit = () => {
-    console.log('Working')
-  };
-
   return(
     <Modal>
       <div className={classes.ModalHeader}>

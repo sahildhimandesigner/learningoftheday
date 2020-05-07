@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios-instance';
-import { Header, Button, AddPostModal } from '../../components';
+import { Header, Button, AddPostModal, Footer } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 
@@ -74,6 +74,7 @@ const LandingPage = () => {
         			/>
         	)}
             <LearningBlocks postData={postData}/>
+			<Footer />
         </div>       
     )
 }

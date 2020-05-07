@@ -5,7 +5,6 @@ import moment from 'moment';
 import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
-import { Link } from "react-router-dom";
 import './animation.css';
 
 const LearningBlocks = ({classes, ...props}) => {
@@ -22,7 +21,7 @@ const LearningBlocks = ({classes, ...props}) => {
                 content={item.content}
                 date={customFormat}
               />
-              <Link className={classes.linkColor} to='/UserComment'>Add Comment</Link>
+              {/* <Link className={classes.linkColor} to='/UserComment'>Add Comment</Link> */}
             </ScrollAnimation>
           )
         })}

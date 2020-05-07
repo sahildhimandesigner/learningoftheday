@@ -12,7 +12,7 @@ const HeadingStyle = ({ colors }) => {
       color: colors.lightBlack,
     },
     p: {
-      color: colors.darkgray,
+      color: ({ textColor = colors.darkgray }) => textColor,
       fontSize: ({ fontSize = '14px' }) => fontSize,
       fontWeight: 'normal',
       lineHeight: ({ lineHeight = '20px' }) => lineHeight,
