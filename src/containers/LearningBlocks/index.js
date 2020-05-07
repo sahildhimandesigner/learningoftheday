@@ -12,10 +12,8 @@ const LearningBlocks = ({classes, ...props}) => {
   return (    
     <div className={classes.postBox}>
       <Wrapper justifyContent='space-between'>
-        {props.postData.map((item, index) => { 
-          console.log(item, 'DATA');  
-          const customFormat = moment(item.date).fromNow();
-          console.log(customFormat, 'DATE FORMAT')    
+        {props.postData.map((item, index) => {
+          const customFormat = moment(item.date).fromNow();   
           return(
             <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
               <LearningBlock
