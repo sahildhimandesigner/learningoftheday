@@ -1,4 +1,4 @@
-const AddPostStyle = ({ fonts }) => {
+const AddPostStyle = ({ colors, fonts }) => {
   return{
     ModalHeader: {
       position: 'relative',
@@ -18,7 +18,12 @@ const AddPostStyle = ({ fonts }) => {
         padding: 10,
         boxSizing: 'border-box',
         outline: 'none',
-      }
+        minHeight: 46,
+        borderRadius: 30,
+        border: `1px solid ${colors.lightGray}`,
+        paddingLeft: 20,
+        fontSize: 14,
+      },
     },
     modalBody: {
       margin: '30px 0 0',
@@ -26,9 +31,12 @@ const AddPostStyle = ({ fonts }) => {
         width: '100%',
         resize: 'none',
         outline: 'none',
-        padding: 10,
+        padding: '15px 10px 10px 24px',
         fontFamily: fonts.primary,
         boxSizing: 'border-box',
+        border: `1px solid ${colors.lightGray}`,
+        fontSize: 14,
+        borderRadius: 24, 
       }
     },
     modalFooter: {
