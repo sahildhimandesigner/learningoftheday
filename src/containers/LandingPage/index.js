@@ -7,8 +7,9 @@ import { colors } from '../../theme/colors';
 const LandingPage = () => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
-	useEffect(() => {
-	  axios.get('/learningPosts.json')
+
+	const getDataFromDatabase = () => {
+		axios.get('/learningPosts.json')
 	      .then(response => {
 	        const getData = [];
 	        for (const key in response.data) {
@@ -20,9 +21,13 @@ const LandingPage = () => {
 	            date: new Date(response.data[key].date).toString()
 	          });
 	        }
-	        setPostData(getData);
+	        const reversedOrder = getData.reverse();
+	        setPostData(reversedOrder);
 	      })
 	      .catch(error => console.log(error));  
+	}
+	useEffect(() => {
+		getDataFromDatabase();
 	}, []);
 
 	const clickHandler = () => {
@@ -30,28 +35,14 @@ const LandingPage = () => {
 	}
 
 	const submitHandler = (submittedData) => {
-		const userName = submittedData.addName;
-		const title = submittedData.addTitle;
-		const post = submittedData.addPost;
-		const date = new Date();
 		axios.post('/learningPosts.json', {
-		  name: userName,
-		  title: title,
-		  post: post,
+		  name: submittedData.addName,
+		  title: submittedData.addTitle,
+		  post: submittedData.addPost,
 		  date: new Date()
 		})
 		.then(response => {
-			console.log(response);
-			setPostData(prevData => [
-				...prevData,
-				{
-					id: response.data.name,
-					name: userName,
-					heading: title,
-		            content: post,
-		            date: date.toString()
-		        }
-			])
+			getDataFromDatabase();
 		  setModalOpen(false);
 		})
 		.catch(error => console.log(error));
