@@ -10,7 +10,7 @@ import AddPostStyle from './style';
 
 const AddPostModal = ({ classes, cancelModal, ...props }) => {
   return(
-    <Modal maxWidth='400px'>
+    <Modal>
       <div className={classes.ModalHeader}>
         <Headings as='h3'>Add Post</Headings>
         <span className={classes.closeIcon} onClick={cancelModal}>
@@ -32,7 +32,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
             setSubmitting(false);
           }
         }
-        >
+        > 
           {({
             values,
             errors,
@@ -72,7 +72,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
               <div className={classes.formGroup}>
                 <textarea
                   id="addPost"
-                  rows="4"
+                  rows="6"
                   cols="50"
                   placeholder='Add post here...'
                   type="text"

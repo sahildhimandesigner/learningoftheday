@@ -10,6 +10,7 @@ const buttonStyle = ({ colors, fonts }) => {
             border: ({ border = '0' }) => border,
             padding: ({ padding = '14px 35px'}) => padding,
             margin: ({ spacing = '10px 15px' }) => spacing,
+            maxWidth: ({ maxWidth = '180px'}) => maxWidth,
             fontWeight: '600',
             textTransform: 'uppercase',
             cursor: 'pointer',

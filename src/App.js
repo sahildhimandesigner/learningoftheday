@@ -1,6 +1,6 @@
 import React from 'react';
 import LandingPage from './containers/LandingPage';
-import UserComments from './components/UserComments'
+import AddComment from './containers/AddComment'
 
 import {
   BrowserRouter as Router,
@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact component={LandingPage}  />
-          <Route path='/UserComment' component={UserComments}  />
+          <Route path='/AddComment' component={AddComment}  />
         </Switch>
       </Router>
     </div>

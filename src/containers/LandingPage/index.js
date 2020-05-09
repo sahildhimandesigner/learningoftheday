@@ -51,12 +51,12 @@ const LandingPage = () => {
     return (
         <div>
             <Header>
-            		<Button
-            		onClick={() => clickHandler()}
-            		spacing='20px 0 0 0'
-            		backgroundColor='#fff'
-            		color={`${colors.primaryColor}`}
-            		>Add Post</Button>
+				<Button
+					onClick={() => clickHandler()}
+					spacing='20px 0 0 0'
+					backgroundColor='#fff'
+					color={`${colors.primaryColor}`}
+					>Add Post</Button>
             </Header>
             {openModal && (
             	<AddPostModal
