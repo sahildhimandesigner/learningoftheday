@@ -22,7 +22,14 @@ const LoginBoxStyle = ({colors}) => {
 		},
 		buttonDiv: {
 			display: 'flex',
-			justifyContent: 'flex-end'
+			textAlign: 'center',
+			flexDirection: 'column'
+		},
+		signInSpan: {
+			padding: '10px',
+			cursor: 'pointer',
+			fontSize: '12px',
+			color: colors.gray
 		}
 	}
 }

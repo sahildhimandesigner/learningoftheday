@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import withStyles from 'react-jss';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -10,13 +10,14 @@ import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
 
 const User = ({classes}) => {
+	const [signInTrue, setSignInTrue] = useState(false);
 	return (
 		<div>
 			<Header/>
 			<Wrapper>
 			<div className={classes.outerDiv}>
 			<div className={classes.inputBox}>
-				<Headings as='h3'>Sign up</Headings>
+				<Headings as='h3'>Sign {signInTrue ? 'in' : 'up'}</Headings>
 			</div>
 				<Formik
 				initialValues = {{
@@ -38,7 +39,12 @@ const User = ({classes}) => {
 				        password: values.password,
 				        returnSecureToken: true
 				    }
-					const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
+					let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
+
+					if (signInTrue) {
+						url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
+					}					
+
 					axios.post(url, authData)
 						.then(response => {
 							const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
@@ -88,8 +94,11 @@ const User = ({classes}) => {
 								spacing='20px 0 0 0'
               					type="submit"
               					backgroundColor={`${colors.primaryColor}`}
-								disabled={isSubmitting}
 							>Submit</Button>
+							<span
+								className={classes.signInSpan}
+								onClick={() => setSignInTrue(!signInTrue)}
+								>Sign {signInTrue ? 'up' : 'in'} instead?</span>
 						</div>
 					</form>
 				)}			
