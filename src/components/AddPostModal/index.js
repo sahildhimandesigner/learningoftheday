@@ -85,7 +85,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
                 <Error touched={touched.addPost} message={errors.addPost} />
               </div>
               <div className={classes.modalFooter}>
-                <Button spacing='20px 0 0 0'
+                <Button
                   type="submit"
                   backgroundColor={`${colors.primaryColor}`}
                   disabled={isSubmitting}
