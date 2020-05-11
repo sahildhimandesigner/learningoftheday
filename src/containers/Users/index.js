@@ -13,6 +13,7 @@ const User = ({classes}) => {
 	return (
 		<div>
 			<Header/>
+			<Wrapper>
 			<div className={classes.outerDiv}>
 			<div className={classes.inputBox}>
 				<Headings as='h3'>Sign up</Headings>
@@ -94,6 +95,7 @@ const User = ({classes}) => {
 				)}			
 				</Formik>
 			</div>
+			</Wrapper>
 		</div>
 	);	
 }
