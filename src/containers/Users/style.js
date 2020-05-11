@@ -16,7 +16,8 @@ const LoginBoxStyle = ({colors}) => {
 				borderRadius: '30px',
 				padding: '10px',
 				boxSizing: 'border-box',
-				border: '1px solid ' + colors.gray
+				border: '1px solid ' + colors.gray,
+				outline: 'none'
 			}
 		},
 		buttonDiv: {
