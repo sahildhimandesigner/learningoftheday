@@ -21,7 +21,7 @@ const LearningBlocks = ({classes, ...props}) => {
                 content={item.content}
                 date={customFormat}
               />
-              {/* <Link className={classes.linkColor} to='/UserComment'>Add Comment</Link> */}
+              {/* <Link className={classes.linkColor} to='/AddComment'>Add Comment</Link> */}
             </ScrollAnimation>
           )
         })}
