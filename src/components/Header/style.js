@@ -1,4 +1,4 @@
-const HeaderStyle = ({ colors }) => {
+const HeaderStyle = ({ colors, breakpoints }) => {
     return {
         bg: {
             backgroundColor: ({ backgroundColor = colors.primaryColor}) => backgroundColor,
@@ -11,7 +11,13 @@ const HeaderStyle = ({ colors }) => {
         navItems: {
             display: 'inherit',
             justifyContent: 'space-between',
-            width: '24%'
+            width: '24%',
+            [breakpoints.MOBILE_DEVICE]: {
+              width: '100%',
+            },
+            [breakpoints.IPAD]: {
+              width: '100%',
+            },
         }
 
     }
