@@ -8,7 +8,7 @@ const Header = ({ classes, ...props }) => {
     <div className={classes.bg}>          
       <Wrapper justifyContent='space-between'>
         <Headings textColor="#FFFFFF" as='h1'>Learning of the day</Headings>        
-        {props.children}
+        <div className={classes.navItems}>{props.children}</div>
       </Wrapper>
     </div>
   )

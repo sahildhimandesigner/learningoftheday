@@ -92,8 +92,8 @@ const LandingPage = ({...props}) => {
 				<Button
 					onClick={() => !token ? props.history.push('/auth')  : logout()}
 					spacing='20px 0 0 0'
-					backgroundColor='#fff'
-					color={`${colors.primaryColor}`}
+					backgroundColor={`${colors.primaryColor}`}
+					color='#fff'
 					>{loginButtonValue}</Button>
             </Header>
             {openModal && (

@@ -15,6 +15,7 @@ const buttonStyle = ({ colors, fonts }) => {
             textTransform: 'uppercase',
             cursor: 'pointer',
             borderRadius: 4,
+            outline: 'none'
         }
     }
 }

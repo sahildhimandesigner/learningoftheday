@@ -1,6 +1,6 @@
 const HeaderStyle = ({ colors }) => {
     return {
-        bg : {
+        bg: {
             backgroundColor: ({ backgroundColor = colors.primaryColor}) => backgroundColor,
             minHeight: ({ minHeight = '80px'}) => minHeight,
             textAlign: ({ textAlign = 'center'}) => textAlign,
@@ -8,6 +8,11 @@ const HeaderStyle = ({ colors }) => {
             flexFlow: ({ flexFlow = 'row' }) => flexFlow,
             width: ({ width = '100%'}) => width,
         },
+        navItems: {
+            display: 'inherit',
+            justifyContent: 'space-between',
+            width: '24%'
+        }
 
     }
 }
