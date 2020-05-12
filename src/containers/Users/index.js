@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import axios from '../../axios-instance';
 
 import { Error } from '../../components';
-import { Header, Button, AddPostModal, Footer, Wrapper, Headings } from '../../components';
+import { Header, Button, Footer, Wrapper, Headings } from '../../components';
 import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
 
-const User = ({classes}) => {
+const User = ({classes, ...props}) => {
 	const [signInTrue, setSignInTrue] = useState(false);
 	return (
 		<div>
@@ -51,6 +51,7 @@ const User = ({classes}) => {
 			                localStorage.setItem('token', response.data.idToken);
 			                localStorage.setItem('expirationDate', expirationDate);
 			                localStorage.setItem('userId', response.data.localId);
+			                props.history.push('/');
 						})
 						.catch(error => {
 							console.log('error', error);
@@ -103,8 +104,9 @@ const User = ({classes}) => {
 					</form>
 				)}			
 				</Formik>
-			</div>
+			</div>			
 			</Wrapper>
+			<Footer/>
 		</div>
 	);	
 }

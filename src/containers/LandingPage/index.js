@@ -7,6 +7,8 @@ import { colors } from '../../theme/colors';
 const LandingPage = () => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
+	const [token, setToken] = useState('');
+	const [userId, setUserId] = useState('');
 
 	const getDataFromDatabase = () => {
 		axios.get('/learningPosts.json')
@@ -26,8 +28,32 @@ const LandingPage = () => {
 	      })
 	      .catch(error => console.log(error));  
 	}
-	useEffect(() => {
+
+	const logout = () => {
+		localStorage.removeItem('token');
+		localStorage.removeItem('expirationDate');
+		localStorage.removeItem('userId');
+	}
+
+	const checkAuthState = () => {
+		const token = localStorage.getItem('token');
+		if (!token) {
+			logout();
+		} else {
+			if (new Date() >= new Date(localStorage.getItem('expirationDate'))) {
+				logout();
+			} else {
+				const token = localStorage.getItem('token');
+				const userId = localStorage.getItem('userId');
+				setToken(token);
+				setUserId(userId);
+			}
+		}
+	}
+
+	useEffect(() => {		
 		getDataFromDatabase();
+		checkAuthState();
 	}, []);
 
 	const clickHandler = () => {
