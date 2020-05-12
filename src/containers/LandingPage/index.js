@@ -4,11 +4,12 @@ import { Header, Button, AddPostModal, Footer } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 
-const LandingPage = () => {
+const LandingPage = ({...props}) => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
 	const [token, setToken] = useState('');
 	const [userId, setUserId] = useState('');
+	const [loginButtonValue, setLoginButtonValue] = useState('Login');
 
 	const getDataFromDatabase = () => {
 		axios.get('/learningPosts.json')
@@ -33,6 +34,9 @@ const LandingPage = () => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('expirationDate');
 		localStorage.removeItem('userId');
+		setToken('');
+		setUserId('');
+		setLoginButtonValue('Login');
 	}
 
 	const checkAuthState = () => {
@@ -45,6 +49,7 @@ const LandingPage = () => {
 			} else {
 				const token = localStorage.getItem('token');
 				const userId = localStorage.getItem('userId');
+				setLoginButtonValue('Logout');
 				setToken(token);
 				setUserId(userId);
 			}
@@ -53,12 +58,13 @@ const LandingPage = () => {
 
 	useEffect(() => {		
 		getDataFromDatabase();
-		checkAuthState();
 	}, []);
 
-	const clickHandler = () => {
-		setModalOpen(true);
-	}
+	useEffect(() => {
+		checkAuthState();
+	});
+
+	const clickHandler = () => setModalOpen(true);
 
 	const submitHandler = (submittedData) => {
 		axios.post('/learningPosts.json', {
@@ -83,6 +89,12 @@ const LandingPage = () => {
 					backgroundColor='#fff'
 					color={`${colors.primaryColor}`}
 					>Add Post</Button>
+				<Button
+					onClick={() => !token ? props.history.push('/auth')  : logout()}
+					spacing='20px 0 0 0'
+					backgroundColor='#fff'
+					color={`${colors.primaryColor}`}
+					>{loginButtonValue}</Button>
             </Header>
             {openModal && (
             	<AddPostModal
