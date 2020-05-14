@@ -6,6 +6,7 @@ import { LearningBlock } from '../../components';
 import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
 import './animation.css';
+import { Link } from 'react-router-dom'
 
 const LearningBlocks = ({classes, ...props}) => {
   return (    
@@ -15,13 +16,14 @@ const LearningBlocks = ({classes, ...props}) => {
           const customFormat = moment(item.date).fromNow();   
           return(
             <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
-              <LearningBlock
-                name={item.name}
-                title={item.heading}
-                content={item.content}
-                date={customFormat}
-              />
-              {/* <Link className={classes.linkColor} to='/AddComment'>Add Comment</Link> */}
+              
+                <LearningBlock
+                  name={item.name}
+                  title={item.heading}
+                  content={item.content}
+                  date={customFormat}
+                />
+              <Link className={classes.linkColor} to={`/AddComment/${item.id}`}>Add Comment</Link>
             </ScrollAnimation>
           )
         })}

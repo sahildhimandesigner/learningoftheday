@@ -7,10 +7,10 @@ import withStyle from 'react-jss'
 const ShowUserComments = ({clasess, ...props}) => {
     return (
         <Wrapper>
-            {props.getComment.map((item) => {
+            {props.getComment.map((item, index) => {
             const customFormat = moment(item.date).fromNow();
             return(
-                <UserCommentsList
+                <UserCommentsList key={index}
                     userName={item.userName}
                     addComment={item.addComment}
                     date={customFormat}

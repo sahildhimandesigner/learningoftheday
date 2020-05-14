@@ -14,9 +14,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path='/' exact component={LandingPage}  />
-          <Route path='/AddComment' component={AddComment}  />
-          <Route path='/auth' component={Users}  />
+          <Route path='/' exact component={LandingPage} />
+          <Route path='/AddComment/:id' component={AddComment} />
+          <Route path='/auth' component={Users} />
         </Switch>
       </Router>
     </div>

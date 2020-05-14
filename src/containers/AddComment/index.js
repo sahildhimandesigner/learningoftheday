@@ -3,15 +3,17 @@ import { UserComment, Header } from '../../components'
 import axios from '../../axios-instance'
 import ShowUserComments from './showUserComments'
 
-const AddComment = () => {
-
+const AddComment = (props) => {
+    
     const [getComment, setComment] = useState([])
+    const [count, setCount] = useState(0);
+    const [post, setPost] = useState({})
 
     const getUserComments = () => {
         axios.get('/userComment.json')
         .then(response => {
             const getCommentData = [];
-
+            
             for(const key in response.data) {
                 getCommentData.push({
                     id: key,
@@ -20,6 +22,7 @@ const AddComment = () => {
                     date: new Date(response.data[key].date).toString()
                 })
             } setComment(getCommentData);
+            setCount(getCommentData.length)
         })
     }
 
@@ -33,15 +36,23 @@ const AddComment = () => {
             addComment: submitComment.addComment,
             date: new Date()
         }).then(response => {
-            console.log(response, 'comment data')
         }) 
     }
+
+    useEffect(()=> {
+        const postId = props.match.params.id;
+        axios.get(`/learningPosts/${postId}.json`)
+        .then(response => {
+            setPost(response.data)
+        })
+    },[])
 
     return (
         <>  
             <Header />
             <UserComment submitUserCommentHandler={submitUserCommentHandler}  />
-            <ShowUserComments getComment={getComment} />
+            <ShowUserComments getComment={getComment} />  
+            <p>{count}</p>          
         </>
     )
 }
