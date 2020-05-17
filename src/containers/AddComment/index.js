@@ -45,14 +45,22 @@ const AddComment = (props) => {
         .then(response => {
             setPost(response.data)
         })
-    },[])
+    },[]) 
+    //It will work as willmound lifecycle
+    //If we don't pass array as seconde parameter then it will work as didmount
 
     return (
         <>  
             <Header />
+            <div>
+                <h1>{post.title}</h1>
+                <p>{post.post}</p>
+                <span>{post.name}</span>
+            </div>
+            <p>{count}: Comments</p>
             <UserComment submitUserCommentHandler={submitUserCommentHandler}  />
             <ShowUserComments getComment={getComment} />  
-            <p>{count}</p>          
+                      
         </>
     )
 }
