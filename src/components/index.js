@@ -8,7 +8,8 @@ import Modal from './Modal';
 import UserComment from './UserComments';
 import Wrapper from './Wrapper';
 import Footer from './Footer';
-import UserCommentsList from './UserComments/userCommentList'
+import UserCommentsList from './UserComments/userCommentList';
+import LoginButton from './LoginButton';
 
 export {
   AddPostModal,
@@ -22,4 +23,5 @@ export {
   Wrapper,
   Footer,
   UserCommentsList,
+  LoginButton
 };

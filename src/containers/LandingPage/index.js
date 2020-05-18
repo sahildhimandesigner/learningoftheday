@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios-instance';
-import { Header, Button, AddPostModal, Footer } from '../../components';
+import { Header, Button, AddPostModal, Footer, LoginButton } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 
-const LandingPage = ({...props}) => {
+const LandingPage = (props) => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
 	const [token, setToken] = useState('');
@@ -80,6 +80,10 @@ const LandingPage = ({...props}) => {
 		.catch(error => console.log(error));
 	}
 
+	const loginHandler = () => {
+		return !token ? props.history.push('/auth')  : logout();
+	}
+
     return (
         <div>
             <Header>
@@ -89,12 +93,10 @@ const LandingPage = ({...props}) => {
 					backgroundColor='#fff'
 					color={`${colors.primaryColor}`}
 					>Add Post</Button>
-				<Button
-					onClick={() => !token ? props.history.push('/auth')  : logout()}
-					spacing='20px 0 0 0'
-					backgroundColor={`${colors.primaryColor}`}
-					color='#fff'
-					>{loginButtonValue}</Button>
+				<LoginButton
+					loginHandler = {loginHandler}
+					loginButtonValue = {loginButtonValue}
+				/>
             </Header>
             {openModal && (
             	<AddPostModal

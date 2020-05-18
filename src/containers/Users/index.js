@@ -19,9 +19,9 @@ const User = ({classes, ...props}) => {
 				.required('Please enter your password')
 		};
 	if (!signInTrue) {
-		validationSchema.first_name = Yup.string()
+		validationSchema.firstName = Yup.string()
 				.required('Please enter your first name');
-		validationSchema.last_name = Yup.string()
+		validationSchema.lastName = Yup.string()
 				.required('Please enter your last name');
 	}
 	return (
@@ -34,8 +34,8 @@ const User = ({classes, ...props}) => {
 			</div>
 				<Formik
 				initialValues = {{
-					first_name: '',
-					last_name: '',
+					firstName: '',
+					lastName: '',
 					email: '',
 					password: ''
 				}}
@@ -49,9 +49,20 @@ const User = ({classes, ...props}) => {
 				        returnSecureToken: true
 				    }
 
-				    if (!signInTrue) {
-				    	authData.first_name = values.first_name;
-				    	authData.last_name = values.last_name;
+				    const saveUserDetail = (authId) => {
+				    	const userData = {
+				    		firstName: values.firstName,
+				    		lastName: values.lastName,
+				    		authId: authId
+				    	};
+
+				    	axios.post('/users.json', userData)
+				    		.then(response => {
+				    			console.log('userData', response);
+				    		})
+							.catch(error => {
+								console.log('error', error);
+							});
 				    }
 
 					let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
@@ -62,6 +73,9 @@ const User = ({classes, ...props}) => {
 
 					axios.post(url, authData)
 						.then(response => {
+							if (!signInTrue) {
+								saveUserDetail(response.data.localId);
+							}
 							const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 			                localStorage.setItem('token', response.data.idToken);
 			                localStorage.setItem('expirationDate', expirationDate);
@@ -87,25 +101,25 @@ const User = ({classes, ...props}) => {
 						<div>
 							<div className={classes.inputBox}>
 								<input
-									id="first_name"
+									id="firstName"
 									placeholder="Enter your tirst name"
 									type="text"
-									name="first_name"
+									name="firstName"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									value={values.first_name}/>
-								<Error touched={touched.first_name} message={errors.first_name} />
+									value={values.firstName}/>
+								<Error touched={touched.firstName} message={errors.firstName} />
 							</div>
 							<div className={classes.inputBox}>
 								<input
-									id="last_name"
+									id="lastName"
 									placeholder="Enter your last name"
 									type="text"
-									name="last_name"
+									name="lastName"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									value={values.last_name}/>
-								<Error touched={touched.last_name} message={errors.last_name} />
+									value={values.lastName}/>
+								<Error touched={touched.lastName} message={errors.lastName} />
 							</div>
 						</div>) : null;
 					
