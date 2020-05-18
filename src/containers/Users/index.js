@@ -10,7 +10,20 @@ import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
 
 const User = ({classes, ...props}) => {
-	const [signInTrue, setSignInTrue] = useState(false);
+	const [signInTrue, setSignInTrue] = useState(true);
+	const validationSchema = {
+			email: Yup.string()
+				.required('Please enter your email').
+				email('Please enter a valid email'),
+			password: Yup.string()
+				.required('Please enter your password')
+		};
+	if (!signInTrue) {
+		validationSchema.first_name = Yup.string()
+				.required('Please enter your first name');
+		validationSchema.last_name = Yup.string()
+				.required('Please enter your last name');
+	}
 	return (
 		<div>
 			<Header/>
@@ -21,17 +34,13 @@ const User = ({classes, ...props}) => {
 			</div>
 				<Formik
 				initialValues = {{
+					first_name: '',
+					last_name: '',
 					email: '',
 					password: ''
 				}}
 				validationSchema={
-					Yup.object().shape({
-						email: Yup.string()
-							.required('Please enter your email').
-							email('Please enter a valid email'),
-						password: Yup.string()
-							.required('Please enter your password')
-					})
+					Yup.object().shape(validationSchema)
 				}
 				onSubmit={(values, {setSubmitting, resetForm}) => {
 					const authData = {
@@ -39,6 +48,12 @@ const User = ({classes, ...props}) => {
 				        password: values.password,
 				        returnSecureToken: true
 				    }
+
+				    if (!signInTrue) {
+				    	authData.first_name = values.first_name;
+				    	authData.last_name = values.last_name;
+				    }
+
 					let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
 
 					if (signInTrue) {
@@ -66,8 +81,37 @@ const User = ({classes, ...props}) => {
 			        handleBlur,
 			        handleSubmit,
 			        isSubmitting
-				}) => (
-					<form onSubmit={handleSubmit}>
+				}) => {
+					const additionalFields = 
+						!signInTrue ? (
+						<div>
+							<div className={classes.inputBox}>
+								<input
+									id="first_name"
+									placeholder="Enter your tirst name"
+									type="text"
+									name="first_name"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.first_name}/>
+								<Error touched={touched.first_name} message={errors.first_name} />
+							</div>
+							<div className={classes.inputBox}>
+								<input
+									id="last_name"
+									placeholder="Enter your last name"
+									type="text"
+									name="last_name"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.last_name}/>
+								<Error touched={touched.last_name} message={errors.last_name} />
+							</div>
+						</div>) : null;
+					
+					return (
+						<form onSubmit={handleSubmit}>
+						{additionalFields}				
 						<div className={classes.inputBox}>
 							<input
 								id="email"
@@ -102,7 +146,8 @@ const User = ({classes, ...props}) => {
 								>Sign {signInTrue ? 'up' : 'in'} instead?</span>
 						</div>
 					</form>
-				)}			
+					)
+				}}			
 				</Formik>
 			</div>			
 			</Wrapper>
