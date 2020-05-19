@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 const LogOut = (props) => {
 	useEffect(() => {
-		props.logOut('ehte')
+		props.logOut()
 	}, []);
 
 	return <Redirect to='/auth' />;

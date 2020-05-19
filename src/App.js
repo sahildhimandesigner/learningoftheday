@@ -66,7 +66,7 @@ function App() {
               <Route path='/AddComment/:id'
                 render={() => <AddComment currentState={currentState} /> } />
               <Route path='/auth'
-                render={() => <Users authState={(user) => checkAuthState(user)}/>}
+                render={() => <Users authState={checkAuthState}/>}
                 />
               <Route path='/logout'
                 render={() => <LogOut logOut={logout}/>}

@@ -80,13 +80,13 @@ const User = ({classes, ...props}) => {
 								userData = Object.values(response.data)[0];
 								localStorage.setItem('firstName', userData.firstName);
 								localStorage.setItem('lastName', userData.lastName);
-							})
-							const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-			                localStorage.setItem('token', response.data.idToken);
-			                localStorage.setItem('expirationDate', expirationDate);
-			                localStorage.setItem('userId', response.data.localId);
-			                props.authState();
-			                props.history.push('/');
+								const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+				                localStorage.setItem('token', response.data.idToken);
+				                localStorage.setItem('expirationDate', expirationDate);
+				                localStorage.setItem('userId', response.data.localId);
+				                props.authState();
+				                props.history.push('/');
+							})							
 						})
 						.catch(error => {
 							console.log('error', error);
