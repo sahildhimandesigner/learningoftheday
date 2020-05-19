@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import withStyles from 'react-jss';
+import { withRouter } from 'react-router';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from '../../axios-instance';
@@ -57,9 +58,6 @@ const User = ({classes, ...props}) => {
 				    	};
 
 				    	axios.post('/users.json', userData)
-				    		.then(response => {
-				    			console.log('userData', response);
-				    		})
 							.catch(error => {
 								console.log('error', error);
 							});
@@ -74,12 +72,13 @@ const User = ({classes, ...props}) => {
 					axios.post(url, authData)
 						.then(response => {
 							if (!signInTrue) {
-								saveUserDetail(response.data.localId);
+								saveUserDetail(response.data.localId);								
 							}
 							const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 			                localStorage.setItem('token', response.data.idToken);
 			                localStorage.setItem('expirationDate', expirationDate);
 			                localStorage.setItem('userId', response.data.localId);
+			                props.authState();
 			                props.history.push('/');
 						})
 						.catch(error => {
@@ -165,9 +164,8 @@ const User = ({classes, ...props}) => {
 				</Formik>
 			</div>			
 			</Wrapper>
-			<Footer/>
 		</div>
 	);	
 }
 
-export default withStyles(LoginBoxStyle)(User);
+export default withStyles(LoginBoxStyle)(withRouter(User));

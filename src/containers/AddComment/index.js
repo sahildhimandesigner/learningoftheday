@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router';
 import { UserComment, Header } from '../../components'
 import axios from '../../axios-instance'
 import ShowUserComments from './showUserComments'
@@ -50,8 +51,8 @@ const AddComment = (props) => {
     //If we don't pass array as seconde parameter then it will work as didmount
 
     return (
-        <>  
-            <Header />
+        <>
+            <Header {...props} />
             <div>
                 <h1>{post.title}</h1>
                 <p>{post.post}</p>
@@ -65,4 +66,4 @@ const AddComment = (props) => {
     )
 }
 
-export default AddComment;
+export default withRouter(AddComment);

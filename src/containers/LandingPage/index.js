@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router'
 import axios from '../../axios-instance';
-import { Header, Button, AddPostModal, Footer, LoginButton } from '../../components';
+import { Header, Button, AddPostModal, Footer } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 
 const LandingPage = (props) => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
-	const [token, setToken] = useState('');
-	const [userId, setUserId] = useState('');
-	const [loginButtonValue, setLoginButtonValue] = useState('Login');
 
 	const getDataFromDatabase = () => {
 		axios.get('/learningPosts.json')
@@ -30,41 +28,19 @@ const LandingPage = (props) => {
 	      .catch(error => console.log(error));  
 	}
 
-	const logout = () => {
-		localStorage.removeItem('token');
-		localStorage.removeItem('expirationDate');
-		localStorage.removeItem('userId');
-		setToken('');
-		setUserId('');
-		setLoginButtonValue('Login');
-	}
+	
 
-	const checkAuthState = () => {
-		const token = localStorage.getItem('token');
-		if (!token) {
-			logout();
-		} else {
-			if (new Date() >= new Date(localStorage.getItem('expirationDate'))) {
-				logout();
-			} else {
-				const token = localStorage.getItem('token');
-				const userId = localStorage.getItem('userId');
-				setLoginButtonValue('Logout');
-				setToken(token);
-				setUserId(userId);
-			}
-		}
-	}
+	
 
-	useEffect(() => {		
+	useEffect(() => {
 		getDataFromDatabase();
 	}, []);
 
 	useEffect(() => {
-		checkAuthState();
+
 	});
 
-	const clickHandler = () => setModalOpen(true);
+const clickHandler = () => setModalOpen(true);
 
 	const submitHandler = (submittedData) => {
 		axios.post('/learningPosts.json', {
@@ -80,23 +56,18 @@ const LandingPage = (props) => {
 		.catch(error => console.log(error));
 	}
 
-	const loginHandler = () => {
-		return !token ? props.history.push('/auth')  : logout();
-	}
-
+	// const loginHandler = () => {
+	// 	return !token ? props.history.push('/auth')  : logout();
+	// }
     return (
         <div>
-            <Header>
+        <Header {...props}>
 				<Button
 					onClick={() => clickHandler()}
 					spacing='20px 0 0 0'
 					backgroundColor='#fff'
 					color={`${colors.primaryColor}`}
 					>Add Post</Button>
-				<LoginButton
-					loginHandler = {loginHandler}
-					loginButtonValue = {loginButtonValue}
-				/>
             </Header>
             {openModal && (
             	<AddPostModal
@@ -105,9 +76,8 @@ const LandingPage = (props) => {
         			/>
         	)}
             <LearningBlocks postData={postData}/>
-			<Footer />
         </div>       
     )
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);
