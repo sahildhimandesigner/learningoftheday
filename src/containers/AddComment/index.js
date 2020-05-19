@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
-import { UserComment, Header } from '../../components'
+import { UserComment, Header, Wrapper } from '../../components'
 import axios from '../../axios-instance'
 import ShowUserComments from './showUserComments'
+import firebase from '../../firebase'
 
 const AddComment = (props) => {
     
@@ -31,14 +32,23 @@ const AddComment = (props) => {
         getUserComments();
     }, []);
 
+    // const submitUserCommentHandler = (submitComment) => {
+    //     axios.post('/userComment.json', {
+    //         userName: submitComment.userName,
+    //         addComment: submitComment.addComment,
+    //         date: new Date()
+    //     }).then(response => {
+    //     }) 
+    // }
+
     const submitUserCommentHandler = (submitComment) => {
-        axios.post('/userComment.json', {
+        const postUserComment = firebase.database().ref('userComment/');
+        postUserComment.push({
             userName: submitComment.userName,
             addComment: submitComment.addComment,
             date: new Date()
-        }).then(response => {
         }) 
-    }
+    }    
 
     useEffect(()=> {
         const postId = props.match.params.id;
@@ -53,12 +63,12 @@ const AddComment = (props) => {
     return (
         <>
             <Header {...props} />
-            <div>
+            <Wrapper>
                 <h1>{post.title}</h1>
                 <p>{post.post}</p>
                 <span>{post.name}</span>
-            </div>
-            <p>{count}: Comments</p>
+                <p>{count}: Comments</p>
+            </Wrapper>
             <UserComment submitUserCommentHandler={submitUserCommentHandler}  />
             <ShowUserComments getComment={getComment} />  
                       
