@@ -50,19 +50,6 @@ const User = ({classes, ...props}) => {
 				        returnSecureToken: true
 				    }
 
-				    const saveUserDetail = (authId) => {
-				    	const userData = {
-				    		firstName: values.firstName,
-				    		lastName: values.lastName,
-				    		authId: authId
-				    	};
-
-				    	axios.post('/users.json', userData)
-							.catch(error => {
-								console.log('error', error);
-							});
-				    }
-
 					let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
 
 					if (signInTrue) {
@@ -73,24 +60,41 @@ const User = ({classes, ...props}) => {
 						.then(response => {
 							let userData = ''
 							if (!signInTrue) {
-								saveUserDetail(response.data.localId);								
-							}
-							axios.get(`users.json?orderBy="authId"&equalTo="${response.data.localId}"`)
-							.then(response => {
-								userData = Object.values(response.data)[0];
-								localStorage.setItem('firstName', userData.firstName);
-								localStorage.setItem('lastName', userData.lastName);
-								const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-				                localStorage.setItem('token', response.data.idToken);
-				                localStorage.setItem('expirationDate', expirationDate);
-				                localStorage.setItem('userId', response.data.localId);
-				                props.authState();
-				                props.history.push('/');
-							})							
+								const userData = {
+						    		firstName: values.firstName,
+						    		lastName: values.lastName,
+						    		authId: response.data.localId
+						    	};
+
+						    	axios.post('/users.json', userData)
+							    	.then(() => {
+							    		storeDataInStorage(userData.firstName, userData.lastName, response);
+							    	})
+									.catch(error => {
+										console.log('error', error);
+									});
+							} else {
+								axios.get(`users.json?orderBy="authId"&equalTo="${response.data.localId}"`)
+								.then(getResponse => {								
+									const userName = Object.values(getResponse.data)[0];
+									storeDataInStorage(userName.firstName, userName.lastName, response);
+								})
+							}							
 						})
 						.catch(error => {
 							console.log('error', error);
 						})
+
+					const storeDataInStorage = (firstName, lastName, response) => {
+						localStorage.setItem('firstName', firstName);
+						localStorage.setItem('lastName', lastName);
+						const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+		                localStorage.setItem('token', response.data.idToken);
+		                localStorage.setItem('expirationDate', expirationDate);
+		                localStorage.setItem('userId', response.data.localId);
+		                props.authState();
+		                props.history.push('/');
+					}
 				}}
 				>
 				{({

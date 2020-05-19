@@ -64,7 +64,7 @@ function App() {
         <Router>
             <Switch>            
               <Route path='/AddComment/:id'
-                render={() => <AddComment currentState={currentState} /> } />
+                render={() => <AddComment currentState={currentState} />} />
               <Route path='/auth'
                 render={() => <Users authState={checkAuthState}/>}
                 />
@@ -72,7 +72,7 @@ function App() {
                 render={() => <LogOut logOut={logout}/>}
                 />
               <Route path='/' exact
-                render={ () => <LandingPage currentState={currentState} /> } />
+                render={() => <LandingPage currentState={currentState} />} />
             </Switch>
         </Router>
       <Footer />
