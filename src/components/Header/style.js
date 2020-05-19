@@ -10,7 +10,7 @@ const HeaderStyle = ({ colors, breakpoints }) => {
         },
         navItems: {
             display: 'inherit',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             width: '24%',
             [breakpoints.MOBILE_DEVICE]: {
               width: '100%',

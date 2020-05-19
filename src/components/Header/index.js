@@ -4,7 +4,6 @@ import { Wrapper, Headings, LoginButton } from '../index';
 import HeaderStyle from './style';
 
 const Header = ({ classes, ...props }) => {
-	console.log('header page', props);
 	const loginButton = props.location.pathname !== '/auth' ?
 		<LoginButton
 			loginButtonValue={props.currentState.loginButtonValue}/> : null;

@@ -27,7 +27,7 @@ const User = ({classes, ...props}) => {
 	}
 	return (
 		<div>
-			<Header/>
+			<Header {...props}/>
 			<Wrapper>
 			<div className={classes.outerDiv}>
 			<div className={classes.inputBox}>
