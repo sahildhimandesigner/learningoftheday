@@ -10,6 +10,7 @@ import Wrapper from './Wrapper';
 import Footer from './Footer';
 import UserCommentsList from './UserComments/userCommentList';
 import LoginButton from './LoginButton';
+import LogOut from './LogOut';
 
 export {
   AddPostModal,
@@ -23,5 +24,6 @@ export {
   Wrapper,
   Footer,
   UserCommentsList,
-  LoginButton
+  LoginButton,
+  LogOut
 };

@@ -71,9 +71,16 @@ const User = ({classes, ...props}) => {
 
 					axios.post(url, authData)
 						.then(response => {
+							let userData = ''
 							if (!signInTrue) {
 								saveUserDetail(response.data.localId);								
 							}
+							axios.get(`users.json?orderBy="authId"&equalTo="${response.data.localId}"`)
+							.then(response => {
+								userData = Object.values(response.data)[0];
+								localStorage.setItem('firstName', userData.firstName);
+								localStorage.setItem('lastName', userData.lastName);
+							})
 							const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 			                localStorage.setItem('token', response.data.idToken);
 			                localStorage.setItem('expirationDate', expirationDate);

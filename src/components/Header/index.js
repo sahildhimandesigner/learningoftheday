@@ -6,7 +6,9 @@ import HeaderStyle from './style';
 const Header = ({ classes, ...props }) => {
 	const loginButton = props.location.pathname !== '/auth' ?
 		<LoginButton
-			loginButtonValue={props.currentState.loginButtonValue}/> : null;
+			loginButtonValue={props.currentState.loginButtonValue}
+			{...props}
+		/> : null;
   return (
     <div className={classes.bg}>          
       <Wrapper justifyContent='space-between'>
