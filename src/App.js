@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from './axios-instance';
 import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
@@ -70,13 +69,13 @@ function App() {
                 render={() => <Users authState={checkAuthState}/>}
                 />
               <Route path='/logout'
-                render={() => <LogOut logOut={logout}/>}
+                render={() => <LogOut logOut={logout} />}
                 />
               <Route path='/' exact
                 render={() => <LandingPage currentState={currentState} />} />
             </Switch>
         </Router>
-      <Footer />
+        <Footer />
       </div>
     
   );

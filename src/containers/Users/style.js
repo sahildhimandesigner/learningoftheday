@@ -5,7 +5,8 @@ const LoginBoxStyle = ({colors}) => {
 			width: '350px',
 			margin: '8% auto',
 			borderRadius: '5px',
-			padding: '20px'
+			padding: '20px',
+			background: '#FFF'
 		},
 		inputBox: {
 			marginBottom: '20px',

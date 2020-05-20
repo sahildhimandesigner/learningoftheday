@@ -8,8 +8,8 @@ import withStyles from 'react-jss';
 const UserComment = ({ colors, classes, ...props }) => {    
 
     return (
-        <div>
-            <Wrapper flexFlow="column">        
+        <Wrapper flexFlow="column">
+            <div className={classes.commentContainer}>                
                 <Headings as='h1'>Add Comment</Headings>
                 <Formik 
                     initialValues={{
@@ -75,8 +75,9 @@ const UserComment = ({ colors, classes, ...props }) => {
                          </form>
                      )}
                 </Formik>
-            </Wrapper>
-        </div>
+                <Headings as='h6'>Comments: {props.count}</Headings>
+            </div>
+        </Wrapper>
     )
 }
 

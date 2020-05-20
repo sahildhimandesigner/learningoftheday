@@ -10,7 +10,9 @@ const UserCommentsList = ({classes, ...props}) => {
              <img src={AvtarIcon} alt='Icon'/>
            </div>
            <div className={classes.commentInfoContainer}>
-            <h2 className={classes.userName}>{props.userName} <span className={classes.commentDate}>{props.date}</span></h2>
+            <h2 className={classes.userName}>{props.userName} 
+              <span className={classes.commentDate}>{props.date}</span>
+            </h2>
             <p className={classes.userComment}>{props.addComment}</p>
            </div>
         </div>

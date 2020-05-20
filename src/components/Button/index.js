@@ -5,13 +5,11 @@ import buttonStyle from './style';
 
 const Button = ({ classes, children='Submit', ...props}) => {
     return (        
-        <div>
-            <button
-            	type={props.type ?? 'button'}
-            	onClick={props.onClick}
-            	className={classes.btnStyle}
-            	disabled={props.disabled}>{children}</button>
-        </div>
+        <button
+            type={props.type ?? 'button'}
+            onClick={props.onClick}
+            className={classes.btnStyle}
+            disabled={props.disabled}>{children}</button>
     )
 }
 

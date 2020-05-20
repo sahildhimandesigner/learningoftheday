@@ -30,9 +30,9 @@ const User = ({classes, ...props}) => {
 			<Header {...props}/>
 			<Wrapper>
 			<div className={classes.outerDiv}>
-			<div className={classes.inputBox}>
-				<Headings as='h3'>Sign {signInTrue ? 'in' : 'up'}</Headings>
-			</div>
+				<div className={classes.inputBox}>
+					<Headings as='h3'>Sign {signInTrue ? 'in' : 'up'}</Headings>
+				</div>
 				<Formik
 				initialValues = {{
 					firstName: '',
@@ -160,8 +160,9 @@ const User = ({classes, ...props}) => {
 						</div>
 						<div className={classes.buttonDiv}>
 							<Button
-								spacing='20px 0 0 0'
-              					type="submit"
+								spacing='0 auto 20px auto'
+								type="submit"
+								width='120px'
               					backgroundColor={`${colors.primaryColor}`}
 							>Submit</Button>
 							<span

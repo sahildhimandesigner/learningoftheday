@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
-import { UserComment, Header, Wrapper } from '../../components'
+import withStyle from 'react-jss'
+import { UserComment, Headings, Header, Wrapper } from '../../components'
 import axios from '../../axios-instance'
 import ShowUserComments from './showUserComments'
 import firebase from '../../firebase'
+import UserCommentStyle from './style'
+import AvtarIcon from '../../images/user-placeholder.svg'
 
-const AddComment = (props) => {
+const AddComment = ({classes, ...props}) => {
     const [getComment, setComment] = useState([])
     const [count, setCount] = useState(0);
     const [post, setPost] = useState({})
-    
     const getUserComments = () => {
         const postId = props.match.params.id;
         const getComment = firebase.database().ref(`userComment/${postId}`);
@@ -34,12 +36,12 @@ const AddComment = (props) => {
 
     const submitUserCommentHandler = (submitComment) => {
         const postId = props.match.params.id;
-        
+        const userId = props.currentState.userId;
         const postUserComment = firebase.database().ref(`userComment/${postId}`);
         postUserComment.push({
             userName: submitComment.userName,
             addComment: submitComment.addComment,
-            date: new Date()
+            userId: userId,          
         }) 
     }    
 
@@ -56,17 +58,25 @@ const AddComment = (props) => {
     return (
         <>
             <Header {...props} />
-            <Wrapper>
-                <h1>{post.title}</h1>
-                <p>{post.post}</p>
-                <span>{post.name}</span>
-                <p>{count}: Comments</p>
-            </Wrapper>
-            <UserComment submitUserCommentHandler={submitUserCommentHandler}  />
+            <div className={classes.postBoxCol}>
+                <div className={classes.userDetailCol}>
+                    <Headings as='h3' margin='0 0 10px 0'>{post.title}</Headings>
+                    <Wrapper padding='0'>
+                        <div className={classes.avtar}>
+                            <img src={AvtarIcon} alt='Icon'/>
+                        </div>
+                        <div className={classes.userName}>
+                            <Headings as='h4' margin='0' transform='uppercase'>{post.name}</Headings>
+                            <span className={classes.date}>{post.date}</span>
+                        </div>
+                    </Wrapper>                    
+                    <Headings className={classes.post} margin='16px 0 20px'>{post.post}</Headings>
+                </div>                    
+            </div>            
+            <UserComment count={count} submitUserCommentHandler={submitUserCommentHandler}  /> 
             <ShowUserComments getComment={getComment} />  
-                      
         </>
     )
 }
 
-export default withRouter(AddComment);
+export default withStyle(UserCommentStyle)(withRouter(AddComment));

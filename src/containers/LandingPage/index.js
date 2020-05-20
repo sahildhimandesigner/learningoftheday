@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router'
 import axios from '../../axios-instance';
-import { Header, Button, AddPostModal, Footer } from '../../components';
+import { Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 
@@ -27,11 +27,6 @@ const LandingPage = (props) => {
 	      })
 	      .catch(error => console.log(error));  
 	}
-
-	
-
-	
-
 	useEffect(() => {
 		getDataFromDatabase();
 	}, []);
@@ -57,18 +52,18 @@ const clickHandler = () => setModalOpen(true);
 	}
 
 	// const loginHandler = () => {
-	// 	return !token ? props.history.push('/auth')  : logout();
-	// }
+	// 	return !token ? props.history.push
     return (
         <div>
-        <Header {...props}>
+        	<Header {...props}>
 				<Button
 					onClick={() => clickHandler()}
-					spacing='20px 0 0 0'
+					spacing='5px 10px 0 0'
+					height='45px'
 					backgroundColor='#fff'
 					color={`${colors.primaryColor}`}
 					>Add Post</Button>
-            </Header>
+        	</Header>
             {openModal && (
             	<AddPostModal
         			cancelModal={() => setModalOpen(false)}

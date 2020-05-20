@@ -15,8 +15,7 @@ const LearningBlocks = ({classes, ...props}) => {
         {props.postData.map((item, index) => {
           const customFormat = moment(item.date).fromNow();   
           return(
-            <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>
-              
+            <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>     
                 <LearningBlock
                   name={item.name}
                   title={item.heading}

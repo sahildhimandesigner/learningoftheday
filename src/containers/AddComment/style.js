@@ -2,21 +2,23 @@
 const UserCommentStyle = ({colors, fonts}) => {
     return {
         postBoxCol: {
+          maxWidth: '1120px',
+          padding: '20px 20px',
+          background: colors.white,
+          margin: '20px auto',
+          borderRadius: '20px',
             '& h4': {
               textTransform: 'capitalize',
               color: colors.lightBlack,
               margin: '0 0 4px',
               lineHeight: 'normal',
+              display: 'block',
             },
           },
           userDetailCol: {
-            display: 'flex',
-            alignItems: 'center',
             marginBottom: 24,
           },
           userName: {
-            display: 'flex',
-            flexDirection: 'column',
             marginLeft: 16,
             marginTop: 2,
           },

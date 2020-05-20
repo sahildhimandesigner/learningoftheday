@@ -27,7 +27,7 @@ const LearningBlocksStyle = ({ breakpoints }) => {
         content: "''",
         height: 30,
         borderRadius: '50%',
-        background: colors.white,
+        background: colors.primaryColor,
         top: '-48px',
         position: 'absolute',
         left: 0,
@@ -39,6 +39,7 @@ const LearningBlocksStyle = ({ breakpoints }) => {
       },
     },
     postBlock : {
+      background: colors.white,
       border: '1px solid #e2e2e2',
       borderRadius: '5px',
       cursor: 'pointer',
