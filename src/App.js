@@ -43,6 +43,7 @@ function App() {
         const userId = localStorage.getItem('userId');
         const firstName = localStorage.getItem('firstName');
         const lastName = localStorage.getItem('lastName');
+        
         setCurrentState({
           firstName: firstName,
           lastName: lastName,

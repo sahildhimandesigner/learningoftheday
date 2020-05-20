@@ -6,25 +6,25 @@ import ShowUserComments from './showUserComments'
 import firebase from '../../firebase'
 
 const AddComment = (props) => {
-    
     const [getComment, setComment] = useState([])
     const [count, setCount] = useState(0);
     const [post, setPost] = useState({})
-
+    
     const getUserComments = () => {
-        axios.get('/userComment.json')
-        .then(response => {
+        const postId = props.match.params.id;
+        const getComment = firebase.database().ref(`userComment/${postId}`);
+        getComment.on('value', function(snapshot){
             const getCommentData = [];
             
-            for(const key in response.data) {
-                getCommentData.push({
-                    id: key,
-                    userName: response.data[key].userName,
-                    addComment: response.data[key].addComment,
-                    date: new Date(response.data[key].date).toString()
-                })
-            } setComment(getCommentData);
-            setCount(getCommentData.length)
+            for(const key in snapshot.val()) {
+                 getCommentData.push({
+                     id: key,
+                     userName: snapshot.val()[key].userName,
+                     addComment: snapshot.val()[key].addComment,
+                     date: new Date(snapshot.val()[key].date).toString()
+                 })
+             } setComment(getCommentData);
+             setCount(getCommentData.length)
         })
     }
 
@@ -32,17 +32,10 @@ const AddComment = (props) => {
         getUserComments();
     }, []);
 
-    // const submitUserCommentHandler = (submitComment) => {
-    //     axios.post('/userComment.json', {
-    //         userName: submitComment.userName,
-    //         addComment: submitComment.addComment,
-    //         date: new Date()
-    //     }).then(response => {
-    //     }) 
-    // }
-
     const submitUserCommentHandler = (submitComment) => {
-        const postUserComment = firebase.database().ref('userComment/');
+        const postId = props.match.params.id;
+        
+        const postUserComment = firebase.database().ref(`userComment/${postId}`);
         postUserComment.push({
             userName: submitComment.userName,
             addComment: submitComment.addComment,
