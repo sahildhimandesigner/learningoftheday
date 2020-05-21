@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 import { Formik } from 'formik';
@@ -7,8 +7,10 @@ import { Button, Error, Headings, Modal } from '../index';
 import closeIcon from '../../images/close-icon.svg';
 import { colors } from '../../theme';
 import AddPostStyle from './style';
+import ControlledEditor from './ControlledEditor'
 
 const AddPostModal = ({ classes, cancelModal, ...props }) => {
+  
   return(
     <Modal>
       <div className={classes.ModalHeader}>
@@ -22,7 +24,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
           initialValues={{
             addName: '',
             addTitle: '',
-            addPost: ''
+            editorState: ''
           }}
           validationSchema={validationSchema}
           onSubmit={(values, {setSubmitting, resetForm}) => {
@@ -70,19 +72,21 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
                 <Error touched={touched.addTitle} message={errors.addTitle} />
               </div>
               <div className={classes.formGroup}>
-                <textarea
+                {/* <textarea
                   id="addPost"
                   rows="6"
                   cols="50"
                   placeholder='Add post here...'
                   type="text"
                   name="addPost"
-                  value={values.addPost}                  
+                  value={values.addPost}       
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={(touched.addPost && errors.addPost) ? classes.hasError: ''}
                 />
-                <Error touched={touched.addPost} message={errors.addPost} />
+                <Error touched={touched.addPost} message={errors.addPost} /> */}
+                <ControlledEditor />                
+                
               </div>
               <div className={classes.modalFooter}>
                 <Button
