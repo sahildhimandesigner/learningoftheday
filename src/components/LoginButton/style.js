@@ -1,4 +1,4 @@
-const LoginButtonStyle = ({}) => {
+const LoginButtonStyle = () => {
 	return {
 		mainDiv: {
 			'display': 'flex',

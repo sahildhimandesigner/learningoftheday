@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 import { Formik } from 'formik';
@@ -7,7 +7,6 @@ import { Button, Error, Headings, Modal } from '../index';
 import closeIcon from '../../images/close-icon.svg';
 import { colors } from '../../theme';
 import AddPostStyle from './style';
-import ControlledEditor from './ControlledEditor'
 
 const AddPostModal = ({ classes, cancelModal, ...props }) => {
   
@@ -24,7 +23,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
           initialValues={{
             addName: '',
             addTitle: '',
-            editorState: ''
+            addPost: '',
           }}
           validationSchema={validationSchema}
           onSubmit={(values, {setSubmitting, resetForm}) => {
@@ -72,7 +71,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
                 <Error touched={touched.addTitle} message={errors.addTitle} />
               </div>
               <div className={classes.formGroup}>
-                {/* <textarea
+                <textarea
                   id="addPost"
                   rows="6"
                   cols="50"
@@ -84,9 +83,15 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
                   onBlur={handleBlur}
                   className={(touched.addPost && errors.addPost) ? classes.hasError: ''}
                 />
-                <Error touched={touched.addPost} message={errors.addPost} /> */}
-                <ControlledEditor />                
-                
+                <Error touched={touched.addPost} message={errors.addPost} />
+                {/* <Editor 
+                  editorState={description}
+                  toolbarClassName="toolbarClassName"
+                  wrapperClassName="wrapperClassName"
+                  editorClassName="editorClassName"
+                  onEditorStateChange={onEditorStateChange}
+                />
+                 */}
               </div>
               <div className={classes.modalFooter}>
                 <Button

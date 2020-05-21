@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
 import withStyle from 'react-jss'
 import { UserComment, Headings, Header, Wrapper } from '../../components'
-import axios from '../../axios-instance'
 import ShowUserComments from './showUserComments'
 import firebase from '../../firebase'
 import UserCommentStyle from './style'
@@ -12,6 +11,7 @@ const AddComment = ({classes, ...props}) => {
     const [getComment, setComment] = useState([])
     const [count, setCount] = useState(0);
     const [post, setPost] = useState({})
+
     const getUserComments = () => {
         const postId = props.match.params.id;
         const getComment = firebase.database().ref(`userComment/${postId}`);
@@ -47,13 +47,13 @@ const AddComment = ({classes, ...props}) => {
 
     useEffect(()=> {
         const postId = props.match.params.id;
-        axios.get(`/learningPosts/${postId}.json`)
-        .then(response => {
-            setPost(response.data)
+
+        const getAllPost = firebase.database().ref(`allPost/${postId}`);
+        getAllPost.on('value', function(snapshot){
+            const singlePost = snapshot.val();
+            setPost(singlePost)
         })
     },[]) 
-    //It will work as willmound lifecycle
-    //If we don't pass array as seconde parameter then it will work as didmount
 
     return (
         <>

@@ -1,58 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router'
-import axios from '../../axios-instance';
 import { Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
+import firebase from '../../firebase'
 
 const LandingPage = (props) => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
 
 	const getDataFromDatabase = () => {
-		axios.get('/learningPosts.json')
-	      .then(response => {
-	        const getData = [];
-	        for (const key in response.data) {
-	          getData.push({
-	            id: key,
-	            name: response.data[key].name,
-	            heading: response.data[key].title,
-	            content: response.data[key].post,
-	            date: new Date(response.data[key].date).toString()
-	          });
-	        }
-	        const reversedOrder = getData.reverse();
-	        setPostData(reversedOrder);
-	      })
-	      .catch(error => console.log(error));  
+		const getAllPost = firebase.database().ref(`allPost`);
+		getAllPost.on('value', function(snapshot){
+			const getData = [];
+
+			for(const key in snapshot.val()) {
+				getData.push({
+					id: key,
+					name: snapshot.val()[key].name,
+					heading: snapshot.val()[key].title,
+					content: snapshot.val()[key].post,
+					date: new Date(snapshot.val()[key].date).toString()
+				});
+			}
+			const reversedOrder = getData.reverse();
+	        setPostData(reversedOrder);			
+		})
 	}
+
 	useEffect(() => {
 		getDataFromDatabase();
 	}, []);
 
-	useEffect(() => {
-
-	});
-
-const clickHandler = () => setModalOpen(true);
+	const clickHandler = () => setModalOpen(true);
 
 	const submitHandler = (submittedData) => {
-		axios.post('/learningPosts.json', {
-		  name: submittedData.addName,
-		  title: submittedData.addTitle,
-		  post: submittedData.addPost,
-		  date: new Date()
+		const allPost = firebase.database().ref(`allPost`);
+		allPost.push({
+			name: submittedData.addName,
+			title: submittedData.addTitle,
+			post: submittedData.addPost,
+			date: new Date()	
 		})
 		.then(response => {
 			getDataFromDatabase();
-		  setModalOpen(false);
+		  	setModalOpen(false);
 		})
 		.catch(error => console.log(error));
 	}
 
-	// const loginHandler = () => {
-	// 	return !token ? props.history.push
     return (
         <div>
         	<Header {...props}>

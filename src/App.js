@@ -74,7 +74,7 @@ function App() {
               <Route path='/' exact
                 render={() => <LandingPage currentState={currentState} />} />
             </Switch>
-        </Router>
+         </Router>
         <Footer />
       </div>
     
