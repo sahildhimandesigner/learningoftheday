@@ -7,7 +7,7 @@ import { Button, Error, Headings, Modal } from '../index';
 import closeIcon from '../../images/close-icon.svg';
 import { colors } from '../../theme';
 import AddPostStyle from './style';
-import EditorField from './editorFiled'
+import Editor from './../Editor'
 
 const AddPostModal = ({ classes, cancelModal, ...props }) => {
   
@@ -73,7 +73,7 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
               </div>
               <div className={classes.formGroup}>
                 <Field 
-                  component={EditorField} 
+                  component={Editor}        
                   name="addPost"
                   className={(touched.addPost && errors.addPost) ? classes.hasError: ''}
                 />

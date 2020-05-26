@@ -7,9 +7,13 @@ import { EditorState, convertToRaw, ContentState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const EditorField = ({
+  input,
+  meta,
   field,
   form,
+  label,
   placeholder,
+  labelCss
 }) => {
   const [active, setActive] = React.useState();
   const [editorState, setEditorState] = React.useState(
@@ -51,7 +55,6 @@ const EditorField = ({
           editorClassName="editor-class"
           toolbarClassName="toolbar-class"
           onEditorStateChange={editorState => onEditorStateChange(editorState)}
-          placeholder={placeholder}
           name={field.name}
           id={field.name}
           onFocus={() => setActive(true)}

@@ -16,9 +16,9 @@ const LearningBlock = ({classes, ...props}) => (
       </div>
     </div>
     <Headings as='h3'>{props.title}</Headings>
-    <Headings className={classes.post} margin='16px 0 20px'>
-    <div dangerouslySetInnerHTML={{__html: props.content}} />
-    </Headings>
+    
+    <div className={classes.post} dangerouslySetInnerHTML={{__html: props.content}} />
+    
   </div>
 );
 
