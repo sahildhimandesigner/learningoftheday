@@ -13,14 +13,13 @@ const LandingPage = (props) => {
 		const getAllPost = firebase.database().ref(`allPost`);
 		getAllPost.on('value', function(snapshot){
 			const getData = [];
-
 			for(const key in snapshot.val()) {
 				getData.push({
 					id: key,
 					name: snapshot.val()[key].name,
 					heading: snapshot.val()[key].title,
 					content: snapshot.val()[key].post,
-					date: new Date(snapshot.val()[key].date).toString()
+					date: (new Date(snapshot.val()[key].date)).toString()
 				});
 			}
 			const reversedOrder = getData.reverse();
@@ -40,7 +39,7 @@ const LandingPage = (props) => {
 			name: submittedData.addName,
 			title: submittedData.addTitle,
 			post: submittedData.addPost,
-			date: new Date()	
+			date: (new Date()).toString()
 		})
 		.then(response => {
 			getDataFromDatabase();
