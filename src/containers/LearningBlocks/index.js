@@ -7,6 +7,7 @@ import Wrapper from '../../components/Wrapper'
 import LearningBlocksStyle from './style';
 import './animation.css';
 import { Link } from 'react-router-dom'
+import { FaRegComment } from 'react-icons/fa';
 
 const LearningBlocks = ({classes, ...props}) => {
   return (    
@@ -22,7 +23,8 @@ const LearningBlocks = ({classes, ...props}) => {
                   content={item.content}
                   date={customFormat}
                 />
-              <Link className={classes.linkColor} to={`/AddComment/${item.id}`}>Add Comment</Link>
+                <FaRegComment />
+                <Link className={classes.linkColor} to={`/AddComment/${item.id}`}>Add Comment</Link>
             </ScrollAnimation>
           )
         })}

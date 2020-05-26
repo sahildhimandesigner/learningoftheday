@@ -2,6 +2,13 @@ import { colors } from "../../theme";
 
 const LearningBlocksStyle = ({ breakpoints }) => {
   return {
+    linkColor: {
+      color: "#000",
+      textDecoration: 'none',
+      position:'relative',
+      top: '-2px',
+      padding: '0 0 0 5px'
+    },
     postBox : {
       display: 'flex',
       marginTop: 32,
@@ -101,10 +108,6 @@ const LearningBlocksStyle = ({ breakpoints }) => {
             display: 'none',
           },
         },
-      },
-      linkColor : {
-        color: ({ color = colors.primaryColor}) => color,
-        fontSize: ({ fontSize = '12px'}) => fontSize
       },
       [breakpoints.MOBILE_DEVICE]: {
         width: '100% !important'
