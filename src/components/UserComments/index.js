@@ -5,9 +5,9 @@ import { validationSchema } from './ValidationSchema';
 import UserCommentStyle from './style'
 import withStyles from 'react-jss';
 import Editor from './../Editor'
+import CommentIcon from '@material-ui/icons/Comment';
 
 const UserComment = ({ colors, classes, ...props }) => {    
-
     return (
         <Wrapper flexFlow="column">
             <div className={classes.commentContainer}>                
@@ -69,7 +69,7 @@ const UserComment = ({ colors, classes, ...props }) => {
                          </form>
                      )}
                 </Formik>
-                <Headings as='h6'>Comments: {props.count}</Headings>
+                <Headings as='h6'><CommentIcon /> Comments:  {props.count}</Headings>
             </div>
         </Wrapper>
     )

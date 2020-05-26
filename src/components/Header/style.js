@@ -39,7 +39,10 @@ const HeaderStyle = ({ colors, breakpoints }) => {
         whiteNavLink: {
           color: colors.primaryColor,
           textDecoration: 'none',
-          padding: '0 20px'
+          padding: '0 20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }
     }
 }

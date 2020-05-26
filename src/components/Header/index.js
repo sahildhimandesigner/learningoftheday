@@ -3,6 +3,7 @@ import withStyle from 'react-jss';
 import { Wrapper, Headings, LoginButton } from '../index';
 import HeaderStyle from './style';
 import { Link } from 'react-router-dom'
+import HomeIcon from '@material-ui/icons/Home';
 
 const Header = ({ classes, ...props }) => {
   
@@ -35,7 +36,7 @@ const Header = ({ classes, ...props }) => {
       </Wrapper>
       <div className={classes.whiteBar}>        
         <div className={classes.innerContainer}>
-          <Link className={classes.whiteNavLink} to='/'>Home</Link>
+          <Link className={classes.whiteNavLink} to='/'><HomeIcon />Home</Link>
           {loggedInText}
         </div>
       </div>

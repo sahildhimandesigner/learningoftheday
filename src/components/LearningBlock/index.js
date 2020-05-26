@@ -3,6 +3,7 @@ import withStyles from 'react-jss';
 import { Headings } from '../index';
 import AvtarIcon from '../../images/user-placeholder.svg'
 import LearningBlockStyle from './style';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 const LearningBlock = ({classes, ...props}) => (
   <div className={classes.postBoxCol}>
@@ -12,13 +13,11 @@ const LearningBlock = ({classes, ...props}) => (
       </div>
       <div className={classes.userName}>
         <Headings as='h4' transform='uppercase'>{props.name}</Headings>
-        <span className={classes.date}>{props.date}</span>
+        <span className={classes.date}><QueryBuilderIcon />{props.date}</span>
       </div>
     </div>
     <Headings as='h3'>{props.title}</Headings>
-    
     <div className={classes.post} dangerouslySetInnerHTML={{__html: props.content}} />
-    
   </div>
 );
 

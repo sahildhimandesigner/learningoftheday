@@ -6,6 +6,7 @@ import ShowUserComments from './showUserComments'
 import firebase from '../../firebase'
 import UserCommentStyle from './style'
 import AvtarIcon from '../../images/user-placeholder.svg'
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 const AddComment = ({classes, ...props}) => {
     const [getComment, setComment] = useState([])
@@ -67,7 +68,7 @@ const AddComment = ({classes, ...props}) => {
                         </div>
                         <div className={classes.userName}>
                             <Headings as='h4' margin='0' transform='uppercase'>{post.name}</Headings>
-                            <span className={classes.date}>{post.date}</span>
+                            <span className={classes.date}><QueryBuilderIcon />{post.date}</span>
                         </div>
                     </Wrapper>                    
                     <Headings className={classes.post} margin='16px 0 20px'>{post.post}</Headings>
