@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from '../../axios-instance';
 
 import { Error } from '../../components';
-import { Header, Button, Footer, Wrapper, Headings } from '../../components';
+import { Header, Button, Wrapper, Headings } from '../../components';
 import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
 
