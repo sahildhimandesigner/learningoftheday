@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React  from 'react'
+import { Editor } from "react-draft-wysiwyg";
+import htmlToDraft from "html-to-draftjs";
+import draftToHtml from "draftjs-to-html";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 
 
 class TextEditor extends React.Component {
