@@ -13,7 +13,9 @@ const UserCommentsList = ({classes, ...props}) => {
             <h2 className={classes.userName}>{props.userName} 
               <span className={classes.commentDate}>{props.date}</span>
             </h2>
-            <div dangerouslySetInnerHTML={{__html: props.addComment}} />
+            <div className={classes.userComment}>
+              <div dangerouslySetInnerHTML={{__html: props.addComment}} />
+            </div>            
            </div>
         </div>
     )

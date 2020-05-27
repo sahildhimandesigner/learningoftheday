@@ -13,7 +13,6 @@ const UserComment = ({ colors, classes, ...props }) => {
                 <Headings as='h1'>Add Comment</Headings>
                 <Formik 
                     initialValues={{
-                        userName:'',
                         addComment: ''
                     }}
                     validationSchema={validationSchema}
