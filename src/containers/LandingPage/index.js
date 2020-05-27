@@ -35,8 +35,10 @@ const LandingPage = (props) => {
 
 	const submitHandler = (submittedData) => {
 		const allPost = firebase.database().ref(`allPost`);
+		const name = props.currentState.firstName + ' ' +  props.currentState.lastName
 		allPost.push({
-			name: submittedData.addName,
+			userId: props.currentState.userId,
+			name: name,
 			title: submittedData.addTitle,
 			post: submittedData.addPost,
 			date: (new Date()).toString()

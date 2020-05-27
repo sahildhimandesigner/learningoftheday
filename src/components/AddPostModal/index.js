@@ -22,7 +22,6 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
       <div className={classes.modalBody}>
         <Formik
           initialValues={{
-            addName: '',
             addTitle: '',
             addPost: '',
           }}
@@ -45,19 +44,6 @@ const AddPostModal = ({ classes, cancelModal, ...props }) => {
             isSubmitting
           }) => (
             <form onSubmit={handleSubmit}>
-              <div className={classes.formGroup}>
-                <input
-                  id="addName"
-                  placeholder='Enter full name'
-                  type="text"
-                  name="addName"
-                  value={values.addName}                  
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={(touched.addName && errors.addName) ? classes.hasError: ''}
-                />
-                <Error touched={touched.addName} message={errors.addName} />
-              </div>
               <div className={classes.formGroup}> 
                 <input
                   id="addTitle"
