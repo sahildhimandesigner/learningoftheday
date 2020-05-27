@@ -3,11 +3,13 @@ import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
 import { Footer, LogOut } from './components';
+import NotFoundPage from './components/NotFoundPage'
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 function App() {
@@ -73,9 +75,10 @@ function App() {
                 />
               <Route path='/' exact
                 render={() => <LandingPage currentState={currentState} />} />
+              
+              <Route path="*" component={NotFoundPage} />
             </Switch>
          </Router>
-        <Footer />
       </div>
     
   );
