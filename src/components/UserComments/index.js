@@ -33,20 +33,7 @@ const UserComment = ({ colors, classes, ...props }) => {
                          handleSubmit,
                          isSubmitting
                      }) => (
-                         <form onSubmit={handleSubmit}>
-                             <div className={classes.formGroup}>
-                                 <input 
-                                    id="userName"
-                                    placeholder='Enter Your Name'
-                                    text="text"
-                                    name="userName"
-                                    value={values.userName}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    className={(touched.addName && errors.addName) ? classes.hasError: ''}
-                                 />
-                                 <Error touched={touched.userName} message={errors.userName} />
-                             </div>
+                         <form onSubmit={handleSubmit}>                             
                              <div className={classes.formGroup}>
                              <Field 
                                 component={Editor} 

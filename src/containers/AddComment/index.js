@@ -41,8 +41,9 @@ const AddComment = ({classes, ...props}) => {
         const postId = props.match.params.id;
         const userId = props.currentState.userId;
         const postUserComment = firebase.database().ref(`userComment/${postId}`);
+        const userName = props.currentState.firstName + ' ' + props.currentState.lastName;
         postUserComment.push({
-            userName: submitComment.userName,
+            userName: userName,
             addComment: submitComment.addComment,
             userId: userId,     
             date: (new Date()).toString()     
