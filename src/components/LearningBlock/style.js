@@ -39,6 +39,11 @@ const LearningBlockStyle = ({colors, fonts}) => {
     date: {
       color: colors.gray,
       fontSize: 12,
+      display: 'flex',
+      alignItems: 'center',
+      '& span': {
+        padding: '0 5px'
+      }
     },
   };
 }

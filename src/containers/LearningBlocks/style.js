@@ -6,8 +6,12 @@ const LearningBlocksStyle = ({ breakpoints }) => {
       color: "#000",
       textDecoration: 'none',
       position:'relative',
-      top: '-2px',
-      padding: '0 0 0 5px'
+      padding: '0 0 0 5px',
+      display:'flex',
+      alignItems: 'center',
+      '& span' : {
+        padding: '0 5px'
+      }
     },
     postBox : {
       display: 'flex',

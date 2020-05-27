@@ -12,20 +12,23 @@ import CommentIcon from '@material-ui/icons/Comment';
 const LearningBlocks = ({classes, ...props}) => {
   return (    
     <div className={classes.postBox}>
-      <Wrapper justifyContent='space-between'>
+      <Wrapper justifyContent='space-between'> 
         {props.postData.map((item, index) => {
           const customFormat = moment(item.date).fromNow();
           const addCommentLink = (typeof props.currentState !== 'undefined' && props.currentState.token)
             ? `/AddComment/${item.id}` : '/auth';
           return(
-            <ScrollAnimation className={classes.postBlock} animateIn="fadeIn" key={index}>     
+            <ScrollAnimation 
+              className={classes.postBlock} 
+              animateIn="fadeIn" 
+              key={index}>     
                 <LearningBlock
                   name={item.name}
                   title={item.heading}
                   content={item.content}
                   date={customFormat}
                 />
-              <Link className={classes.linkColor} to={addCommentLink}><CommentIcon /> Add Comment</Link>
+              <Link className={classes.linkColor} to={addCommentLink}><CommentIcon /> <span>Add Comment</span></Link>
             </ScrollAnimation>
           )
         })}

@@ -21,6 +21,10 @@ const UserCommentStyle = ({colors, fonts}) => {
           userName: {
             marginLeft: 16,
             marginTop: 2,
+            justifyItems: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            flexFlow: 'column',
           },
           avtar: {
             width: 60,
@@ -42,6 +46,11 @@ const UserCommentStyle = ({colors, fonts}) => {
           date: {
             color: colors.gray,
             fontSize: 12,
+            display: 'flex',
+            alignItems: 'center',
+            '& span' : {
+              padding: '0 5px'
+            }
           },
         }
 }
