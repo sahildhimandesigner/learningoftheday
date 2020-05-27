@@ -12,11 +12,12 @@ const LearningBlock = ({classes, ...props}) => (
         <img src={AvtarIcon} alt='Icon'/>
       </div>
       <div className={classes.userName}>
-        <Headings 
+      <Headings as='h3'>{props.title}</Headings>
+        {/* <Headings 
           as='h4' 
           transform='uppercase'>
             {props.name}
-          </Headings>
+          </Headings> */}
           
         <span className={classes.date}>
           <QueryBuilderIcon />
@@ -24,7 +25,7 @@ const LearningBlock = ({classes, ...props}) => (
         </span>
       </div>
     </div>
-    <Headings as='h3'>{props.title}</Headings>
+    
     <div className={classes.post} dangerouslySetInnerHTML={{__html: props.content}} />
   </div>
 );

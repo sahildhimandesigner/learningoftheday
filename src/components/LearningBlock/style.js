@@ -35,6 +35,9 @@ const LearningBlockStyle = ({colors, fonts}) => {
     post: {
       color: colors.black,
       fontSize: fonts.fontSizeLarge,
+    '& img' : {
+        width: '100% !important'
+      }
     },
     date: {
       color: colors.gray,
