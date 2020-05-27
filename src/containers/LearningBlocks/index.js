@@ -28,7 +28,10 @@ const LearningBlocks = ({classes, ...props}) => {
                   content={item.content}
                   date={customFormat}
                 />
-              <Link className={classes.linkColor} to={addCommentLink}><CommentIcon /> <span>Add Comment</span></Link>
+              <Link className={classes.linkColor} to={addCommentLink}>
+                <CommentIcon /> 
+                <span>Add Comment</span>
+              </Link>
             </ScrollAnimation>
           )
         })}
