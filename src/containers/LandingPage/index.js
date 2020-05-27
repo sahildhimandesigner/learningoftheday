@@ -65,7 +65,7 @@ const LandingPage = (props) => {
         			submitHandler={submitHandler}
         			/>
         	)}
-            <LearningBlocks postData={postData}/>
+            <LearningBlocks postData={postData} {...props}/>
         </div>       
     )
 }
