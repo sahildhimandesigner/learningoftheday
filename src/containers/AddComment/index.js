@@ -8,6 +8,7 @@ import UserCommentStyle from './style'
 import AvtarIcon from '../../images/user-placeholder.svg'
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import moment from 'moment';
+import LearningBlock from '../../components/LearningBlock';
 
 const AddComment = ({classes, ...props}) => {
     const [getComment, setComment] = useState([])
@@ -60,34 +61,13 @@ const AddComment = ({classes, ...props}) => {
         <>
             <Header {...props} />
             <div className={classes.postBoxCol}>
-                <div className={classes.userDetailCol}>
-                    <Headings 
-                        as='h3' 
-                        margin='0 0 10px 0'>
-                            {post.title}
-                    </Headings>
-                    <Wrapper padding='0'>
-                        <div className={classes.avtar}>
-                            <img src={AvtarIcon} alt='Icon'/>
-                        </div>
-                        <div className={classes.userName}>
-                            <Headings 
-                                as='h4' 
-                                margin='0' 
-                                transform='uppercase'>
-                                {post.name}
-                            </Headings>
-                            <span className={classes.date}>
-                                <QueryBuilderIcon />
-                                <span>{postDate}</span>
-                            </span>
-                        </div>
-                    </Wrapper>                    
-                    <Headings 
-                        className={classes.post} 
-                        margin='16px 0 20px'>
-                            {post.post}
-                    </Headings>
+                <div className={classes.userDetailCol}> 
+                    <LearningBlock
+                        name={post.name}
+                        title={post.title}
+                        content={post.post}
+                        date={postDate}
+                    />
                 </div>                    
             </div>            
             <UserComment 
