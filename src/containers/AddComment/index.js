@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router';
 import withStyle from 'react-jss'
-import { UserComment, Headings, Header, Wrapper } from '../../components'
+import { Footer, UserComment, Header} from '../../components'
 import ShowUserComments from './showUserComments'
 import firebase from '../../firebase'
 import UserCommentStyle from './style'
-import AvtarIcon from '../../images/user-placeholder.svg'
-import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import moment from 'moment';
 import LearningBlock from '../../components/LearningBlock';
 
@@ -78,6 +76,7 @@ const AddComment = ({classes, ...props}) => {
             <ShowUserComments 
                 getComment={getComment} 
                 />  
+            <Footer />
         </>
     )
 }

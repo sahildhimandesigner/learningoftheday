@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
-import { Footer, LogOut } from './components';
+import { LogOut } from './components';
 import NotFoundPage from './components/NotFoundPage'
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 
 function App() {

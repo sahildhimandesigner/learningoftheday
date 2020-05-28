@@ -1,4 +1,3 @@
-import PageNotFound from '../../images/PageNotFound.png'
 
 const componentStyle = () => {
     return {

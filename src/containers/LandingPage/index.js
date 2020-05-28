@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router'
-import { Header, Button, AddPostModal } from '../../components';
+import { Footer, Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 import firebase from '../../firebase'
@@ -68,6 +68,7 @@ const LandingPage = (props) => {
         			/>
         	)}
             <LearningBlocks postData={postData} {...props}/>
+			<Footer />
         </div>       
     )
 }
