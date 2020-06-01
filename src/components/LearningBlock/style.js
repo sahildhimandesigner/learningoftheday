@@ -16,8 +16,8 @@ const LearningBlockStyle = ({colors, fonts}) => {
     userName: {
       display: 'flex',
       flexDirection: 'column',
-      marginLeft: 16,
-      marginTop: 2,
+      marginLeft: 10,
+      marginTop: 0,
     },
     avtar: {
       width: 60,
