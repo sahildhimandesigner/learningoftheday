@@ -4,6 +4,7 @@ import AddComment from './containers/AddComment';
 import Users from './containers/Users';
 import { LogOut } from './components';
 import NotFoundPage from './components/NotFoundPage'
+import firebase from './firebase';
 
 import {
   BrowserRouter as Router,
@@ -15,7 +16,6 @@ function App() {
   const initialState = {
       firstName: '',
       lastName: '',
-      token: '',
       userId: '',
       loginButtonValue: 'Login'
     };
@@ -25,33 +25,26 @@ function App() {
   const logout = () => {
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
     setCurrentState(initialState);
+    firebase.auth().signOut();
   }
 
   const checkAuthState = () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
       logout();
     } else {
-      if (new Date() >= new Date(localStorage.getItem('expirationDate'))) {
-        logout();
-      } else {
-        const token = localStorage.getItem('token');
-        const userId = localStorage.getItem('userId');
-        const firstName = localStorage.getItem('firstName');
-        const lastName = localStorage.getItem('lastName');
-        
-        setCurrentState({
-          firstName: firstName,
-          lastName: lastName,
-          token: token,
-          userId: userId,
-          loginButtonValue: 'Logout'          
-        })
-      }
+      const userId = localStorage.getItem('userId');
+      const firstName = localStorage.getItem('firstName');
+      const lastName = localStorage.getItem('lastName');
+      
+      setCurrentState({
+        firstName: firstName,
+        lastName: lastName,
+        userId: userId,
+        loginButtonValue: 'Logout'          
+      })
     }
   }
 

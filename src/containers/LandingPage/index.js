@@ -50,17 +50,20 @@ const LandingPage = (props) => {
 		.catch(error => console.log(error));
 	}
 
+	const addPostButton = typeof props.currentState !== 'undefined' && props.currentState.userId
+	? (<Button
+			onClick={() => clickHandler()}
+			spacing='5px 10px 0 0'
+			height='45px'
+			backgroundColor='#fff'
+			color={`${colors.primaryColor}`}
+			>Add Post</Button>) : null;
+			
     return (
         <div>
-        	<Header {...props}>
-				<Button
-					onClick={() => clickHandler()}
-					spacing='5px 10px 0 0'
-					height='45px'
-					backgroundColor='#fff'
-					color={`${colors.primaryColor}`}
-					>Add Post</Button>
-        	</Header>
+			<Header {...props}>
+        		{addPostButton}
+			</Header>
             {openModal && (
             	<AddPostModal
         			cancelModal={() => setModalOpen(false)}

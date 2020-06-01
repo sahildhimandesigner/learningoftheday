@@ -6,9 +6,9 @@ import LoginButtonStyle from './style';
 
 const LoginButton = ({classes, ...props}) => {
 	
-	const buttonSpacing = props.currentState.token ? '5px 0 0 0' : '5px 0 0 0';
+	const buttonSpacing = props.currentState.userId ? '5px 0 0 0' : '5px 0 0 0';
 	const redirectHandler = () => {
-		if (props.currentState.token) {
+		if (props.currentState.userId) {
 			props.history.push('/logout');			
 		} else {
 			props.history.push('/auth');

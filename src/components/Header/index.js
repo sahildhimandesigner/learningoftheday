@@ -13,7 +13,7 @@ const Header = ({ classes, ...props }) => {
       {...props}
     /> : null;
 
-    const loggedInText = typeof props.currentState !== 'undefined' && props.currentState.token ?
+    const loggedInText = typeof props.currentState !== 'undefined' && props.currentState.userId ?
     (<span className={classes.userInfo}>
       Logged in as {props.currentState.firstName} {props.currentState.lastName}
     </span>) : null;

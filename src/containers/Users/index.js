@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import withStyles from 'react-jss';
 import { withRouter } from 'react-router';
 import { Formik } from 'formik';
@@ -9,6 +9,7 @@ import { Error } from '../../components';
 import { Header, Button, Wrapper, Headings } from '../../components';
 import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
+import firebase from '../../firebase';
 
 const User = ({classes, ...props}) => {
 	const [signInTrue, setSignInTrue] = useState(true);
@@ -48,50 +49,47 @@ const User = ({classes, ...props}) => {
 				        email: values.email,
 				        password: values.password,
 				        returnSecureToken: true
-				    }
+					}
 
-					let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
+					const method = signInTrue
+						? firebase.auth().signInWithEmailAndPassword(authData.email, authData.password)
+						: firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password);
+					
+					method.then(response => {
+						console.log('response kind', response);
+						let userData = ''
+						const userId = response.user.uid;
+						if (!signInTrue) {
+							const userData = {
+								firstName: values.firstName,
+								lastName: values.lastName
+							};
 
-					if (signInTrue) {
-						url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDkKPuqWYTit1LST92RUunx31ozUhGpwhQ';
-					}					
-
-					axios.post(url, authData)
-						.then(response => {
-							let userData = ''
-							if (!signInTrue) {
-								const userData = {
-						    		firstName: values.firstName,
-						    		lastName: values.lastName,
-						    		authId: response.data.localId
-						    	};
-
-						    	axios.post('/users.json', userData)
-							    	.then(() => {
-							    		storeDataInStorage(userData.firstName, userData.lastName, response);
-							    	})
-									.catch(error => {
-										console.log('error', error);
-									});
-							} else {
-								axios.get(`users.json?orderBy="authId"&equalTo="${response.data.localId}"`)
-								.then(getResponse => {								
-									const userName = Object.values(getResponse.data)[0];
-									storeDataInStorage(userName.firstName, userName.lastName, response);
-								})
-							}							
-						})
-						.catch(error => {
-							console.log('error', error);
-						})
-
+							firebase.database().ref('users/' + userId).set(userData)
+							.then(() => {
+								storeDataInStorage(userData.firstName, userData.lastName, response);
+							})
+							.catch(error => {
+								console.log('error', error);
+							});
+						} else {
+							firebase.database().ref('/users/' + userId).once('value')
+							.then((snapshot) => {
+								storeDataInStorage(snapshot.val().firstName, snapshot.val().lastName, response);
+							})
+							.catch(error => {
+								console.log('error', error);
+							});;
+						}							
+					})
+					.catch(function(error) {
+						console.log(error.message);
+					});	
+					
 					const storeDataInStorage = (firstName, lastName, response) => {
 						localStorage.setItem('firstName', firstName);
 						localStorage.setItem('lastName', lastName);
-						const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-		                localStorage.setItem('token', response.data.idToken);
-		                localStorage.setItem('expirationDate', expirationDate);
-		                localStorage.setItem('userId', response.data.localId);
+		                localStorage.setItem('userId', response.user.uid);
 		                props.authState();
 		                props.history.push('/');
 					}
