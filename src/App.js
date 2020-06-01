@@ -30,6 +30,7 @@ function App() {
     setCurrentState(initialState);
     firebase.auth().signOut();
   }
+  
 
   const checkAuthState = () => {
     const userId = localStorage.getItem('userId');
