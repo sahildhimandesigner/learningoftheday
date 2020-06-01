@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
-import Header from '../Header'
+import React from 'react'
 
-const UserProfile = (...props) => {
- console.log(props, 'user profile')
+const UserProfile = ({classes, ...props}) => { 
     return (
         <>  
-            <Header />
-            <h1>Upload Image</h1>
+            <h1>Upload Image</h1>            
         </>
     )
 }

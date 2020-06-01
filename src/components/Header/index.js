@@ -36,7 +36,9 @@ const Header = ({ classes, ...props }) => {
       </Wrapper>
       <div className={classes.whiteBar}>        
         <div className={classes.innerContainer}>
-          <Link className={classes.whiteNavLink} to='/'><HomeIcon />Home</Link>
+          <Link className={classes.whiteNavLink} to='/'>
+            <HomeIcon />Home
+          </Link>
           {loggedInText}
         </div>
       </div>
