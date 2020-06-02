@@ -31,6 +31,11 @@ const LoginBoxStyle = ({colors}) => {
 			cursor: 'pointer',
 			fontSize: '12px',
 			color: colors.gray
+		},
+		serverError: {
+			fontSize: 12,
+			color: 'red',
+			paddingBottom: 5
 		}
 	}
 }

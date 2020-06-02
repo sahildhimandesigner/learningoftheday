@@ -14,6 +14,7 @@ const User = ({classes, ...props}) => {
 	const { pathname } = (typeof props.location.state !== 'undefined' && props.location.state.from) ?
 		props.location.state.from : { pathname: '/' };
 	const [signInTrue, setSignInTrue] = useState(true);
+	const [serverError, setServerError] = useState(null);
 	const validationSchema = {
 			email: Yup.string()
 				.required('Please enter your email').
@@ -57,7 +58,6 @@ const User = ({classes, ...props}) => {
 						: firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password);
 					
 					method.then(response => {
-						console.log('response kind', response);
 						let userData = ''
 						const userId = response.user.uid;
 						if (!signInTrue) {
@@ -84,7 +84,10 @@ const User = ({classes, ...props}) => {
 						}							
 					})
 					.catch(function(error) {
-						console.log(error.message);
+						setServerError(error.message);
+						setTimeout(() => {
+							setServerError(null);
+						}, 3000)
 					});	
 					
 					const storeDataInStorage = (firstName, lastName, response) => {
@@ -158,6 +161,7 @@ const User = ({classes, ...props}) => {
 							<Error touched={touched.password} message={errors.password} />
 						</div>
 						<div className={classes.buttonDiv}>
+							<span className={classes.serverError}>{serverError}</span>
 							<Button
 								spacing='0 auto 20px auto'
 								type="submit"
