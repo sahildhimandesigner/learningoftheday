@@ -4,10 +4,12 @@ import { Footer, Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 import firebase from '../../firebase'
+import Spinner from '../../components/UI/Spinner';
 
 const LandingPage = (props) => {
 	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
+	const [loadingTrue, setLoadingTrue] = useState(true);
 
 	const getDataFromDatabase = () => {
 		const getAllPost = firebase.database().ref(`allPost`);
@@ -29,6 +31,7 @@ const LandingPage = (props) => {
 
 	useEffect(() => {
 		getDataFromDatabase();
+		setLoadingTrue(false);
 	}, []);
 
 	const clickHandler = () => setModalOpen(true);
@@ -58,20 +61,23 @@ const LandingPage = (props) => {
 			backgroundColor='#fff'
 			color={`${colors.primaryColor}`}
 			>Add Post</Button>) : null;
+
+	const body = loadingTrue ? <Spinner />
+	: (<div><Header {...props}>
+		{addPostButton}
+	</Header>
+	{openModal && (
+		<AddPostModal
+			cancelModal={() => setModalOpen(false)}
+			submitHandler={submitHandler}
+			/>
+	)}
+	<LearningBlocks postData={postData} {...props}/>
+	<Footer /></div>);
 			
     return (
         <div>
-			<Header {...props}>
-        		{addPostButton}
-			</Header>
-            {openModal && (
-            	<AddPostModal
-        			cancelModal={() => setModalOpen(false)}
-        			submitHandler={submitHandler}
-        			/>
-        	)}
-            <LearningBlocks postData={postData} {...props}/>
-			<Footer />
+			{body}
         </div>       
     )
 }
