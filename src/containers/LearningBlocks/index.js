@@ -15,8 +15,6 @@ const LearningBlocks = ({classes, ...props}) => {
       <Wrapper justifyContent='space-between'> 
         {props.postData.map((item, index) => {
           const customFormat = moment(item.date).fromNow();
-          const addCommentLink = (typeof props.currentState !== 'undefined' && props.currentState.userId)
-            ? `/AddComment/${item.id}` : '/auth';
           return(
             <ScrollAnimation 
               className={classes.postBlock} 
@@ -28,7 +26,7 @@ const LearningBlocks = ({classes, ...props}) => {
                   content={item.content}
                   date={customFormat}
                 />
-              <Link className={classes.linkColor} to={addCommentLink}>
+              <Link className={classes.linkColor} to={`/AddComment/${item.id}`}>
                 <CommentIcon /> 
                 <span>Add Comment</span>
               </Link>

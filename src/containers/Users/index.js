@@ -11,6 +11,8 @@ import { colors } from '../../theme/colors';
 import firebase from '../../firebase';
 
 const User = ({classes, ...props}) => {
+	const { pathname } = (typeof props.location.state !== 'undefined' && props.location.state.from) ?
+		props.location.state.from : { pathname: '/' };
 	const [signInTrue, setSignInTrue] = useState(true);
 	const validationSchema = {
 			email: Yup.string()
@@ -90,7 +92,7 @@ const User = ({classes, ...props}) => {
 						localStorage.setItem('lastName', lastName);
 		                localStorage.setItem('userId', response.user.uid);
 		                props.authState();
-		                props.history.push('/');
+		                props.history.push(pathname);
 					}
 				}}
 				>

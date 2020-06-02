@@ -5,6 +5,7 @@ import Users from './containers/Users';
 import { LogOut } from './components';
 import NotFoundPage from './components/NotFoundPage'
 import firebase from './firebase';
+import PrivateRoute from './PrivateRoute';
 
 import {
   BrowserRouter as Router,
@@ -57,8 +58,8 @@ function App() {
       <div className="App">
         <Router>
             <Switch>            
-              <Route path='/AddComment/:id'
-                render={() => <AddComment currentState={currentState} />} />
+              <PrivateRoute currentState={currentState} path='/AddComment/:id'
+                component={AddComment}/>
               <Route path='/auth'
                 render={() => <Users authState={checkAuthState}/>}
                 />
