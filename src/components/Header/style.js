@@ -43,6 +43,9 @@ const HeaderStyle = ({ colors, breakpoints }) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+        },
+        whiteNav: {
+          display:'flex'
         }
     }
 }

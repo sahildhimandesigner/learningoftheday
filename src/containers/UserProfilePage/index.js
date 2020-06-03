@@ -1,10 +1,28 @@
-import React from 'react'
-import UserProfile from '../../components/UserProfile';
+import React, { useState } from 'react'
+import { Footer, Header } from '../../components'
+import firebase from '../../firebase'
+import SetGoal from '../../components/SetGoal'
 
-const UserProfilePage = () => {
+const UserProfilePage = (props) => {
+    const [goal, setGoal] = useState([]);
+    const currentUser = props.currentState.userId;
+    console.log(currentUser, 'currentUser')
+
+    const submitGoalHandler = (submitGoalHandler) => {
+        const goal = firebase.database().ref(`allGoals/${currentUser}`);
+        goal.push({
+            goalName:submitGoalHandler.goalName,
+            startDate:submitGoalHandler.startDate,
+            endDate:submitGoalHandler.endDate,
+            description:submitGoalHandler.description  
+        })
+    }
+
     return (
         <>
-            <UserProfile />
+            <Header {...props} />
+                <SetGoal submitGoalHandler={submitGoalHandler} />
+            <Footer />
         </>
     )
 }

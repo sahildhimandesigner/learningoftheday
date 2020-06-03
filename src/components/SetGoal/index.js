@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Field } from 'formik';
 import { validationSchema } from './ValidationSchema';
 import { Button, Error } from '../index';
@@ -6,21 +6,29 @@ import Editor from './../Editor'
 import { colors } from '../../theme';
 import SetGoalStyle from './style'
 import withStyle from 'react-jss'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
 
-const SetGoal = ({classes}) => {
+const SetGoal = ({classes, ...props}) => {
+
     return(
         <div>
             <Formik
                 initialValues={{
                     goalName: '',
-                    startDate: '',
-                    endDate: '',
+                    startDate: new Date(),
+                    endDate: new Date(),
                     description: '',
                 }}
                 validationSchema={validationSchema}
-                onSubmit={(values) => {
-                    console.log(values, 'set goal')
+
+                onSubmit={(values, {setSubmitting, resetForm}) => {
+                    setSubmitting(true);
+                    props.submitGoalHandler(values);
+                    resetForm();
+                    setSubmitting(false);
+                    console.log(values)
                 }}
             >
             {({
@@ -30,7 +38,8 @@ const SetGoal = ({classes}) => {
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                isSubmitting
+                isSubmitting,
+                setFieldValue
                 }) => (
                     <form onSubmit={handleSubmit}>                             
                         <div className={classes.formGroup}> 
@@ -48,31 +57,27 @@ const SetGoal = ({classes}) => {
                         </div>
 
                         <div className={classes.formGroup}> 
-                            <input
-                                id="startDate"
-                                placeholder='Enter title here'
-                                type="text"
+                            <DatePicker 
+                                selected={values.startDate}
+                                dateFormat="MMMM d, yyyy"
+                                className="form-control"
                                 name="startDate"
-                                value={values.startDate}            
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                onChange={date => setFieldValue('startDate', date)}
                                 className={(touched.startDate && errors.startDate) ? classes.hasError: ''}
-                                />
+                            />
                             <Error touched={touched.startDate} message={errors.startDate} />
-                        </div>
+                        </div>                                            
                         <div className={classes.formGroup}> 
-                            <input
-                                id="endDate"
-                                placeholder='Enter title here'
-                                type="text"
+                             <DatePicker 
+                                selected={values.endDate}
+                                dateFormat="MMMM d, yyyy"
+                                className="form-control"
                                 name="endDate"
-                                value={values.endDate}            
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                onChange={date => setFieldValue('endDate', date)}
                                 className={(touched.endDate && errors.endDate) ? classes.hasError: ''}
-                                />
+                            />
                             <Error touched={touched.endDate} message={errors.endDate} />
-                        </div>                        
+                        </div>                                            
                         <div className={classes.formGroup}> 
                             <Field 
                                 component={Editor}        

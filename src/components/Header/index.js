@@ -17,6 +17,10 @@ const Header = ({ classes, ...props }) => {
     (<span className={classes.userInfo}>
       Logged in as {props.currentState.firstName} {props.currentState.lastName}
     </span>) : null;
+
+  const navLinks = typeof props.currentState !== 'undefined' && props.currentState.userId ?
+  (<div className={classes.whiteNav}><Link className={classes.whiteNavLink} to='/'><HomeIcon />Home</Link>
+  <Link to="/UserProfilePage" className={classes.whiteNavLink}>User Profile</Link></div>) : null;
     
   return (
     <div className={classes.bg}>
@@ -36,11 +40,8 @@ const Header = ({ classes, ...props }) => {
       </Wrapper>
       <div className={classes.whiteBar}>        
         <div className={classes.innerContainer}>
-          <Link className={classes.whiteNavLink} to='/'>
-            <HomeIcon />Home
-          </Link>
+          {navLinks}
           {loggedInText}
-          <Link to="/UserProfilePage" className={classes.whiteNavLink}>User Profile</Link>
         </div>
       </div>
     </div>

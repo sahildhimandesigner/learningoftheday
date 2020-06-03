@@ -1,15 +1,12 @@
 import React from 'react'
-import { Footer, Wrapper, Header, SetGoal} from '../../components'
+import { Wrapper, SetGoal } from '../../components'
 
-
-const UserProfile = (props) => { 
+const UserProfile = () => { 
     return (
         <>  
-            <Header {...props} />
-                <Wrapper background="#FFF" marginTop="50px">
-                    <SetGoal />
-                </Wrapper>                
-            <Footer />
+            <Wrapper background="#FFF" marginTop="50px">
+                <SetGoal />
+            </Wrapper>
         </>
     )
 }

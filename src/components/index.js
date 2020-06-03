@@ -11,7 +11,6 @@ import Footer from './Footer';
 import UserCommentsList from './UserComments/userCommentList';
 import LoginButton from './LoginButton';
 import LogOut from './LogOut';
-import SetGoal from './SetGoal';
 import Sidebar from './Sidebar';
 
 export {
@@ -28,6 +27,5 @@ export {
   UserCommentsList,
   LoginButton,
   LogOut,
-  SetGoal,
   Sidebar,
 };
