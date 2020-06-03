@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { Footer, Header } from '../../components'
+import React from 'react'
+import { Footer, Header, Wrapper } from '../../components'
 import firebase from '../../firebase'
 import SetGoal from '../../components/SetGoal'
 
 const UserProfilePage = (props) => {
-    const [goal, setGoal] = useState([]);
     const currentUser = props.currentState.userId;
     console.log(currentUser, 'currentUser')
 
@@ -21,7 +20,9 @@ const UserProfilePage = (props) => {
     return (
         <>
             <Header {...props} />
-                <SetGoal submitGoalHandler={submitGoalHandler} />
+                <Wrapper background="#FFF" marginTop="50px" RoundCorner="30px" padding="40px 30px">
+                    <SetGoal submitGoalHandler={submitGoalHandler} />
+                </Wrapper>
             <Footer />
         </>
     )

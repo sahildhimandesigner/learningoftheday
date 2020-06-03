@@ -14,6 +14,7 @@ const WrapperStyle = ({ colors }) => {
       flexGrow: ({ flexGrow = '3'}) => flexGrow,
       justifyContent: ({ justifyContent = 'normal'}) => justifyContent,
       alignItems: ({ alignItems = 'normal'}) => alignItems,
+      borderRadius: ({ RoundCorner = ''}) => RoundCorner
     }
   }
 }
