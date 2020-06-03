@@ -4,6 +4,7 @@ import { Wrapper, Headings, LoginButton } from '../index';
 import HeaderStyle from './style';
 import { Link } from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home';
+import WhiteBar from './whiteBar'
 
 const Header = ({ classes, ...props }) => {
   
@@ -13,14 +14,6 @@ const Header = ({ classes, ...props }) => {
       {...props}
     /> : null;
 
-    const loggedInText = typeof props.currentState !== 'undefined' && props.currentState.userId ?
-    (<span className={classes.userInfo}>
-      Logged in as {props.currentState.firstName} {props.currentState.lastName}
-    </span>) : null;
-
-  const navLinks = typeof props.currentState !== 'undefined' && props.currentState.userId ?
-  (<div className={classes.whiteNav}><Link className={classes.whiteNavLink} to='/'><HomeIcon />Home</Link>
-  <Link to="/UserProfilePage" className={classes.whiteNavLink}>User Profile</Link></div>) : null;
     
   return (
     <div className={classes.bg}>
@@ -40,8 +33,7 @@ const Header = ({ classes, ...props }) => {
       </Wrapper>
       <div className={classes.whiteBar}>        
         <div className={classes.innerContainer}>
-          {navLinks}
-          {loggedInText}
+          <WhiteBar {...props} />
         </div>
       </div>
     </div>

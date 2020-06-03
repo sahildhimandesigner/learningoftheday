@@ -12,8 +12,8 @@ const UserProfilePage = (props) => {
         const goal = firebase.database().ref(`allGoals/${currentUser}`);
         goal.push({
             goalName:submitGoalHandler.goalName,
-            startDate:submitGoalHandler.startDate,
-            endDate:submitGoalHandler.endDate,
+            startDate:submitGoalHandler.startDate.toString(),
+            endDate:submitGoalHandler.endDate.toString(),
             description:submitGoalHandler.description  
         })
     }
