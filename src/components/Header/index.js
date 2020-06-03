@@ -40,6 +40,7 @@ const Header = ({ classes, ...props }) => {
             <HomeIcon />Home
           </Link>
           {loggedInText}
+          <Link to="/UserProfilePage" className={classes.whiteNavLink}>User Profile</Link>
         </div>
       </div>
     </div>

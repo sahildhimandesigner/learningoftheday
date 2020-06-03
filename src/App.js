@@ -3,10 +3,10 @@ import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
 import { LogOut } from './components';
+import UserProfilePage from './containers/UserProfilePage'
 import NotFoundPage from './components/NotFoundPage'
 import firebase from './firebase';
 import PrivateRoute from './PrivateRoute';
-import UserProfile from './components/UserProfile'
 
 import {
   BrowserRouter as Router,
@@ -62,8 +62,8 @@ function App() {
             <Switch>            
               <PrivateRoute currentState={currentState} path='/AddComment/:id'
                 component={AddComment}/>
-              <PrivateRoute currentState={currentState} path='/UserProfile'
-                component={UserProfile}/>
+              <PrivateRoute currentState={currentState} path='/UserProfilePage'
+                component={UserProfilePage}/>
               <Route path='/auth'
                 render={() => <Users authState={checkAuthState}/>}
                 />
@@ -82,3 +82,4 @@ function App() {
 }
 
 export default App;
+

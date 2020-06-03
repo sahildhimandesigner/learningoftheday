@@ -1,9 +1,15 @@
 import React from 'react'
+import { Footer, Wrapper, Header, SetGoal} from '../../components'
 
-const UserProfile = ({classes, ...props}) => { 
+
+const UserProfile = (props) => { 
     return (
         <>  
-            <h1>Upload Image</h1>            
+            <Header {...props} />
+                <Wrapper background="#FFF" marginTop="50px">
+                    <SetGoal />
+                </Wrapper>                
+            <Footer />
         </>
     )
 }
