@@ -47,6 +47,12 @@ const LandingPage = (props) => {
 			date: (new Date()).toString()
 		})
 		.then(response => {
+			firebase.database().ref(`users`)
+			.child(`${props.currentState.userId}`)
+			.child(`coins`)
+			.transaction(function(currentCoins) {
+				return (currentCoins || 0) + 1
+			});
 			getDataFromDatabase();
 		  	setModalOpen(false);
 		})
