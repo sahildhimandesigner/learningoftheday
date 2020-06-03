@@ -46,6 +46,9 @@ const HeaderStyle = ({ colors, breakpoints }) => {
         },
         whiteNav: {
           display:'flex'
+        },
+        linkContainer: {
+          display: 'flex'
         }
     }
 }

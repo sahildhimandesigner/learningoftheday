@@ -31,11 +31,7 @@ const Header = ({ classes, ...props }) => {
         	{loginButton}    
       	</div>        
       </Wrapper>
-      <div className={classes.whiteBar}>        
-        <div className={classes.innerContainer}>
-          <WhiteBar {...props} />
-        </div>
-      </div>
+      <WhiteBar {...props} />
     </div>
   )
 }
