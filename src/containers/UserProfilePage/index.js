@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer, Header, Wrapper } from '../../components'
+import { Footer, Header, Wrapper, Headings } from '../../components'
 import firebase from '../../firebase'
 import SetGoal from '../../components/SetGoal'
 
@@ -21,6 +21,7 @@ const UserProfilePage = (props) => {
         <>
             <Header {...props} />
                 <Wrapper background="#FFF" marginTop="50px" RoundCorner="30px" padding="40px 30px">
+                    <Headings as="h2">Set Your Goal</Headings>
                     <SetGoal submitGoalHandler={submitGoalHandler} />
                 </Wrapper>
             <Footer />
