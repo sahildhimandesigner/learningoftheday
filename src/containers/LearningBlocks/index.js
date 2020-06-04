@@ -12,7 +12,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 const LearningBlocks = ({classes, ...props}) => {
   return (    
     <div className={classes.postBox}>
-      <Wrapper justifyContent='space-between'> 
+      <Wrapper flexFlow="row" flexWrap="wrap" flexGrow="3" justifyContent='space-between'> 
         {props.postData.map((item, index) => {
           const customFormat = moment(item.date).fromNow();
           return(
