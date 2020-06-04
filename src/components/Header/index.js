@@ -3,7 +3,6 @@ import withStyle from 'react-jss';
 import { Wrapper, Headings, LoginButton } from '../index';
 import HeaderStyle from './style';
 import { Link } from 'react-router-dom'
-import HomeIcon from '@material-ui/icons/Home';
 import WhiteBar from './whiteBar'
 
 const Header = ({ classes, ...props }) => {

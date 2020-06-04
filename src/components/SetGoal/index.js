@@ -8,12 +8,13 @@ import SetGoalStyle from './style'
 import withStyle from 'react-jss'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-
+import { Headings } from '../../components'
 
 const SetGoal = ({classes, ...props}) => {
 
     return(
-        <div>
+        <div className={classes.goalContainer}>
+            <Headings as="h2">Set Your Goal</Headings>
             <Formik
                 initialValues={{
                     goalName: '',

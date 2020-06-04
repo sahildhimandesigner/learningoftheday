@@ -93,7 +93,6 @@ const SetGoalStyle = ({ colors, fonts }) => {
             padding: '20px',
             borderRadius: '30px',
           }
-          
     }
 }
 

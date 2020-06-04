@@ -1,9 +1,10 @@
 import React from 'react'
-import { Footer, Header, Wrapper, Headings } from '../../components'
+import { Footer, Header, Wrapper } from '../../components'
 import firebase from '../../firebase'
 import SetGoal from '../../components/SetGoal'
+import UserInfo from '../../components/UserInfo'
 
-const UserProfilePage = (props) => {
+const UserProfile = (props) => {
     const currentUser = props.currentState.userId;
     console.log(currentUser, 'currentUser')
 
@@ -20,8 +21,12 @@ const UserProfilePage = (props) => {
     return (
         <>
             <Header {...props} />
-                <Wrapper background="#FFF" marginTop="50px" RoundCorner="30px" padding="40px 30px">
-                    <Headings as="h2">Set Your Goal</Headings>
+                <Wrapper  
+                    background="#FFF" 
+                    marginTop="50px" 
+                    RoundCorner="30px" 
+                    padding="40px 30px">
+                    <UserInfo />
                     <SetGoal submitGoalHandler={submitGoalHandler} />
                 </Wrapper>
             <Footer />
@@ -29,4 +34,4 @@ const UserProfilePage = (props) => {
     )
 }
 
-export default UserProfilePage;
+export default UserProfile;

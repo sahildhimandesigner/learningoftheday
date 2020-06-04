@@ -13,7 +13,7 @@ const WhitBar = ({ classes, ...props }) => {
 
     const navLinks = typeof props.currentState !== 'undefined' && props.currentState.userId ?
     (<div className={classes.linkContainer}><Link className={classes.whiteNavLink} to='/'><HomeIcon />Home</Link>
-    <Link to="/UserProfilePage" className={classes.whiteNavLink}>User Profile</Link></div>) : null;
+    <Link to="/UserProfile" className={classes.whiteNavLink}>User Profile</Link></div>) : null;
     
     return(
      <div className={classes.whiteBar}>        
