@@ -2,7 +2,9 @@ const UserStyle = () => {
     return {
         userContainer: {
             display:'flex',
-            flexFlow:'column'
+            flexFlow:'column',
+            width: '40%',
+            textAlign: 'center'
         }
     }
 }

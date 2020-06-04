@@ -25,7 +25,7 @@ const LandingPage = (props) => {
 				});
 			}
 			const reversedOrder = getData.reverse();
-	        setPostData(reversedOrder);			
+			setPostData(reversedOrder);
 		})
 	}
 
@@ -71,7 +71,7 @@ const LandingPage = (props) => {
 	const body = loadingTrue ? <Spinner />
 	: (<div><Header {...props}>
 		{addPostButton}
-	</Header>
+		</Header>
 	{openModal && (
 		<AddPostModal
 			cancelModal={() => setModalOpen(false)}

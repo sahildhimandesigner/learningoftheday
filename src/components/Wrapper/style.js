@@ -8,10 +8,10 @@ const WrapperStyle = ({ colors }) => {
       margin: ({ margin = '0 auto' }) => margin,
       marginTop: ({ marginTop = '0' }) => marginTop,
       display: ({ display = 'flex' }) => display,
-      flexFlow: ({ flexFlow = 'row' }) => flexFlow,
+      flexFlow: ({ flexFlow = '' }) => flexFlow,
       boxSizing: ({ boxSizing = 'border-box;' }) => boxSizing,
-      flexWrap: ({ flexWrap = 'wrap'}) => flexWrap,
-      flexGrow: ({ flexGrow = '3'}) => flexGrow,
+      flexWrap: ({ flexWrap = ''}) => flexWrap,
+      flexGrow: ({ flexGrow = ''}) => flexGrow,
       justifyContent: ({ justifyContent = 'normal'}) => justifyContent,
       alignItems: ({ alignItems = 'normal'}) => alignItems,
       borderRadius: ({ RoundCorner = ''}) => RoundCorner
