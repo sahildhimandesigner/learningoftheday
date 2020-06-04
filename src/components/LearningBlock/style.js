@@ -17,7 +17,7 @@ const LearningBlockStyle = ({colors, fonts}) => {
       display: 'flex',
       flexDirection: 'column',
       marginLeft: 10,
-      marginTop: 0,
+      marginTop: 0
     },
     avtar: {
       width: 60,

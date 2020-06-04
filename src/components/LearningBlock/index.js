@@ -12,7 +12,9 @@ const LearningBlock = ({classes, ...props}) => (
         <img src={AvtarIcon} alt='Icon'/>
       </div>
       <div className={classes.userName}>
-        <Headings as='h4' transform='uppercase'>{props.name}</Headings>
+        <span className={classes.userInfo}>
+          <Headings as='h4' transform='uppercase'>{props.name}</Headings>
+        </span>
         <span className={classes.date}>
           <QueryBuilderIcon />
           <span>{props.date}</span>

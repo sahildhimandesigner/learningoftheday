@@ -11,32 +11,33 @@ const LandingPage = (props) => {
 	const [openModal, setModalOpen] = useState(false);
 	const [loadingTrue, setLoadingTrue] = useState(true);
 
-	const getDataFromDatabase = () => {
+	const getDataFromDatabase = async () => {
+		setLoadingTrue(true);		
 		const getAllPost = firebase.database().ref(`allPost`);
-		getAllPost.on('value', function(snapshot){
+		getAllPost.on('value', function(snapshot){			
 			const getData = [];
 			for(const key in snapshot.val()) {
-				getData.push({
-					id: key,
-					name: snapshot.val()[key].name,
-					heading: snapshot.val()[key].title,
-					content: snapshot.val()[key].post,
-					date: (new Date(snapshot.val()[key].date)).toString()
-				});
+					getData.push({
+						id: key,
+						name: snapshot.val()[key].name,
+						heading: snapshot.val()[key].title,
+						content: snapshot.val()[key].post,
+						date: (new Date(snapshot.val()[key].date)).toString()
+					});
 			}
 			const reversedOrder = getData.reverse();
 			setPostData(reversedOrder);
+			setLoadingTrue(false);
 		})
 	}
 
 	useEffect(() => {
 		getDataFromDatabase();
-		setLoadingTrue(false);
 	}, []);
 
 	const clickHandler = () => setModalOpen(true);
 
-	const submitHandler = (submittedData) => {
+	const submitHandler = (submittedData) => {		
 		const allPost = firebase.database().ref(`allPost`);
 		const name = props.currentState.firstName + ' ' +  props.currentState.lastName
 		allPost.push({
@@ -80,7 +81,6 @@ const LandingPage = (props) => {
 	)}
 	<LearningBlocks postData={postData} {...props}/>
 	<Footer /></div>);
-			
     return (
         <div>
 			{body}
