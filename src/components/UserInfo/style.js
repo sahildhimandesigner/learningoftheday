@@ -9,11 +9,12 @@ const UserStyle = () => {
         userInformation: {
             display: 'flex',
             justifyContent: 'space-evenly',
-            width: '50%',
-            paddingLeft: '32%',
+            width: 'auto',
+            paddingLeft: '23%',
             paddingTop: '4%',
             paddingBottom: '4%',
-            textTransform: 'capitalize'
+            textTransform: 'capitalize',
+            paddingRight: '8%'
         },
         levelInformation: {
             fontSize: 12,
