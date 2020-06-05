@@ -36,9 +36,9 @@ const UserProfile = (props) => {
                     startDate: snapshot.val()[key].startDate,
                     endDate: snapshot.val()[key].endDate,
                     description: snapshot.val()[key].description,
-                })
-                setTask(getAllTask);
+                })                
             }
+            setTask(getAllTask);
         })
     }
 
