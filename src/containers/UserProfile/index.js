@@ -6,12 +6,17 @@ import UserInfo from '../../components/UserInfo'
 import TaskList from '../../components/TaskList'
 
 const UserProfile = (props) => {
-    const [display, setDisplay] = useState(true);
+    const [allGoalDisplay, setAllGoalDisplay] = useState(false);
     const [getTask, setTask] = useState([])
     const currentUser = props.currentState.userId;    
 
-    const profileRender = () => {
-        setDisplay(false)
+    const profileRender = (checkType) => {
+        if(checkType === 'allGoal'){
+            setAllGoalDisplay(true)
+        }
+        else {
+            setAllGoalDisplay(false)
+        }
     }
 
     const submitGoalHandler = (submitGoalHandler) => {
@@ -46,7 +51,11 @@ const UserProfile = (props) => {
         getTaskHandler();
     }, [])
     
-    console.log(getTask, 'user profile com')
+    let showUserInfo = !allGoalDisplay ? <SetGoal 
+    submitGoalHandler={submitGoalHandler} 
+    /> :
+    <TaskList getAllTask={getTask} />
+
     return (
         <>
             <Header {...props} />
@@ -55,16 +64,13 @@ const UserProfile = (props) => {
                     marginTop="50px" 
                     RoundCorner="30px" 
                     padding="40px 30px">
-{/* 
-                    <UserInfo {...props} 
-                        click={profileRender}  
-                        /> */}
-                    <TaskList 
-                        getAllTask={getTask} 
+
+                    <UserInfo 
+                        {...props} 
+                        click={(checkType) => profileRender(checkType)} 
                         />
-                 <SetGoal 
-                    submitGoalHandler={submitGoalHandler} 
-                    />
+                    
+                    {showUserInfo}
                 </Wrapper>
             <Footer />
         </>

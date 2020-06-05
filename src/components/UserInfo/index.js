@@ -10,8 +10,8 @@ const UserInfo = ({classes, ...props}) => {
         <div className={classes.userContainer}>      
             <img src={UserAvtar} alt={UserAvtar} />
             <Headings as="h2">User Information</Headings>
-            <button onClick={props.click}>All Goal</button>
-            <button onClick={props.click}>Add Goal</button>
+            <button onClick={() => props.click('allGoal')}>All Goal</button>
+            <button onClick={() => props.click('addGoal')}>Add Goal</button>
         </div>
     )
 }
