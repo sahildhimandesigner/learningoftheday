@@ -1,10 +1,11 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import withStyles from 'react-jss';
 import { Button } from '../../components';
 import { colors } from '../../theme/colors';
 import LoginButtonStyle from './style';
 
-const LoginButton = ({classes, ...props}) => {	
+const LoginButton = ({classes, ...props}) => {
 	const redirectHandler = () => {
 		if (props.currentState.userId) {
 			props.history.push('/logout');			
@@ -23,4 +24,4 @@ const LoginButton = ({classes, ...props}) => {
 	);
 }
 
-export default withStyles(LoginButtonStyle)(LoginButton);
+export default withStyles(LoginButtonStyle)(withRouter(LoginButton));
