@@ -4,9 +4,7 @@ import { Button } from '../../components';
 import { colors } from '../../theme/colors';
 import LoginButtonStyle from './style';
 
-const LoginButton = ({classes, ...props}) => {
-	
-	const buttonSpacing = props.currentState.userId ? '5px 0 0 0' : '5px 0 0 0';
+const LoginButton = ({classes, ...props}) => {	
 	const redirectHandler = () => {
 		if (props.currentState.userId) {
 			props.history.push('/logout');			
@@ -18,11 +16,9 @@ const LoginButton = ({classes, ...props}) => {
 		<div className={classes.mainDiv}>			
 			<Button border="#FFF solid 1px"
 				onClick={redirectHandler}
-				spacing={buttonSpacing}
 				backgroundColor={`${colors.primaryColor}`}
 				color='#fff'
 				>{props.loginButtonValue}</Button>
-			
 		</div>
 	);
 }
