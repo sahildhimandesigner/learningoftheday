@@ -13,8 +13,7 @@ const UserProfile = (props) => {
     const profileRender = (checkType) => {
         if(checkType === 'allGoal'){
             setAllGoalDisplay(true)
-        }
-        else {
+        } else {
             setAllGoalDisplay(false)
         }
     }
