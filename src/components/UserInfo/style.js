@@ -23,6 +23,21 @@ const UserStyle = () => {
         },
         btnContainer: {
             display: 'flex'
+        },
+        userType: {
+            fontSize: '16px',
+            margin: '10px 0',
+            display:'flex',
+            width: '100%',
+            justifyContent: 'center'
+        },
+        userName: {
+            fontSize: '18px',
+            fontWeight: 'bold',
+            padding: '20px 0 0 0',
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'center'
         }
     }
 }

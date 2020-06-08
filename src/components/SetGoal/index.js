@@ -62,28 +62,32 @@ const SetGoal = ({classes, ...props}) => {
                             <Error touched={touched.goalName} message={errors.goalName} />
                         </div>
 
-                        <div className={classes.formGroup}> 
-                            <DatePicker 
-                                selected={values.startDate}
-                                dateFormat="MMMM d, yyyy"
-                                className="form-control"
-                                name="startDate"
-                                onChange={date => setFieldValue('startDate', date)}
-                                className={(touched.startDate && errors.startDate) ? classes.hasError: ''}
-                            />
-                            <Error touched={touched.startDate} message={errors.startDate} />
-                        </div>                                            
-                        <div className={classes.formGroup}> 
-                             <DatePicker 
-                                selected={values.endDate}
-                                dateFormat="MMMM d, yyyy"
-                                className="form-control"
-                                name="endDate"
-                                onChange={date => setFieldValue('endDate', date)}
-                                className={(touched.endDate && errors.endDate) ? classes.hasError: ''}
-                            />
-                            <Error touched={touched.endDate} message={errors.endDate} />
-                        </div>                                            
+                        <div className={classes.estimationContainer}>
+                            <div className={classes.formGroup}> 
+                                <label>Start Date: </label>
+                                <DatePicker 
+                                    selected={values.startDate}
+                                    dateFormat="MMMM d, yyyy"
+                                    className="form-control"
+                                    name="startDate"
+                                    onChange={date => setFieldValue('startDate', date)}
+                                    className={(touched.startDate && errors.startDate) ? classes.hasError: ''}
+                                />
+                                <Error touched={touched.startDate} message={errors.startDate} />
+                            </div>                                            
+                            <div className={classes.formGroup}>
+                                <label>End Date: </label> 
+                                <DatePicker 
+                                    selected={values.endDate}
+                                    dateFormat="MMMM d, yyyy"
+                                    className="form-control"
+                                    name="endDate"
+                                    onChange={date => setFieldValue('endDate', date)}
+                                    className={(touched.endDate && errors.endDate) ? classes.hasError: ''}
+                                />
+                                <Error touched={touched.endDate} message={errors.endDate} />
+                            </div>                            
+                        </div>               
                         <div className={classes.formGroup}> 
                             <Field 
                                 component={Editor}        

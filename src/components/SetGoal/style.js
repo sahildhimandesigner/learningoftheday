@@ -92,7 +92,11 @@ const SetGoalStyle = ({ colors, fonts }) => {
             backgroundColor: colors.white,
             padding: '20px',
             borderRadius: '30px',
-          }
+          },
+          estimationContainer: {
+            display: 'flex',
+            flexFlow: 'row',
+          },
     }
 }
 

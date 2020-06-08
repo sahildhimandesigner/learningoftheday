@@ -14,6 +14,7 @@ const TaskList = ({classes, ...props}) => {
             flexFlow="column"
             >
             <h2>Task List</h2>
+            
             {props.getAllTask.map((item, index) => {
                 const startDate = moment(item.startDate).format('YYYY-MM-DD');
                 const endDate = moment(item.endDate).format('YYYY-MM-DD');

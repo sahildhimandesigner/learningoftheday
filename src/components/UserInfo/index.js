@@ -26,12 +26,13 @@ const UserInfo = ({classes, ...props}) => {
             <div className={classes.userContainer}>      
                 <img src={UserAvtar} alt={UserAvtar} />
                 <div className={classes.userInformation}>
-                    <span>
+                    <span className={classes.userName}>
                         {`${props.currentState.firstName} 
                         ${props.currentState.lastName}`}
                     </span>
                     <span className={classes.levelInformation}>
-                        <Level coins={coins}/>
+                        <Level className={classes.coins} coins={coins}/>
+                        <span className={classes.userType}>Mentor</span>
                     </span>
                 </div>
                 
