@@ -5,10 +5,15 @@ import ComponentStyle from './style'
 const ShowTaskList = ({ classes, ...props}) => {
     return (
         <div className={classes.container}>
-            <h4>{props.task}</h4>
-            <h4>{props.startDate}</h4>
-            <h4>{props.endDate}</h4>
-            <div dangerouslySetInnerHTML={{__html: props.description}} />
+            <h4 className={classes.taskName}>{props.task}</h4>
+            <div className={classes.timeContainer}>
+                <h4 className={classes.startDate}>Start Date: <span>{props.startDate}</span></h4>
+                <h4 className={classes.endDate}>End Date: <span>{props.endDate}</span></h4>
+            </div>
+            <div className={classes.description}>
+                <h5>Description:</h5>
+                <div dangerouslySetInnerHTML={{__html: props.description}} />
+            </div>
         </div>
     )
 }
