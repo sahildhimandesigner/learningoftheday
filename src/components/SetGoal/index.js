@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Formik, Field } from 'formik';
 import { validationSchema } from './ValidationSchema';
-import { Button, Error } from '../index';
+import { Button, Error, Wrapper } from '../index';
 import Editor from './../Editor'
 import { colors } from '../../theme';
 import SetGoalStyle from './style'
@@ -13,6 +13,11 @@ import { Headings } from '../../components'
 const SetGoal = ({classes, ...props}) => {
 
     return(
+        <Wrapper  
+                    background="#FFF" 
+                    marginTop="50px" 
+                    RoundCorner="30px" 
+                    padding="40px 30px">
         <div className={classes.goalContainer}>
             <Headings as="h2">Set Your Goal</Headings>
             <Formik
@@ -97,7 +102,7 @@ const SetGoal = ({classes, ...props}) => {
                     </form>
                 )}
             </Formik>
-        </div>
+        </div></Wrapper>
     )
 }
 

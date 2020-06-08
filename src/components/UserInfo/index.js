@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Headings } from '..'
+import { Button, Wrapper } from '..'
 import UserAvtar from './../../images/user-placeholder.svg'  
 import UserStyle from './style'
 import withStyle from 'react-jss'
@@ -16,18 +16,31 @@ const UserInfo = ({classes, ...props}) => {
         });
     }, []);
     return (
+        <Wrapper
+            width="30%"  
+            background="#FFF" 
+            marginTop="50px"
+            marginRight="50px" 
+            RoundCorner="30px" 
+            padding="40px 30px">
         <div className={classes.userContainer}>      
             <img src={UserAvtar} alt={UserAvtar} />
             <div className={classes.userInformation}>
                 <span>
-                    {`${props.currentState.firstName} ${props.currentState.lastName}`}
+                    {`${props.currentState.firstName} 
+                    ${props.currentState.lastName}`}
                 </span>
-                <span className={classes.levelInformation}><Level coins={coins}/></span>
+                <span className={classes.levelInformation}>
+                    <Level coins={coins}/>
+                </span>
             </div>
             
-            <button onClick={() => props.click('allGoal')}>All Goal</button>
-            <button onClick={() => props.click('addGoal')}>Add Goal</button>
+            <div className={classes.btnContainer}>
+                <Button width="50%" onClick={() => props.click('allGoal')}>All Goal</Button>
+                <Button width="50%" onClick={() => props.click('addGoal')}>Add Goal</Button>
+            </div>                
         </div>
+        </Wrapper>
     )
 }
 

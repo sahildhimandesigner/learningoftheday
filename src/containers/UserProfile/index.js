@@ -50,26 +50,19 @@ const UserProfile = (props) => {
         getTaskHandler();
     }, [])
     
-    let showUserInfo = !allGoalDisplay ? <SetGoal 
-    submitGoalHandler={submitGoalHandler} 
-    /> :
-    <TaskList getAllTask={getTask} />
 
     return (
         <>
             <Header {...props} />
-                <Wrapper  
-                    background="#FFF" 
-                    marginTop="50px" 
-                    RoundCorner="30px" 
-                    padding="40px 30px">
-
+                <Wrapper>
                     <UserInfo 
                         {...props} 
                         click={(checkType) => profileRender(checkType)} 
                         />
                     
-                    {showUserInfo}
+                    {!allGoalDisplay ? <SetGoal 
+                        submitGoalHandler={submitGoalHandler} /> :
+                    <TaskList getAllTask={getTask} />}
                 </Wrapper>
             <Footer />
         </>

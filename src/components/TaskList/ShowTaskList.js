@@ -1,10 +1,10 @@
 import React from 'react'
-import moment from 'moment';
+import withStyle from 'react-jss'
+import ComponentStyle from './style'
 
-const ShowTaskList = (...props) => {
-    console.log(props, 'show task list com')
+const ShowTaskList = ({ classes, ...props}) => {
     return (
-        <div>
+        <div className={classes.container}>
             <h4>{props.task}</h4>
             <h4>{props.startDate}</h4>
             <h4>{props.endDate}</h4>
@@ -13,4 +13,4 @@ const ShowTaskList = (...props) => {
     )
 }
 
-export default ShowTaskList;
+export default withStyle(ComponentStyle)(ShowTaskList);
