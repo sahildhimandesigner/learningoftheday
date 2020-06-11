@@ -7,12 +7,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.GET_POSTS:
-            alert('herererer');
-            return {
-                ...state,
-                loading: true
-            };
         case actionTypes.SET_POSTS:
             const getData = [];
             const data = action.postData;
