@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+
 import { ThemeProvider } from 'react-jss';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { colors, fonts, breakpoints, theme } from './theme';
+import reducer from './store/reducers/posts';
+import { watchPosts } from './store/sagas';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(reducer, composeEnhancers(
+  applyMiddleware(sagaMiddleware)
+));
+
+sagaMiddleware.run(watchPosts);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={{theme, colors, fonts, breakpoints}}><App /></ThemeProvider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <ThemeProvider theme={{theme, colors, fonts, breakpoints}}><App /></ThemeProvider>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

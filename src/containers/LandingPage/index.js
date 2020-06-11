@@ -1,39 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { Footer, Header, Button, AddPostModal } from '../../components';
 import LearningBlocks from '../LearningBlocks';
 import { colors } from '../../theme/colors';
 import firebase from '../../firebase'
 import Spinner from '../../components/UI/Spinner';
+import * as actions from '../../store/actions';
 
 const LandingPage = (props) => {
-	const [postData, setPostData] = useState([]);
 	const [openModal, setModalOpen] = useState(false);
-	const [loadingTrue, setLoadingTrue] = useState(true);
-
-	const getDataFromDatabase = async () => {
-		setLoadingTrue(true);		
-		const getAllPost = firebase.database().ref(`allPost`);
-		getAllPost.on('value', function(snapshot){			
-			const getData = [];
-			for(const key in snapshot.val()) {
-					getData.push({
-						id: key,
-						name: snapshot.val()[key].name,
-						heading: snapshot.val()[key].title,
-						content: snapshot.val()[key].post,
-						date: (new Date(snapshot.val()[key].date)).toString()
-					});
-			}
-			const reversedOrder = getData.reverse();
-			setPostData(reversedOrder);
-			setLoadingTrue(false);
-		})
-	}
-
-	useEffect(() => {
-		getDataFromDatabase();
-	}, []);
 
 	const clickHandler = () => setModalOpen(true);
 
@@ -54,7 +30,6 @@ const LandingPage = (props) => {
 			.transaction(function(currentCoins) {
 				return (currentCoins || 0) + 1
 			});
-			getDataFromDatabase();
 		  	setModalOpen(false);
 		})
 		.catch(error => console.log(error));
@@ -69,7 +44,7 @@ const LandingPage = (props) => {
 			color={`${colors.primaryColor}`}
 			>Add Post</Button>) : null;
 
-	const body = loadingTrue ? <Spinner />
+	const body = props.loading ? <Spinner />
 	: (<div><Header {...props}>
 		{addPostButton}
 		</Header>
@@ -79,7 +54,7 @@ const LandingPage = (props) => {
 			submitHandler={submitHandler}
 			/>
 	)}
-	<LearningBlocks postData={postData} {...props}/>
+	<LearningBlocks postData={props.postData} {...props}/>
 	<Footer /></div>);
     return (
         <div>
@@ -88,4 +63,11 @@ const LandingPage = (props) => {
     )
 }
 
-export default withRouter(LandingPage);
+const mapStateToProps = state => {
+	return {
+		postData: state.posts,
+		loading: state.loading
+	}
+}
+
+export default connect(mapStateToProps)(withRouter(LandingPage));
