@@ -2,5 +2,7 @@ export {
     getPosts,
     submitPost,
     setPosts,
-    postFetchFailed
+    postFetchFailed,
+    postSubmitted,
+    showPostModal
 } from './posts';

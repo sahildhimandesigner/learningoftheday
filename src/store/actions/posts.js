@@ -19,8 +19,22 @@ export const postFetchFailed = () => {
     }
 }
 
-export const submitPost = () => {
+export const showPostModal = (show) => {
     return {
-        type: actionTypes.SUBMIT_POST
+        type: actionTypes.SHOW_POST_MODAL,
+        show: show
+    }
+}
+
+export const submitPost = (submitData) => {
+    return {
+        type: actionTypes.SUBMIT_POST,
+        submitData: submitData
+    }
+}
+
+export const postSubmitted = () => {
+    return {
+        type: actionTypes.POST_SUBMITTED
     }
 }

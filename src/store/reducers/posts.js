@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     posts: null,
-    loading: true
+    loading: true,
+    openModal: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,10 +25,16 @@ const reducer = (state = initialState, action) => {
                     posts: reversedOrder,
                     loading: false
                 };
-        case actionTypes.SUBMIT_POST:
+        case actionTypes.SHOW_POST_MODAL:
             return {
-
-            };
+                ...state,
+                openModal: action.show
+            }
+        case actionTypes.POST_SUBMITTED:
+            return {
+                ...state,
+                openModal: false
+            }
         default:
             return state;
     }
