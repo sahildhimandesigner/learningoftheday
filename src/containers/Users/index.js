@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'react-jss';
 import { withRouter } from 'react-router';
 import { Formik } from 'formik';
@@ -10,6 +11,7 @@ import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
 import firebase from '../../firebase';
 import Spinner from '../../components/UI/Spinner';
+import * as actions from '../../store/actions';
 
 const User = ({classes, ...props}) => {
 	const { pathname } = (typeof props.location.state !== 'undefined' && props.location.state.from) ?
@@ -194,4 +196,12 @@ const User = ({classes, ...props}) => {
 	);	
 }
 
-export default withStyles(LoginBoxStyle)(withRouter(User));
+// const mapStateToProps = state => {
+
+// }
+
+const mapDispatchToProps = dispatch => {
+	// onSetUser = (userData) => dispatch(actions.setUser(userData))
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(LoginBoxStyle)(withRouter(User)));

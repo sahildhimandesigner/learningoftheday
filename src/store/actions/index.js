@@ -6,3 +6,6 @@ export {
     postSubmitted,
     showPostModal
 } from './posts';
+export {
+    setUser
+} from './auth';

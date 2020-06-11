@@ -49,9 +49,9 @@ const LandingPage = (props) => {
 
 const mapStateToProps = state => {
 	return {
-		postData: state.posts,
-		loading: state.loading,
-		openModal: state.openModal
+		postData: state.post.posts,
+		loading: state.post.loading,
+		openModal: state.post.openModal
 	}
 }
 

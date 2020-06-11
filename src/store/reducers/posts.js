@@ -6,7 +6,7 @@ const initialState = {
     openModal: false
 };
 
-const reducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SET_POSTS:
             const getData = [];
@@ -40,4 +40,4 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer;
+export default postReducer;
