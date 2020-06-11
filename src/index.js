@@ -32,7 +32,9 @@ sagaMiddleware.run(watchAuth);
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <ThemeProvider theme={{theme, colors, fonts, breakpoints}}><App /></ThemeProvider>
+      <ThemeProvider theme={{theme, colors, fonts, breakpoints}}>
+        <App />
+      </ThemeProvider>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

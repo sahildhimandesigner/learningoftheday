@@ -29,7 +29,8 @@ const LandingPage = (props) => {
 			>Add Post</Button>) : null;
 
 	const body = props.loading ? <Spinner />
-	: (<div><Header {...props}>
+	: (<div>
+		<Header {...props}>
 		{addPostButton}
 		</Header>
 	{props.openModal && (
@@ -37,9 +38,12 @@ const LandingPage = (props) => {
 			cancelModal={() => props.onClickHandle(false)}
 			submitHandler={submitHandler}
 			/>
-	)}
-	<LearningBlocks postData={props.postData} {...props}/>
-	<Footer /></div>);
+	)}              
+	<LearningBlocks 
+		postData={props.postData} 
+		{...props}/>
+		<Footer />
+	</div>);
     return (
         <div>
 			{body}
