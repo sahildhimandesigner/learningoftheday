@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 import HeaderStyle from './style';
 import withStyle from 'react-jss'
 import PrivateMenu from './privateMenu'
@@ -6,12 +7,12 @@ import PublicMenu from './publicMenu'
 
 const WhitBar = ({ classes, ...props }) => {
 
-    const loggedInText = typeof props.currentState !== 'undefined' && props.currentState.userId ?
+    const loggedInText = props.auth.loggedIn ?
     (<span className={classes.userInfo}>
-      Logged in as {props.currentState.firstName} {props.currentState.lastName}
+      Logged in as {props.auth.firstName} {props.auth.lastName}
     </span>) : null;
 
-    const navLinks = typeof props.currentState !== 'undefined' && props.currentState.userId ?
+    const navLinks = props.auth.loggedIn ?
     (<div><PrivateMenu {...props} /></div>) : <PublicMenu />;
     
     return(
@@ -23,4 +24,11 @@ const WhitBar = ({ classes, ...props }) => {
       </div>
     )
 }
-export default withStyle(HeaderStyle)(WhitBar);
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(withStyle(HeaderStyle)(WhitBar));

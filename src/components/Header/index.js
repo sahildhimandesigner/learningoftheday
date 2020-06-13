@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import withStyle from 'react-jss';
 import { Wrapper, Headings, LoginButton } from '../index';
 import HeaderStyle from './style';
@@ -9,7 +10,7 @@ const Header = ({ classes, ...props }) => {
   
 	const loginButton = props.location.pathname !== '/auth' ?
 		<LoginButton
-			loginButtonValue={props.currentState.loginButtonValue}
+			loginButtonValue={props.loginButtonValue}
       {...props}
     /> : null;
 
@@ -35,4 +36,10 @@ const Header = ({ classes, ...props }) => {
   )
 }
 
-export default withStyle(HeaderStyle)(Header);
+const mapStateToProps = state => {
+  return {
+    loginButtonValue: state.auth.loginButtonValue
+  }
+}
+
+export default connect(mapStateToProps)(withStyle(HeaderStyle)(Header));

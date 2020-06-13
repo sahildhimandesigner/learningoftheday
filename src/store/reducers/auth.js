@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
-            }
+            }            
         case actionTypes.LOGGED_IN:
             return {
                 ...state,
@@ -26,6 +26,18 @@ const authReducer = (state = initialState, action) => {
                 loggedIn: true,
                 loading: false
             }
+        case actionTypes.SET_AUTH_RELOAD:
+            return {
+                ...state,
+                firstName: action.authData.firstName,
+                lastName: action.authData.lastName,
+                userId: action.authData.userId,
+                loginButtonValue: 'Logout',
+                loggedIn: true,
+                loading: false
+            }
+        case actionTypes.LOG_OUT_USER:
+            return initialState;
         default:
             return state;
     }

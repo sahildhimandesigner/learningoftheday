@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
@@ -7,6 +8,7 @@ import UserProfile from './containers/UserProfile'
 import NotFoundPage from './components/NotFoundPage'
 import firebase from './firebase';
 import PrivateRoute from './PrivateRoute';
+import * as actions from './store/actions';
 
 import {
   BrowserRouter as Router,
@@ -14,39 +16,22 @@ import {
   Route,
 } from "react-router-dom";
 
-function App() {
-  const initialState = {
-      firstName: '',
-      lastName: '',
-      userId: '',
-      loginButtonValue: 'Login'
-    };
-
-  const [currentState, setCurrentState] = useState(initialState);
+function App(props) {
 
   const logout = () => {
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('userId');
-    setCurrentState(initialState);
     firebase.auth().signOut();
-  }
-  
+    props.onLogOut();
+  }  
 
   const checkAuthState = () => {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      logout();
-    } else {
-      const userId = localStorage.getItem('userId');
-      const firstName = localStorage.getItem('firstName');
-      const lastName = localStorage.getItem('lastName');
-      
-      setCurrentState({
-        firstName: firstName,
-        lastName: lastName,
-        userId: userId,
-        loginButtonValue: 'Logout'          
+    if (!props.auth.userId && localStorage.getItem('userId')) {
+      props.onPageReload({
+        firstName: localStorage.getItem('firstName'),
+        lastName: localStorage.getItem('lastName'),
+        userId: localStorage.getItem('userId')
       })
     }
   }
@@ -60,18 +45,15 @@ function App() {
       <div className="App">
         <Router>
             <Switch>            
-              <PrivateRoute currentState={currentState} path='/AddComment/:id'
-                component={AddComment}/>
-              <PrivateRoute currentState={currentState} path='/UserProfile'
-                component={UserProfile}/>
+              <PrivateRoute path='/AddComment/:id' component={ AddComment }/>
+              <PrivateRoute path='/UserProfile' component={ UserProfile }/>
               <Route path='/auth'
-                render={() => <Users authState={checkAuthState}/>}
+                render={() => <Users authState={ checkAuthState }/>}
                 />
               <Route path='/logout'
-                render={() => <LogOut logOut={logout} />}
+                render={() => <LogOut logOut={ logout } />}
                 />
-              <Route path='/' exact
-                render={() => <LandingPage currentState={currentState} />} />
+              <Route path='/' exact component={ LandingPage } />
               
               <Route path="*" component={NotFoundPage} />
             </Switch>
@@ -81,5 +63,17 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onPageReload: (authData) => dispatch(actions.setAuthOnReload(authData)),
+    onLogOut: () => dispatch(actions.logOutUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

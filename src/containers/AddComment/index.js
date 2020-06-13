@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import withStyle from 'react-jss'
 import { Footer, UserComment, Header} from '../../components'
@@ -37,9 +38,9 @@ const AddComment = ({classes, ...props}) => {
 
     const submitUserCommentHandler = (submitComment) => {
         const postId = props.match.params.id;
-        const userId = props.currentState.userId;
+        const userId = props.auth.userId;
         const postUserComment = firebase.database().ref(`userComment/${postId}`);
-        const userName = props.currentState.firstName + ' ' + props.currentState.lastName;
+        const userName = props.auth.firstName + ' ' + props.auth.lastName;
         postUserComment.push({
             userName: userName,
             addComment: submitComment.addComment,
@@ -81,4 +82,10 @@ const AddComment = ({classes, ...props}) => {
     )
 }
 
-export default withStyle(UserCommentStyle)(withRouter(AddComment));
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(withStyle(UserCommentStyle)(withRouter(AddComment)));

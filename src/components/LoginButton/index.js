@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import withStyles from 'react-jss';
 import { Button } from '../../components';
@@ -7,7 +8,7 @@ import LoginButtonStyle from './style';
 
 const LoginButton = ({classes, ...props}) => {
 	const redirectHandler = () => {
-		if (props.currentState.userId) {
+		if (props.loggedIn) {
 			props.history.push('/logout');			
 		} else {
 			props.history.push('/auth');
@@ -24,4 +25,10 @@ const LoginButton = ({classes, ...props}) => {
 	);
 }
 
-export default withStyles(LoginButtonStyle)(withRouter(LoginButton));
+const mapStateToProps = state => {
+	return {
+		loggedIn: state.auth.loggedIn
+	}
+}
+
+export default connect(mapStateToProps)(withStyles(LoginButtonStyle)(withRouter(LoginButton)));

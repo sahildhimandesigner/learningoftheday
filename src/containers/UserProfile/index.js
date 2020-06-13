@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Footer, Header, Wrapper } from '../../components'
 import firebase from '../../firebase'
 import SetGoal from '../../components/SetGoal'
@@ -8,7 +9,7 @@ import TaskList from '../../components/TaskList'
 const UserProfile = (props) => {
     const [allGoalDisplay, setAllGoalDisplay] = useState(false);
     const [getTask, setTask] = useState([])
-    const currentUser = props.currentState.userId;    
+    const currentUser = props.userId;
 
     const profileRender = (checkType) => {
         if(checkType === 'allGoal'){
@@ -69,4 +70,10 @@ const UserProfile = (props) => {
     )
 }
 
-export default UserProfile;
+const mapStateToProps = state => {
+    return {
+        userId: state.auth.userId
+    }
+}
+
+export default connect(mapStateToProps)(UserProfile);

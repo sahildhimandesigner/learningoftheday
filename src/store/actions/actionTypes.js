@@ -7,3 +7,5 @@ export const POST_FETCH_FAILED = 'POST_FETCH_FAILED';
 
 export const SET_USER = 'SET_USER';
 export const LOGGED_IN = 'LOGGED_IN';
+export const SET_AUTH_RELOAD = 'SET_AUTH_RELOAD';
+export const LOG_OUT_USER = 'LOG_OUT_USER';

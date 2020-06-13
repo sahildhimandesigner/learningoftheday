@@ -11,7 +11,6 @@ export function* setGetUser(action) {
         : firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password);
     let userId = null;
     yield method.then(response => {
-        console.log('login response initily', response);
         let userData = ''
         userId = response.user.uid;	
         authData.userId = userId;

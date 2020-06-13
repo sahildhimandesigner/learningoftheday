@@ -8,5 +8,7 @@ export {
 } from './posts';
 export {
     setUser,
-    loggedIn
+    loggedIn,
+    setAuthOnReload,
+    logOutUser
 } from './auth';

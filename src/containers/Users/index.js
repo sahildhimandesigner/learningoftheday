@@ -25,7 +25,6 @@ const User = ({classes, ...props}) => {
 				.required('Please enter your password')
 		};
 	useEffect(() => {
-		console.log('useEffect', props.loggedIn);
 		if (props.loggedIn) {
 			props.history.push(pathname);
 		}
@@ -129,7 +128,7 @@ const User = ({classes, ...props}) => {
 						<Error touched={touched.password} message={errors.password} />
 					</div>
 					<div className={classes.buttonDiv}>
-						<span className={classes.serverError}>{serverError}</span>
+						{/* <span className={classes.serverError}>{serverError}</span> */}
 						<Button
 							spacing='0 auto 20px auto'
 							type="submit"
@@ -159,7 +158,6 @@ const User = ({classes, ...props}) => {
 }
 
 const mapStateToProps = state => {
-	console.log('fakse', state.auth);
 	return {
 		loggedIn: state.auth.loggedIn,
 		loading: state.auth.loading

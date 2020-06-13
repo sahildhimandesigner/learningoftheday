@@ -9,9 +9,9 @@ import * as actions from '../../store/actions';
 
 const LandingPage = (props) => {
 	const submitHandler = (submittedData) => {
-		const name = props.currentState.firstName + ' ' +  props.currentState.lastName
+		const name = props.auth.firstName + ' ' +  props.auth.lastName
 		props.onPostSubmit({
-			userId: props.currentState.userId,
+			userId: props.auth.userId,
 			name: name,
 			title: submittedData.addTitle,
 			post: submittedData.addPost,
@@ -19,7 +19,7 @@ const LandingPage = (props) => {
 		});	
 	}
 
-	const addPostButton = typeof props.currentState !== 'undefined' && props.currentState.userId
+	const addPostButton = props.auth.loggedIn
 	? (<Button
 			onClick={() => props.onClickHandle(true)}
 			spacing='5px 10px 0 0'
@@ -51,7 +51,8 @@ const mapStateToProps = state => {
 	return {
 		postData: state.post.posts,
 		loading: state.post.loading,
-		openModal: state.post.openModal
+		openModal: state.post.openModal,
+		auth: state.auth
 	}
 }
 
