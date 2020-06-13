@@ -1,55 +1,48 @@
+import { put, take } from 'redux-saga/effects';
 import firebase from '../../firebase';
+import * as actions from '../actions';
 
-function* setGetUser() {
-    // const authData = {
-    //     email: values.email,
-    //     password: values.password,
-    //     returnSecureToken: true
-    // }
+export function* setGetUser(action) {
+    const authData = action.userData
+    const signIn = authData.signIn;
 
-    // const method = signInTrue
-    //     ? firebase.auth().signInWithEmailAndPassword(authData.email, authData.password)
-    //     : firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password);
-    
-    // method.then(response => {
-    //     let userData = ''
-    //     const userId = response.user.uid;					
-    //     if (!signInTrue) {
-    //         const userData = {
-    //             firstName: values.firstName,
-    //             lastName: values.lastName
-    //         };
+    const method = signIn
+        ? firebase.auth().signInWithEmailAndPassword(authData.email, authData.password)
+        : firebase.auth().createUserWithEmailAndPassword(authData.email, authData.password);
+    let userId = null;
+    yield method.then(response => {
+        console.log('login response initily', response);
+        let userData = ''
+        userId = response.user.uid;	
+        authData.userId = userId;
+        if (!signIn) {
+            const userData = {
+                firstName: authData.firstName,
+                lastName: authData.lastName
+            };
+            firebase.database().ref('users/' + userId).set(userData)
+            .catch(error => {
+                console.log('error', error);
+            });
+        }
+    })
+    .catch(function(error) {
+        // setLoadingTrue(false);
+        // setServerError(error.message);
+        // setTimeout(() => {
+        //     setServerError(null);
+        // }, 3000)
+    });
 
-    //         firebase.database().ref('users/' + userId).set(userData)
-    //         .then(() => {
-    //             storeDataInStorage(userData.firstName, userData.lastName, response);
-    //         })
-    //         .catch(error => {
-    //             console.log('error', error);
-    //         });
-    //     } else {
-    //         firebase.database().ref('/users/' + userId).once('value')
-    //         .then((snapshot) => {
-    //             storeDataInStorage(snapshot.val().firstName, snapshot.val().lastName, response);
-    //         })
-    //         .catch(error => {
-    //             console.log('error', error);
-    //         });
-    //     }
-    // })
-    // .catch(function(error) {
-    //     setLoadingTrue(false);
-    //     setServerError(error.message);
-    //     setTimeout(() => {
-    //         setServerError(null);
-    //     }, 3000)
-    // });	
-    
-    // const storeDataInStorage = (firstName, lastName, response) => {
-    //     localStorage.setItem('firstName', firstName);
-    //     localStorage.setItem('lastName', lastName);
-    //     localStorage.setItem('userId', response.user.uid);
-    //     props.authState();
-    //     props.history.push(pathname);
-    // }
+    if (!authData.firstName) {
+        yield firebase.database().ref('/users/' + userId).once('value')
+        .then((snapshot) => {
+            authData.firstName = snapshot.val().firstName;
+            authData.lastName = snapshot.val().lastName;
+        })
+        .catch(error => {
+            console.log('error', error);
+        });
+    }
+    yield put(actions.loggedIn(authData));
 }

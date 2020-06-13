@@ -7,5 +7,6 @@ export {
     showPostModal
 } from './posts';
 export {
-    setUser
+    setUser,
+    loggedIn
 } from './auth';

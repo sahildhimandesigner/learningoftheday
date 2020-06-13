@@ -10,14 +10,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { colors, fonts, breakpoints, theme } from './theme';
 import postReducer from './store/reducers/posts';
-import authReducer from './store/reducers/posts';
-import { watchPosts } from './store/sagas';
+import authReducer from './store/reducers/auth';
+import { watchPosts, watchAuth } from './store/sagas';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  post: postReducer,
-  auth: authReducer
+  auth: authReducer,
+  post: postReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -27,6 +27,7 @@ const store = createStore(rootReducer, composeEnhancers(
 ));
 
 sagaMiddleware.run(watchPosts);
+sagaMiddleware.run(watchAuth);
 
 ReactDOM.render(
   <Provider store={store}>
