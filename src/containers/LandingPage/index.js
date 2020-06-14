@@ -47,7 +47,7 @@ const LandingPage = (props) => {
     return (
         <div>
 			{body}
-        </div>       
+        </div>
     )
 }
 

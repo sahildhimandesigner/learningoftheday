@@ -4,7 +4,7 @@ export {
     setPosts,
     postFetchFailed,
     postSubmitted,
-    showPostModal
+    showPostModal,
 } from './posts';
 export {
     setUser,
@@ -12,3 +12,10 @@ export {
     setAuthOnReload,
     logOutUser
 } from './auth';
+export {
+    submitComments,
+    userCommentsSubmitted,
+    getUserId,
+    // getPostComment,
+    getCommentFetchFailed
+} from './userComments'

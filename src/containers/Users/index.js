@@ -9,7 +9,6 @@ import { Error } from '../../components';
 import { Header, Button, Wrapper, Headings } from '../../components';
 import LoginBoxStyle from './style';
 import { colors } from '../../theme/colors';
-import firebase from '../../firebase';
 import Spinner from '../../components/UI/Spinner';
 import * as actions from '../../store/actions';
 

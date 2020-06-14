@@ -8,6 +8,7 @@ import firebase from '../../firebase'
 import UserCommentStyle from './style'
 import moment from 'moment';
 import LearningBlock from '../../components/LearningBlock';
+import * as actions from '../../store/actions';
 
 const AddComment = ({classes, ...props}) => {
     const [getComment, setComment] = useState([])
@@ -38,14 +39,15 @@ const AddComment = ({classes, ...props}) => {
 
     const submitUserCommentHandler = (submitComment) => {
         const postId = props.match.params.id;
-        const userId = props.auth.userId;
-        const postUserComment = firebase.database().ref(`userComment/${postId}`);
-        const userName = props.auth.firstName + ' ' + props.auth.lastName;
-        postUserComment.push({
-            userName: userName,
+        const userId = props.currentState.userId;
+        const userName = props.currentState.firstName + ' ' + props.currentState.lastName;
+        
+        props.postUserComment({
+            postId: postId,
+            userName: userName,            
             addComment: submitComment.addComment,
             userId: userId,     
-            date: (new Date()).toString()     
+            date: (new Date()).toString()
         }) 
     }    
 
@@ -88,4 +90,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withStyle(UserCommentStyle)(withRouter(AddComment)));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        postUserComment: (postSubmitComment) => dispatch(actions.submitComments(postSubmitComment)),        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyle(UserCommentStyle)(withRouter(AddComment)));

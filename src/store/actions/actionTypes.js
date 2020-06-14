@@ -9,3 +9,10 @@ export const SET_USER = 'SET_USER';
 export const LOGGED_IN = 'LOGGED_IN';
 export const SET_AUTH_RELOAD = 'SET_AUTH_RELOAD';
 export const LOG_OUT_USER = 'LOG_OUT_USER';
+
+export const POST_USER_COMMENTS = 'POST_USER_COMMENTS';
+export const POST_COMMENTS = 'POST_COMMENTS';
+export const GET_USER_ID = 'GET_USER_ID';
+export const GET_USER_COMMENTS = 'GET_USER_COMMENTS';
+export const GET_COMMENT_FETCH_FAILED = 'GET_COMMENT_FETCH_FAILED';
+

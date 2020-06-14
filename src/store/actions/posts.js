@@ -27,7 +27,7 @@ export const showPostModal = (show) => {
 }
 
 export const submitPost = (submitData) => {
-    return {
+    return { 
         type: actionTypes.SUBMIT_POST,
         submitData: submitData
     }

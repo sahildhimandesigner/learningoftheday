@@ -34,4 +34,4 @@ export function* submitPostSaga(action) {
     })
     .catch(error => console.log(error));
     yield put(actions.postSubmitted())
-}
+} 
