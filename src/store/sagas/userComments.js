@@ -22,18 +22,17 @@ import * as actions from '../actions';
 // }
 
 export function* submitCommentSaga(action) {
-    console.log(action.postSubmitComment,'saga')
-        const postid = action.postSubmitComment.postId;
+        const postid = action.postSubmitComment.postId;        
         const userData = {
             userName: action.postSubmitComment.userName,
             addComment: action.postSubmitComment.addComment,
             date: action.postSubmitComment.date,
-            userId: action.postSubmitComment.userId,            
+            userId: action.postSubmitComment.userId,     
         }
 
     const postComment = firebase.database().ref(`userComment/${postid}`);
     yield postComment.push(userData).then(response => {
-        console.log(response, 'dsfdsfsf')
+        console.log(response)
     })
     .catch(error => console.log(error));
     yield put(actions.userCommentsSubmitted())

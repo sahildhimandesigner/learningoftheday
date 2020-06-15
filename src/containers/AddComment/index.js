@@ -16,37 +16,36 @@ const AddComment = ({classes, ...props}) => {
     const [post, setPost] = useState({})
     const postDate = moment(post.date).fromNow();
 
-    const getUserComments = () => {
-        const postId = props.match.params.id;
-        const getComment = firebase.database().ref(`userComment/${postId}`);
-        getComment.on('value', function(snapshot){
-            const getCommentData = [];
+    // const getUserComments = () => {
+    //     const postId = props.match.params.id;
+    //     const getComment = firebase.database().ref(`userComment/${postId}`);
+    //     getComment.on('value', function(snapshot){
+    //         const getCommentData = [];
             
-            for(const key in snapshot.val()) {
-                 getCommentData.push({
-                     id: key,
-                     userName: snapshot.val()[key].userName,
-                     addComment: snapshot.val()[key].addComment,
-                     date: (new Date(snapshot.val()[key].date)).toString()
-                 })
-             } setComment(getCommentData);
-             setCount(getCommentData.length)
-        })
-    }
-    useEffect(() => {
-        getUserComments();
-    }, []);
+    //         for(const key in snapshot.val()) {
+    //              getCommentData.push({
+    //                  id: key,
+    //                  userName: snapshot.val()[key].userName,
+    //                  addComment: snapshot.val()[key].addComment,
+    //                  date: (new Date(snapshot.val()[key].date)).toString()
+    //              })
+    //          } setComment(getCommentData);
+    //          setCount(getCommentData.length)
+    //     })
+    // }
+    // useEffect(() => {    
+    //     getUserComments();
+    // }, []);
 
-    const submitUserCommentHandler = (submitComment) => {
-        const postId = props.match.params.id;
-        const userId = props.currentState.userId;
-        const userName = props.currentState.firstName + ' ' + props.currentState.lastName;
-        
+    const submitUserCommentHandler = (submitComment) => {                   
+        const postId = props.match.params.id;         
+        const userName = props.auth.firstName + ' ' + props.auth.lastName;
+        const userId = props.auth.userId
         props.postUserComment({
             postId: postId,
             userName: userName,            
             addComment: submitComment.addComment,
-            userId: userId,     
+            userId: userId,
             date: (new Date()).toString()
         }) 
     }    

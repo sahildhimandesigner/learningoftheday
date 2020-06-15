@@ -34,7 +34,6 @@ const SetGoal = ({classes, ...props}) => {
                     props.submitGoalHandler(values);
                     resetForm();
                     setSubmitting(false);
-                    console.log(values)
                 }}
             >
             {({

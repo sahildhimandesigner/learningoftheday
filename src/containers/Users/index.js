@@ -4,7 +4,6 @@ import withStyles from 'react-jss';
 import { withRouter } from 'react-router';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-
 import { Error } from '../../components';
 import { Header, Button, Wrapper, Headings } from '../../components';
 import LoginBoxStyle from './style';
@@ -80,7 +79,7 @@ const User = ({classes, ...props}) => {
 						<div className={classes.inputBox}>
 							<input
 								id="firstName"
-								placeholder="Enter your tirst name"
+								placeholder="Enter your first name"
 								type="text"
 								name="firstName"
 								onChange={handleChange}
