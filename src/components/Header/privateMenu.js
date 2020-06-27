@@ -9,7 +9,7 @@ const PrivateMenu = ({classes}) => {
         <div className={classes.linkContainer}>
             <Link className={classes.whiteNavLink} to="/"><HomeIcon />ome</Link>
             <Link className={classes.whiteNavLink} to="/UserProfile">My Profile</Link>
-            <Link className={classes.whiteNavLink} to="/Mentors">Mentors</Link>
+            <Link className={classes.whiteNavLink} to="/mentors">Mentors</Link>
         </div>
     )
 }

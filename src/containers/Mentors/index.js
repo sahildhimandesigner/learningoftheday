@@ -1,11 +1,15 @@
 import React from 'react';
+import withStyles from 'react-jss';
+import { Footer, Header } from '../../components';
+import MentorsStyle from './style';
 
-const Mentors = () => {
+const Mentors = ({classes, ...props}) => {
     return (
         <div>
-            Coming soon ;)
+            <Header {...props}/>
+            <div className={classes.mentorAvatar}></div>
         </div>
     );
 };
 
-export default Mentors;
+export default withStyles(MentorsStyle)(Mentors);
