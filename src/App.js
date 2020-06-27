@@ -4,8 +4,9 @@ import LandingPage from './containers/LandingPage';
 import AddComment from './containers/AddComment';
 import Users from './containers/Users';
 import { LogOut } from './components';
-import UserProfile from './containers/UserProfile'
-import NotFoundPage from './components/NotFoundPage'
+import UserProfile from './containers/UserProfile';
+import Mentors from './containers/Mentors';
+import NotFoundPage from './components/NotFoundPage';
 import firebase from './firebase';
 import PrivateRoute from './PrivateRoute';
 import * as actions from './store/actions';
@@ -54,8 +55,8 @@ function App(props) {
                 render={() => <LogOut logOut={ logout } />}
                 />
               <Route path='/' exact component={ LandingPage } />
-              
-              <Route path="*" component={NotFoundPage} />
+              <Route path = '/mentors' component = { Mentors } />
+              <Route path="*" component={NotFoundPage} />              
             </Switch>
          </Router>
       </div>

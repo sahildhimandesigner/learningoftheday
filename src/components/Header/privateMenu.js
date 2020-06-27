@@ -7,8 +7,9 @@ import HomeIcon from '@material-ui/icons/Home';
 const PrivateMenu = ({classes}) => {
     return (
         <div className={classes.linkContainer}>
-            <Link className={classes.whiteNavLink} to="/"><HomeIcon /> Home</Link>
-            <Link className={classes.whiteNavLink} to="/UserProfile">UserProfile</Link>
+            <Link className={classes.whiteNavLink} to="/"><HomeIcon />ome</Link>
+            <Link className={classes.whiteNavLink} to="/UserProfile">My Profile</Link>
+            <Link className={classes.whiteNavLink} to="/Mentors">Mentors</Link>
         </div>
     )
 }
