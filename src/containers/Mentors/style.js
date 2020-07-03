@@ -4,15 +4,21 @@ const MentorsStyle = ({ breakpoints }) => {
   return {
       'mentorAvatar': {
         display: 'flex',
-        width: '17%',
-        height: '20%',
+        width: '15%',
         minHeight: 'auto',
         boxSizing: 'border-box',
-        padding: '7%',
         borderRadius: '50%',
         backgroundColor: 'white',
-        margin: '2%'
-      }    
+        margin: '2%',
+        lineHeight: 11,
+        justifyContent: 'center',
+        textTransform: 'capitalize',
+        cursor: 'pointer'
+      },
+      'wrapper': {
+        display: 'flex',
+        justifyContent: 'space-evenly'
+      }
   }
 }
 
