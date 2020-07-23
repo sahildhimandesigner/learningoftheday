@@ -22,7 +22,7 @@ const LandingPage = (props) => {
 	const addPostButton = props.auth.loggedIn
 	? (<Button
 			onClick={() => props.onClickHandle(true)}
-			spacing='5px 10px 0 0'
+			spacing='10px 15px'
 			height='45px'
 			backgroundColor='#fff'
 			color={`${colors.primaryColor}`}

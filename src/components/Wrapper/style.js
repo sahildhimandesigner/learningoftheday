@@ -12,7 +12,7 @@ const WrapperStyle = ({ colors }) => {
       display: ({ display = 'flex' }) => display,
       flexFlow: ({ flexFlow = '' }) => flexFlow,
       boxSizing: ({ boxSizing = 'border-box;' }) => boxSizing,
-      flexWrap: ({ flexWrap = ''}) => flexWrap,
+      flexWrap: ({ flexWrap = 'wrap'}) => flexWrap,
       flexGrow: ({ flexGrow = ''}) => flexGrow,
       justifyContent: ({ justifyContent = 'normal'}) => justifyContent,
       alignItems: ({ alignItems = 'normal'}) => alignItems,
