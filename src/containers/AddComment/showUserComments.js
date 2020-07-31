@@ -5,8 +5,9 @@ import UserCommentStyle from './style'
 import withStyle from 'react-jss'
 
 const ShowUserComments = ({clasess, ...props}) => {
+    console.log(props, 'props dfdsf')
     return (
-        <Wrapper>
+        <Wrapper flexFlow="column">
             {props.getComment.map((item, index) => {
             const customFormat = moment(item.date).fromNow();
             return(

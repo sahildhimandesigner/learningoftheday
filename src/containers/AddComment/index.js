@@ -19,20 +19,20 @@ const AddComment = ({classes, ...props}) => {
 
     const getUserComments = () => {
         const postId = props.match.params.id;
-        // const getComment = firebase.database().ref(`userComment/${postId}`);
-        // getComment.on('value', function(snapshot){
-        //     const getCommentData = [];
+        const getComment = firebase.database().ref(`userComment/${postId}`);
+        getComment.on('value', function(snapshot){
+            const getCommentData = [];
             
-        //     for(const key in snapshot.val()) {
-        //          getCommentData.push({
-        //              id: key,
-        //              userName: snapshot.val()[key].userName,
-        //              addComment: snapshot.val()[key].addComment,
-        //              date: (new Date(snapshot.val()[key].date)).toString()
-        //          })
-        //      } setComment(getCommentData);
-        //      setCount(getCommentData.length)
-        // })
+            for(const key in snapshot.val()) {
+                 getCommentData.push({
+                     id: key,
+                     userName: snapshot.val()[key].userName,
+                     addComment: snapshot.val()[key].addComment,
+                     date: (new Date(snapshot.val()[key].date)).toString()
+                 })
+             } setComment(getCommentData);
+             setCount(getCommentData.length)
+        })
     }
     useEffect(() => {    
         getUserComments();
