@@ -12,6 +12,7 @@ import UserCommentsList from './UserComments/userCommentList';
 import LoginButton from './LoginButton';
 import LogOut from './LogOut';
 import Sidebar from './Sidebar';
+import MentorProfileModal from './MentorProfileModal';
 
 export {
   AddPostModal,
@@ -28,4 +29,5 @@ export {
   LoginButton,
   LogOut,
   Sidebar,
+  MentorProfileModal,
 };
