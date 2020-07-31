@@ -9,8 +9,8 @@ const userCommentReducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.GET_USER_COMMENTS:
             const getCommentData = [];
-            const data = action.getComment;           
-            
+            const data = action.getUserId;           
+            console.log(data, 'data')
             for(const key in data) {
                  getCommentData.push({
                      id: key,

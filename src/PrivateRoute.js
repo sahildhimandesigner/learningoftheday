@@ -21,14 +21,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     })
   }, []);
 
-    let body = !loading ? (<Route {...rest} render={(props) => (
-        currentUser ? 
-        <Component {...rest}/>
-        : <Redirect to={{
-            pathname: '/auth',
-            state: { from: props.location }
-          }} />
-    )} />) : <Spinner />;
+    let body = !loading ? (<Route {...rest} render={(props) => (currentUser ? 
+    <Component {...rest}/> : <Redirect to={{pathname: '/auth', state: { from: props.location }}} />)} />) : <Spinner />;
   
     return (
       <div>{body}</div>        

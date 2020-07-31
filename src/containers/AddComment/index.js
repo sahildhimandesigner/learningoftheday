@@ -15,27 +15,28 @@ const AddComment = ({classes, ...props}) => {
     const [count, setCount] = useState(0);
     const [post, setPost] = useState({})
     const postDate = moment(post.date).fromNow();
+    
 
-    // const getUserComments = () => {
-    //     const postId = props.match.params.id;
-    //     const getComment = firebase.database().ref(`userComment/${postId}`);
-    //     getComment.on('value', function(snapshot){
-    //         const getCommentData = [];
+    const getUserComments = () => {
+        const postId = props.match.params.id;
+        // const getComment = firebase.database().ref(`userComment/${postId}`);
+        // getComment.on('value', function(snapshot){
+        //     const getCommentData = [];
             
-    //         for(const key in snapshot.val()) {
-    //              getCommentData.push({
-    //                  id: key,
-    //                  userName: snapshot.val()[key].userName,
-    //                  addComment: snapshot.val()[key].addComment,
-    //                  date: (new Date(snapshot.val()[key].date)).toString()
-    //              })
-    //          } setComment(getCommentData);
-    //          setCount(getCommentData.length)
-    //     })
-    // }
-    // useEffect(() => {    
-    //     getUserComments();
-    // }, []);
+        //     for(const key in snapshot.val()) {
+        //          getCommentData.push({
+        //              id: key,
+        //              userName: snapshot.val()[key].userName,
+        //              addComment: snapshot.val()[key].addComment,
+        //              date: (new Date(snapshot.val()[key].date)).toString()
+        //          })
+        //      } setComment(getCommentData);
+        //      setCount(getCommentData.length)
+        // })
+    }
+    useEffect(() => {    
+        getUserComments();
+    }, []);
 
     const submitUserCommentHandler = (submitComment) => {                   
         const postId = props.match.params.id;         
@@ -91,6 +92,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        postUserComment: (postSubmitComment) => dispatch(actions.submitComments(postSubmitComment)),        
         postUserComment: (postSubmitComment) => dispatch(actions.submitComments(postSubmitComment)),        
     }
 }

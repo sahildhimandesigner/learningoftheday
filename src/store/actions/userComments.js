@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-export const submitComments = (postSubmitComment) => {    
+export const submitComments = (postSubmitComment) => {
     return {
         type: actionTypes.POST_USER_COMMENTS,
         postSubmitComment: postSubmitComment

@@ -1,12 +1,14 @@
-import { put } from 'redux-saga/effects';
+import { put, take } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import firebase from '../../firebase';
 import * as actions from '../actions';
 
-// export function* getUserCommentList() {
+// export function* getUserCommentList(action) {    
+//     console.log(action.getUserId, 'getcomm')
 //     try {
 //         const channel = new eventChannel(emiter => {
-//             const listener = firebase.database().ref(`userComment`).on("value", snapshot => {
-//               emiter({ data: snapshot.val() || {} });
+//             const listener = firebase.database().ref(`userComment`).on("value", snapshot => {                
+//               emiter({ data: snapshot.val() || {} });              
 //             });
 //             return () => {
 //               listener.off();
@@ -14,7 +16,8 @@ import * as actions from '../actions';
 //           });
 //           while (true) {
 //             const { data } = yield take(channel);
-//             yield put(actions.getComment(data));
+//             console.log(data, 'saga data')
+//             // yield put(actions.getComment(data));
 //           }
 //     } catch {
 //         yield put(actions.getCommentFetchFailed())

@@ -13,6 +13,7 @@ export function* watchAuth() {
     yield takeEvery(actionTypes.SET_USER, setGetUser);
 }
 
-export function* watchUserComments(){    
+export function* watchUserComments(){
+    // yield fork(getUserCommentList);
     yield takeEvery(actionTypes.POST_USER_COMMENTS, submitCommentSaga)
 }
