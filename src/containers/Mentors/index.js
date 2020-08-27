@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'react-jss';
 import { Footer, Header, MentorProfileModal } from '../../components';
-import UserAvtar from './../../images/user-placeholder.svg';
 import MentorsStyle from './style';
 import firebase from '../../firebase';
 import Spinner from '../../components/UI/Spinner';
@@ -17,12 +17,14 @@ const Mentors = ({classes, ...props}) => {
         const users = firebase.database().ref(`users`);
         users.on('value', function(snapshot){
             for (const key in snapshot.val()) {
-                userDetails.push(snapshot.val()[key]);
+                if (key != props.auth.userId) {
+                    userDetails.push(snapshot.val()[key]);
+                }                
             }
             setUsersInfo(userDetails);
             setLoading(false);
         })
-    }, []);
+    }, [props.auth]);
 
     const mentorProfileModal = showProfileModal  ? <MentorProfileModal
                                                 userDetail={modalUserInfo}
@@ -61,4 +63,10 @@ const Mentors = ({classes, ...props}) => {
     )
 };
 
-export default withStyles(MentorsStyle)(Mentors);
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(withStyles(MentorsStyle)(Mentors));
